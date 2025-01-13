@@ -10,7 +10,9 @@ from rest_framework import status
 # )
 # from model.models import Model
 
-MODEL_LIST_URL = ""
+MODELS_LIST_URL = ""
+MAN_LIST_PAGE_URL = ""
+WOMAN_LIST_PAGE_URL = ""
 
 
 class UnauthenticatedApiTests(TestCase):
@@ -47,4 +49,10 @@ class UnauthenticatedApiTests(TestCase):
         pass
 
     def test_woman_model_list(self):
+        pass
+
+    def test_detail_model_page(self):
+        pass
+
+    def test_detail_model_contact_link(self):
         pass
