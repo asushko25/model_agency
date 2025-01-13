@@ -42,3 +42,9 @@ class UnauthenticatedApiTests(TestCase):
 
     def test_filter_model_list_by_waist(self):
         pass
+
+    def test_man_model_list(self):
+        pass
+
+    def test_woman_model_list(self):
+        pass
