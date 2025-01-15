@@ -85,7 +85,17 @@ class Model(models.Model):
     ]
     eye_color = models.CharField(max_length=10, choices=EYE_COLOR_CHOICES)
 
-    shoe_size = models.FloatField()
+    GENDER_CHOICES = [
+        ("man", "Man"),
+        ("woman", "Woman"),
+    ]
+    gender = models.CharField(
+        max_length=6,
+        choices=GENDER_CHOICES,
+        default="woman",
+        blank=False,
+        null=False,
+    )
     bust = models.PositiveIntegerField()
     waist = models.PositiveIntegerField()
     hips = models.PositiveIntegerField()
