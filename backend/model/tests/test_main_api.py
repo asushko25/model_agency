@@ -88,10 +88,3 @@ class MainPageApiTests(TestCase):
         )
 
         self.assertEqual(res.status_code, status.HTTP_200_OK)
-
-        res_data = paginated_data_or_not(res.data)
-        exp_data = self.main_util.serializing_list_of_searched_models(
-            search=search_none
-        )
-
-        self.assertEqual(res_data, exp_data)

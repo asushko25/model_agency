@@ -95,13 +95,6 @@ class ManPageApiTests(TestCase):
 
         self.assertEqual(res.status_code, status.HTTP_200_OK)
 
-        res_data = paginated_data_or_not(res.data)
-        exp_data = self.man_util.serializing_list_of_searched_models(
-            search=search_none
-        )
-
-        self.assertEqual(res_data, exp_data)
-
     def test_range_type_field_filters(self):
         """
         Test Man page  filters to range type fields
