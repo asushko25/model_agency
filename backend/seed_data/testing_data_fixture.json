@@ -1,0 +1,402 @@
+[
+    {
+        "model": "model.user",
+        "pk": 1,
+        "fields": {
+            "is_superuser": false,
+            "first_name": "John",
+            "last_name": "Doe",
+            "is_staff": false,
+            "is_active": false,
+            "email": "model1@gmail.com",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "model.user",
+        "pk": 2,
+        "fields": {
+            "is_superuser": false,
+            "first_name": "Michael",
+            "last_name": "Smith",
+            "is_staff": false,
+            "is_active": false,
+            "email": "model2@gmail.com",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "model.user",
+        "pk": 3,
+        "fields": {
+            "is_superuser": false,
+            "first_name": "David",
+            "last_name": "Johnson",
+            "is_staff": false,
+            "is_active": false,
+            "email": "model3@gmail.com",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "model.user",
+        "pk": 4,
+        "fields": {
+            "is_superuser": false,
+            "first_name": "James",
+            "last_name": "Brown",
+            "is_staff": false,
+            "is_active": false,
+            "email": "model4@gmail.com",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "model.user",
+        "pk": 5,
+        "fields": {
+            "is_superuser": false,
+            "first_name": "Robert",
+            "last_name": "Williams",
+            "is_staff": false,
+            "is_active": false,
+            "email": "model5@gmail.com",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "model.user",
+        "pk": 6,
+        "fields": {
+            "is_superuser": false,
+            "first_name": "Emily",
+            "last_name": "Davis",
+            "is_staff": false,
+            "is_active": false,
+            "email": "model6@gmail.com",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "model.user",
+        "pk": 7,
+        "fields": {
+            "is_superuser": false,
+            "first_name": "Sarah",
+            "last_name": "Miller",
+            "is_staff": false,
+            "is_active": false,
+            "email": "model7@gmail.com",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "model.user",
+        "pk": 8,
+        "fields": {
+            "is_superuser": false,
+            "first_name": "Jessica",
+            "last_name": "Wilson",
+            "is_staff": false,
+            "is_active": false,
+            "email": "model8@gmail.com",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "model.user",
+        "pk": 9,
+        "fields": {
+            "is_superuser": false,
+            "first_name": "Emma",
+            "last_name": "Moore",
+            "is_staff": false,
+            "is_active": false,
+            "email": "model9@gmail.com",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "model.user",
+        "pk": 10,
+        "fields": {
+            "is_superuser": false,
+            "first_name": "Olivia",
+            "last_name": "Taylor",
+            "is_staff": false,
+            "is_active": false,
+            "email": "model10@gmail.com",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "model.model",
+        "pk": 1,
+        "fields": {
+            "model_user": 1,
+            "date_of_birth": "2005-02-27",
+            "city": "New York",
+            "country": "USA",
+            "height": 190,
+            "hair": "black",
+            "eye_color": "green",
+            "gender": "men",
+            "bust": 93,
+            "waist": 60,
+            "hips": 107
+        }
+    },
+    {
+        "model": "model.model",
+        "pk": 2,
+        "fields": {
+            "model_user": 2,
+            "date_of_birth": "1996-06-23",
+            "city": "Toronto",
+            "country": "Canada",
+            "height": 190,
+            "hair": "black",
+            "eye_color": "blue",
+            "gender": "men",
+            "bust": 86,
+            "waist": 73,
+            "hips": 86
+        }
+    },
+    {
+        "model": "model.model",
+        "pk": 3,
+        "fields": {
+            "model_user": 3,
+            "date_of_birth": "1997-02-25",
+            "city": "London",
+            "country": "UK",
+            "height": 170,
+            "hair": "other",
+            "eye_color": "blue",
+            "gender": "men",
+            "bust": 100,
+            "waist": 96,
+            "hips": 84
+        }
+    },
+    {
+        "model": "model.model",
+        "pk": 4,
+        "fields": {
+            "model_user": 4,
+            "date_of_birth": "2000-12-06",
+            "city": "Sydney",
+            "country": "Australia",
+            "height": 174,
+            "hair": "black",
+            "eye_color": "green",
+            "gender": "men",
+            "bust": 89,
+            "waist": 65,
+            "hips": 95
+        }
+    },
+    {
+        "model": "model.model",
+        "pk": 5,
+        "fields": {
+            "model_user": 5,
+            "date_of_birth": "2001-06-02",
+            "city": "Berlin",
+            "country": "Germany",
+            "height": 171,
+            "hair": "black",
+            "eye_color": "gray",
+            "gender": "men",
+            "bust": 98,
+            "waist": 87,
+            "hips": 93
+        }
+    },
+    {
+        "model": "model.model",
+        "pk": 6,
+        "fields": {
+            "model_user": 6,
+            "date_of_birth": "1999-04-14",
+            "city": "Paris",
+            "country": "France",
+            "height": 171,
+            "hair": "brown",
+            "eye_color": "hazel",
+            "gender": "woman",
+            "bust": 108,
+            "waist": 72,
+            "hips": 91
+        }
+    },
+    {
+        "model": "model.model",
+        "pk": 7,
+        "fields": {
+            "model_user": 7,
+            "date_of_birth": "2001-07-20",
+            "city": "Rome",
+            "country": "Italy",
+            "height": 170,
+            "hair": "brown",
+            "eye_color": "hazel",
+            "gender": "woman",
+            "bust": 85,
+            "waist": 91,
+            "hips": 101
+        }
+    },
+    {
+        "model": "model.model",
+        "pk": 8,
+        "fields": {
+            "model_user": 8,
+            "date_of_birth": "1997-08-19",
+            "city": "Madrid",
+            "country": "Spain",
+            "height": 179,
+            "hair": "brown",
+            "eye_color": "hazel",
+            "gender": "woman",
+            "bust": 104,
+            "waist": 98,
+            "hips": 90
+        }
+    },
+    {
+        "model": "model.model",
+        "pk": 9,
+        "fields": {
+            "model_user": 9,
+            "date_of_birth": "1996-05-29",
+            "city": "Tokyo",
+            "country": "Japan",
+            "height": 172,
+            "hair": "brown",
+            "eye_color": "hazel",
+            "gender": "woman",
+            "bust": 107,
+            "waist": 62,
+            "hips": 85
+        }
+    },
+    {
+        "model": "model.model",
+        "pk": 10,
+        "fields": {
+            "model_user": 10,
+            "date_of_birth": "1997-07-10",
+            "city": "Beijing",
+            "country": "China",
+            "height": 176,
+            "hair": "brown",
+            "eye_color": "gray",
+            "gender": "woman",
+            "bust": 98,
+            "waist": 77,
+            "hips": 111
+        }
+    },
+    {
+        "model": "model.modelimages",
+        "pk": 1,
+        "fields": {
+            "model": 1,
+            "image": "",
+            "caption": ""
+        }
+    },
+    {
+        "model": "model.modelimages",
+        "pk": 2,
+        "fields": {
+            "model": 2,
+            "image": "",
+            "caption": ""
+        }
+    },
+    {
+        "model": "model.modelimages",
+        "pk": 3,
+        "fields": {
+            "model": 3,
+            "image": "",
+            "caption": ""
+        }
+    },
+    {
+        "model": "model.modelimages",
+        "pk": 4,
+        "fields": {
+            "model": 4,
+            "image": "",
+            "caption": ""
+        }
+    },
+    {
+        "model": "model.modelimages",
+        "pk": 5,
+        "fields": {
+            "model": 5,
+            "image": "",
+            "caption": ""
+        }
+    },
+    {
+        "model": "model.modelimages",
+        "pk": 6,
+        "fields": {
+            "model": 6,
+            "image": "",
+            "caption": ""
+        }
+    },
+    {
+        "model": "model.modelimages",
+        "pk": 7,
+        "fields": {
+            "model": 7,
+            "image": "",
+            "caption": ""
+        }
+    },
+    {
+        "model": "model.modelimages",
+        "pk": 8,
+        "fields": {
+            "model": 8,
+            "image": "",
+            "caption": ""
+        }
+    },
+    {
+        "model": "model.modelimages",
+        "pk": 9,
+        "fields": {
+            "model": 9,
+            "image": "",
+            "caption": ""
+        }
+    },
+    {
+        "model": "model.modelimages",
+        "pk": 10,
+        "fields": {
+            "model": 10,
+            "image": "",
+            "caption": ""
+        }
+    }
+]
