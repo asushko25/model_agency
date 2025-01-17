@@ -65,7 +65,6 @@ class ManPageApiTests(TestCase):
 
     def test_search_by_credentials_in_man_list(self):
         """Test Man page search form by man model fullname"""
-        # TODO: talk with backend developer about full_name
         model_fullname = Model.objects.filter(gender="man").last().full_name
         partially_fullname = model_fullname[:len(model_fullname) // 2]
 

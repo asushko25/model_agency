@@ -66,7 +66,6 @@ class WomanPageApiTests(TestCase):
 
     def test_search_by_credentials_in_woman_list(self):
         """Test Woman page search query param by woman model fullname"""
-        # TODO: talk with backend developer about full_name
         model_fullname = Model.objects.filter(gender="woman").last().full_name
         partially_fullname = model_fullname[:len(model_fullname) // 2]
 

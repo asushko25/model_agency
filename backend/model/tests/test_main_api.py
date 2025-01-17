@@ -59,7 +59,6 @@ class MainPageApiTests(TestCase):
 
     def test_search_by_credentials_in_model_list(self):
         """Test Main page search form by model fullname"""
-        # TODO: talk with backend developer about full_name
         model_fullname = Model.objects.last().model_user.full_name
         partially_fullname = model_fullname[:len(model_fullname) // 2]
 
