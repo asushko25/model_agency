@@ -1,8 +1,14 @@
 """Utils for testing model app"""
+from django.urls import reverse
+
 from ...models import Model
 from ...serializers import (
     ModelListSerializer
 )
+
+
+def model_detail_url(model_id: int):
+    return reverse("model:model-detail", args=[model_id])
 
 
 def paginated_data_or_not(data):
