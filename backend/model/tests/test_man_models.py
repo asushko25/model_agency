@@ -8,6 +8,7 @@ from rest_framework import status
 from ..models import Model
 from .utils.model_test_util import (
     paginated_data_or_not,
+    model_detail_url,
     UtilFilterSearchSerialize
 )
 
@@ -156,3 +157,17 @@ class ManPageApiTests(TestCase):
             )
 
             self.assertEqual(res_data, exp_data)
+
+    def test_each_model_has_url_to_detail_page(self):
+        """
+        Test Main page. Where for each model json body also will be
+        URL to their Model Detail page
+        """
+        res = self.client.get(MAN_LIST_PAGE_URL)
+        model = paginated_data_or_not(res)[0]
+
+        self.assertIn("detail_url", model)
+
+        detail_res = self.client.get(model_detail_url(model["id"]))
+
+        self.assertEqual(detail_res.status_code, status.HTTP_200_OK)
