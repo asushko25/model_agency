@@ -8,7 +8,7 @@ from .models import Model, ModelImages, User
 
 class ModelAdmin(admin.ModelAdmin):
     list_display = (
-        "full_name",
+        "get_full_name",
         "country",
         "city",
         "height",
@@ -21,7 +21,12 @@ class ModelAdmin(admin.ModelAdmin):
         "hair",
         "eye_color",
     )
-    search_fields = ["full_name"]
+    search_fields = ["model_user__full_name"]
+
+    def get_full_name(self, obj):
+        return obj.model_user.full_name
+
+    get_full_name.short_description = "Full Name"
 
 
 @admin.register(User)
@@ -34,8 +39,7 @@ class UserAdmin(DjangoUserAdmin):
                 "classes": ("wide",),
                 "fields": (
                     "email",
-                    "first_name",
-                    "last_name",
+                    "full_name",
                     "phone_number",
                 ),
             },
@@ -47,8 +51,7 @@ class UserAdmin(DjangoUserAdmin):
             _("Personal info"),
             {
                 "fields": (
-                    "first_name",
-                    "last_name",
+                    "full_name",
                 )
             },
         ),
@@ -56,16 +59,14 @@ class UserAdmin(DjangoUserAdmin):
         (_("Important dates"), {"fields": ["date_joined"]}),
     )
     list_display = (
-        "first_name",
-        "last_name",
+        "full_name",
         "email",
         "phone_number",
         "is_staff",
     )
     search_fields = (
         "email",
-        "first_name",
-        "last_name",
+        "full_name"
     )
     ordering = ("email",)
 
