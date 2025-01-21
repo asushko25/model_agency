@@ -12,7 +12,7 @@ from .utils.model_test_util import (
     UtilFilterSearchSerialize
 )
 
-MAN_LIST_PAGE_URL = reverse("model:model-man-list")
+MAN_LIST_PAGE_URL = reverse("model:man-list")
 
 
 class ManPageApiTests(TestCase):

@@ -13,7 +13,7 @@ from .utils.model_test_util import (
 )
 
 
-MAIN_LIST_URL = reverse("model:model-list")
+MAIN_LIST_URL = reverse("model:main-list")
 
 
 class MainPageApiTests(TestCase):
