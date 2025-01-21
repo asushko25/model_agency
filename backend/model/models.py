@@ -29,8 +29,7 @@ class UserManager(BaseUserManager):
         extra_fields.setdefault("is_staff", True)
         extra_fields.setdefault("is_superuser", True)
 
-        extra_fields.setdefault("first_name", "Admin")
-        extra_fields.setdefault("last_name", "User")
+        extra_fields.setdefault("full_name", "Admin")
 
         return self._create_user(email, password, **extra_fields)
 
@@ -39,14 +38,15 @@ class User(AbstractUser):
     username = None
     email = models.EmailField(_("email address"), unique=True)
     phone_number = PhoneNumberField(max_length=15, blank=True, null=True)
+    full_name = models.CharField(max_length=255, db_index=True)
 
     objects = UserManager()
 
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ["first_name", "last_name"]
+    REQUIRED_FIELDS = ["full_name"]
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name} ({self.email})"
+        return f"{self.full_name} ({self.email})"
 
     class Meta:
         ordering = ["-id"]
@@ -101,25 +101,26 @@ class Model(models.Model):
     hips = models.PositiveIntegerField()
 
     def __str__(self):
-        return f"{self.model_user.first_name} {self.model_user.last_name}"
+        return self.model_user.full_name
 
     @property
     def full_name(self):
-        return f"{self.model_user.first_name} {self.model_user.last_name}"
+        return self.model_user.full_name
 
 
-def model_image_file_path(instance, filename):
+def model_image_file_path(instance: "ModelImages", filename: str):
     _, extension = os.path.splitext(filename)
+    first_name, last_name = instance.model.full_name().split(" ")
+
     filename = (
-        f"{slugify(instance.model.model_user.first_name)}"
-        f"-{slugify(instance.model.model_user.last_name)}"
+        f"{slugify(first_name)}"
+        f"-{slugify(last_name)}"
         f"-{uuid.uuid4()}.{extension}"
     )
     return os.path.join(
         "uploads",
         "models",
-        f"{slugify(instance.model.model_user.first_name)}"
-        f"-{slugify(instance.model.model_user.last_name)}",
+        f"{instance.model.gender}",
         filename,
     )
 
