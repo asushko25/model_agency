@@ -4,8 +4,7 @@
         "pk": 1,
         "fields": {
             "is_superuser": false,
-            "first_name": "John",
-            "last_name": "Doe",
+            "full_name": "John Doe",
             "is_staff": false,
             "is_active": false,
             "email": "model1@gmail.com",
@@ -18,8 +17,7 @@
         "pk": 2,
         "fields": {
             "is_superuser": false,
-            "first_name": "Michael",
-            "last_name": "Smith",
+            "full_name": "Michael Smith",
             "is_staff": false,
             "is_active": false,
             "email": "model2@gmail.com",
@@ -32,8 +30,7 @@
         "pk": 3,
         "fields": {
             "is_superuser": false,
-            "first_name": "David",
-            "last_name": "Johnson",
+            "full_name": "David Johnson",
             "is_staff": false,
             "is_active": false,
             "email": "model3@gmail.com",
@@ -46,8 +43,7 @@
         "pk": 4,
         "fields": {
             "is_superuser": false,
-            "first_name": "James",
-            "last_name": "Brown",
+            "full_name": "James Brown",
             "is_staff": false,
             "is_active": false,
             "email": "model4@gmail.com",
@@ -60,8 +56,7 @@
         "pk": 5,
         "fields": {
             "is_superuser": false,
-            "first_name": "Robert",
-            "last_name": "Williams",
+            "full_name": "Robert Williams",
             "is_staff": false,
             "is_active": false,
             "email": "model5@gmail.com",
@@ -74,8 +69,7 @@
         "pk": 6,
         "fields": {
             "is_superuser": false,
-            "first_name": "William",
-            "last_name": "Jones",
+            "full_name": "William Jones",
             "is_staff": false,
             "is_active": false,
             "email": "model6@gmail.com",
@@ -88,8 +82,7 @@
         "pk": 7,
         "fields": {
             "is_superuser": false,
-            "first_name": "Joseph",
-            "last_name": "Garcia",
+            "full_name": "Joseph Garcia",
             "is_staff": false,
             "is_active": false,
             "email": "model7@gmail.com",
@@ -102,8 +95,7 @@
         "pk": 8,
         "fields": {
             "is_superuser": false,
-            "first_name": "Daniel",
-            "last_name": "Martinez",
+            "full_name": "Daniel Martinez",
             "is_staff": false,
             "is_active": false,
             "email": "model8@gmail.com",
@@ -116,8 +108,7 @@
         "pk": 9,
         "fields": {
             "is_superuser": false,
-            "first_name": "Matthew",
-            "last_name": "Hernandez",
+            "full_name": "Matthew Hernandez",
             "is_staff": false,
             "is_active": false,
             "email": "model9@gmail.com",
@@ -130,8 +121,7 @@
         "pk": 10,
         "fields": {
             "is_superuser": false,
-            "first_name": "Christopher",
-            "last_name": "Lopez",
+            "full_name": "Christopher Lopez",
             "is_staff": false,
             "is_active": false,
             "email": "model10@gmail.com",
@@ -144,8 +134,7 @@
         "pk": 11,
         "fields": {
             "is_superuser": false,
-            "first_name": "Andrew",
-            "last_name": "Gonzalez",
+            "full_name": "Andrew Gonzalez",
             "is_staff": false,
             "is_active": false,
             "email": "model11@gmail.com",
@@ -158,8 +147,7 @@
         "pk": 12,
         "fields": {
             "is_superuser": false,
-            "first_name": "Joshua",
-            "last_name": "Perez",
+            "full_name": "Joshua Perez",
             "is_staff": false,
             "is_active": false,
             "email": "model12@gmail.com",
@@ -172,8 +160,7 @@
         "pk": 13,
         "fields": {
             "is_superuser": false,
-            "first_name": "Emily",
-            "last_name": "Davis",
+            "full_name": "Emily Davis",
             "is_staff": false,
             "is_active": false,
             "email": "model13@gmail.com",
@@ -186,8 +173,7 @@
         "pk": 14,
         "fields": {
             "is_superuser": false,
-            "first_name": "Sarah",
-            "last_name": "Miller",
+            "full_name": "Sarah Miller",
             "is_staff": false,
             "is_active": false,
             "email": "model14@gmail.com",
@@ -200,8 +186,7 @@
         "pk": 15,
         "fields": {
             "is_superuser": false,
-            "first_name": "Jessica",
-            "last_name": "Wilson",
+            "full_name": "Jessica Wilson",
             "is_staff": false,
             "is_active": false,
             "email": "model15@gmail.com",
@@ -214,8 +199,7 @@
         "pk": 16,
         "fields": {
             "is_superuser": false,
-            "first_name": "Emma",
-            "last_name": "Moore",
+            "full_name": "Emma Moore",
             "is_staff": false,
             "is_active": false,
             "email": "model16@gmail.com",
@@ -228,8 +212,7 @@
         "pk": 17,
         "fields": {
             "is_superuser": false,
-            "first_name": "Olivia",
-            "last_name": "Taylor",
+            "full_name": "Olivia Taylor",
             "is_staff": false,
             "is_active": false,
             "email": "model17@gmail.com",
@@ -242,8 +225,7 @@
         "pk": 18,
         "fields": {
             "is_superuser": false,
-            "first_name": "Sophia",
-            "last_name": "Anderson",
+            "full_name": "Sophia Anderson",
             "is_staff": false,
             "is_active": false,
             "email": "model18@gmail.com",
@@ -256,8 +238,7 @@
         "pk": 19,
         "fields": {
             "is_superuser": false,
-            "first_name": "Isabella",
-            "last_name": "Thomas",
+            "full_name": "Isabella Thomas",
             "is_staff": false,
             "is_active": false,
             "email": "model19@gmail.com",
@@ -270,8 +251,7 @@
         "pk": 20,
         "fields": {
             "is_superuser": false,
-            "first_name": "Mia",
-            "last_name": "Jackson",
+            "full_name": "Mia Jackson",
             "is_staff": false,
             "is_active": false,
             "email": "model20@gmail.com",
@@ -284,8 +264,7 @@
         "pk": 21,
         "fields": {
             "is_superuser": false,
-            "first_name": "Charlotte",
-            "last_name": "White",
+            "full_name": "Charlotte White",
             "is_staff": false,
             "is_active": false,
             "email": "model21@gmail.com",
@@ -298,8 +277,7 @@
         "pk": 22,
         "fields": {
             "is_superuser": false,
-            "first_name": "Amelia",
-            "last_name": "Harris",
+            "full_name": "Amelia Harris",
             "is_staff": false,
             "is_active": false,
             "email": "model22@gmail.com",
@@ -312,8 +290,7 @@
         "pk": 23,
         "fields": {
             "is_superuser": false,
-            "first_name": "Avery",
-            "last_name": "Martin",
+            "full_name": "Avery Martin",
             "is_staff": false,
             "is_active": false,
             "email": "model23@gmail.com",
@@ -326,8 +303,7 @@
         "pk": 24,
         "fields": {
             "is_superuser": false,
-            "first_name": "Ella",
-            "last_name": "Thompson",
+            "full_name": "Ella Thompson",
             "is_staff": false,
             "is_active": false,
             "email": "model24@gmail.com",
@@ -339,14 +315,14 @@
         "model": "model.user",
         "pk": 25,
         "fields": {
-            "id": 25,
             "password": "pbkdf2_sha256$870000$caIwMjH8mMcugaumynwAZD$EWBLB4vdNi+w6hl3dSZQX0YHF+AcKKC1RgP6TcPDYmE=",
+            "last_login": null,
             "is_superuser": true,
-            "first_name": "Main",
-            "last_name": "Admin",
+            "full_name": "Admin Test",
             "is_staff": true,
             "is_active": true,
             "email": "testadmin@gmail.com",
+            "phone_number": null,
             "groups": [],
             "user_permissions": []
         }
@@ -356,16 +332,16 @@
         "pk": 1,
         "fields": {
             "model_user": 1,
-            "date_of_birth": "2002-08-25",
+            "date_of_birth": "1996-01-11",
             "city": "New York",
             "country": "USA",
-            "height": 180,
-            "hair": "black",
-            "eye_color": "blue",
+            "height": 186,
+            "hair": "blonde",
+            "eye_color": "brown",
             "gender": "men",
-            "bust": 106,
-            "waist": 73,
-            "hips": 111
+            "bust": 88,
+            "waist": 85,
+            "hips": 92
         }
     },
     {
@@ -373,16 +349,16 @@
         "pk": 2,
         "fields": {
             "model_user": 2,
-            "date_of_birth": "2005-05-19",
+            "date_of_birth": "1996-01-03",
             "city": "Toronto",
             "country": "Canada",
-            "height": 176,
-            "hair": "grey",
+            "height": 177,
+            "hair": "red",
             "eye_color": "green",
             "gender": "men",
-            "bust": 112,
-            "waist": 98,
-            "hips": 97
+            "bust": 89,
+            "waist": 95,
+            "hips": 110
         }
     },
     {
@@ -390,16 +366,16 @@
         "pk": 3,
         "fields": {
             "model_user": 3,
-            "date_of_birth": "2004-09-12",
+            "date_of_birth": "2005-10-07",
             "city": "London",
             "country": "UK",
-            "height": 182,
-            "hair": "blonde",
+            "height": 171,
+            "hair": "red",
             "eye_color": "blue",
             "gender": "men",
-            "bust": 99,
-            "waist": 79,
-            "hips": 107
+            "bust": 102,
+            "waist": 89,
+            "hips": 87
         }
     },
     {
@@ -407,16 +383,16 @@
         "pk": 4,
         "fields": {
             "model_user": 4,
-            "date_of_birth": "2000-12-07",
+            "date_of_birth": "2004-05-19",
             "city": "Sydney",
             "country": "Australia",
-            "height": 176,
-            "hair": "red",
+            "height": 186,
+            "hair": "brown",
             "eye_color": "gray",
             "gender": "men",
-            "bust": 110,
-            "waist": 83,
-            "hips": 103
+            "bust": 93,
+            "waist": 88,
+            "hips": 106
         }
     },
     {
@@ -424,16 +400,16 @@
         "pk": 5,
         "fields": {
             "model_user": 5,
-            "date_of_birth": "2005-04-15",
+            "date_of_birth": "2002-04-21",
             "city": "Berlin",
             "country": "Germany",
-            "height": 186,
+            "height": 189,
             "hair": "black",
-            "eye_color": "green",
+            "eye_color": "blue",
             "gender": "men",
-            "bust": 114,
-            "waist": 83,
-            "hips": 109
+            "bust": 90,
+            "waist": 93,
+            "hips": 118
         }
     },
     {
@@ -441,16 +417,16 @@
         "pk": 6,
         "fields": {
             "model_user": 6,
-            "date_of_birth": "2000-10-11",
+            "date_of_birth": "1995-03-14",
             "city": "Paris",
             "country": "France",
-            "height": 188,
-            "hair": "grey",
-            "eye_color": "blue",
+            "height": 173,
+            "hair": "other",
+            "eye_color": "hazel",
             "gender": "men",
-            "bust": 112,
-            "waist": 100,
-            "hips": 96
+            "bust": 94,
+            "waist": 71,
+            "hips": 93
         }
     },
     {
@@ -458,16 +434,16 @@
         "pk": 7,
         "fields": {
             "model_user": 7,
-            "date_of_birth": "1996-11-16",
+            "date_of_birth": "1997-11-03",
             "city": "Rome",
             "country": "Italy",
-            "height": 183,
-            "hair": "other",
-            "eye_color": "hazel",
+            "height": 185,
+            "hair": "black",
+            "eye_color": "brown",
             "gender": "men",
-            "bust": 104,
-            "waist": 92,
-            "hips": 120
+            "bust": 108,
+            "waist": 70,
+            "hips": 111
         }
     },
     {
@@ -475,16 +451,16 @@
         "pk": 8,
         "fields": {
             "model_user": 8,
-            "date_of_birth": "1999-10-08",
+            "date_of_birth": "2001-01-07",
             "city": "Madrid",
             "country": "Spain",
-            "height": 182,
+            "height": 178,
             "hair": "black",
-            "eye_color": "blue",
+            "eye_color": "gray",
             "gender": "men",
-            "bust": 117,
-            "waist": 90,
-            "hips": 85
+            "bust": 115,
+            "waist": 82,
+            "hips": 96
         }
     },
     {
@@ -492,16 +468,16 @@
         "pk": 9,
         "fields": {
             "model_user": 9,
-            "date_of_birth": "1997-09-02",
+            "date_of_birth": "1995-12-19",
             "city": "Tokyo",
             "country": "Japan",
-            "height": 182,
-            "hair": "red",
-            "eye_color": "brown",
+            "height": 177,
+            "hair": "brown",
+            "eye_color": "hazel",
             "gender": "men",
-            "bust": 97,
-            "waist": 71,
-            "hips": 90
+            "bust": 118,
+            "waist": 89,
+            "hips": 105
         }
     },
     {
@@ -509,16 +485,16 @@
         "pk": 10,
         "fields": {
             "model_user": 10,
-            "date_of_birth": "2004-03-29",
+            "date_of_birth": "1999-09-25",
             "city": "Beijing",
             "country": "China",
-            "height": 176,
-            "hair": "grey",
-            "eye_color": "hazel",
+            "height": 189,
+            "hair": "red",
+            "eye_color": "brown",
             "gender": "men",
-            "bust": 107,
-            "waist": 78,
-            "hips": 107
+            "bust": 102,
+            "waist": 82,
+            "hips": 112
         }
     },
     {
@@ -526,16 +502,16 @@
         "pk": 11,
         "fields": {
             "model_user": 11,
-            "date_of_birth": "2001-05-23",
+            "date_of_birth": "1998-01-22",
             "city": "Rio de Janeiro",
             "country": "Brazil",
-            "height": 179,
-            "hair": "red",
-            "eye_color": "brown",
+            "height": 176,
+            "hair": "brown",
+            "eye_color": "blue",
             "gender": "men",
-            "bust": 109,
-            "waist": 75,
-            "hips": 94
+            "bust": 88,
+            "waist": 61,
+            "hips": 95
         }
     },
     {
@@ -543,16 +519,16 @@
         "pk": 12,
         "fields": {
             "model_user": 12,
-            "date_of_birth": "2000-11-20",
+            "date_of_birth": "1999-08-23",
             "city": "New Delhi",
             "country": "India",
-            "height": 179,
-            "hair": "blonde",
-            "eye_color": "hazel",
+            "height": 184,
+            "hair": "red",
+            "eye_color": "gray",
             "gender": "men",
-            "bust": 109,
-            "waist": 62,
-            "hips": 95
+            "bust": 116,
+            "waist": 93,
+            "hips": 117
         }
     },
     {
@@ -560,16 +536,16 @@
         "pk": 13,
         "fields": {
             "model_user": 13,
-            "date_of_birth": "1999-08-25",
+            "date_of_birth": "2000-03-02",
             "city": "Mexico City",
             "country": "Mexico",
-            "height": 190,
-            "hair": "other",
+            "height": 180,
+            "hair": "blonde",
             "eye_color": "green",
             "gender": "woman",
-            "bust": 118,
-            "waist": 66,
-            "hips": 97
+            "bust": 95,
+            "waist": 86,
+            "hips": 111
         }
     },
     {
@@ -577,16 +553,16 @@
         "pk": 14,
         "fields": {
             "model_user": 14,
-            "date_of_birth": "2001-01-10",
+            "date_of_birth": "2001-06-11",
             "city": "Moscow",
             "country": "Russia",
-            "height": 179,
-            "hair": "blonde",
-            "eye_color": "green",
+            "height": 184,
+            "hair": "other",
+            "eye_color": "gray",
             "gender": "woman",
-            "bust": 105,
-            "waist": 88,
-            "hips": 104
+            "bust": 112,
+            "waist": 89,
+            "hips": 96
         }
     },
     {
@@ -594,16 +570,16 @@
         "pk": 15,
         "fields": {
             "model_user": 15,
-            "date_of_birth": "1996-07-08",
+            "date_of_birth": "2005-05-07",
             "city": "Seoul",
             "country": "South Korea",
-            "height": 188,
+            "height": 181,
             "hair": "red",
-            "eye_color": "green",
+            "eye_color": "brown",
             "gender": "woman",
-            "bust": 103,
-            "waist": 67,
-            "hips": 87
+            "bust": 113,
+            "waist": 97,
+            "hips": 100
         }
     },
     {
@@ -611,16 +587,16 @@
         "pk": 16,
         "fields": {
             "model_user": 16,
-            "date_of_birth": "2003-05-18",
+            "date_of_birth": "2001-03-09",
             "city": "Amsterdam",
             "country": "Netherlands",
-            "height": 177,
+            "height": 190,
             "hair": "black",
-            "eye_color": "blue",
+            "eye_color": "gray",
             "gender": "woman",
-            "bust": 104,
-            "waist": 87,
-            "hips": 97
+            "bust": 116,
+            "waist": 70,
+            "hips": 99
         }
     },
     {
@@ -628,16 +604,16 @@
         "pk": 17,
         "fields": {
             "model_user": 17,
-            "date_of_birth": "2001-07-24",
+            "date_of_birth": "2004-05-23",
             "city": "Cape Town",
             "country": "South Africa",
-            "height": 179,
-            "hair": "grey",
-            "eye_color": "brown",
+            "height": 186,
+            "hair": "black",
+            "eye_color": "gray",
             "gender": "woman",
-            "bust": 120,
-            "waist": 96,
-            "hips": 99
+            "bust": 95,
+            "waist": 71,
+            "hips": 82
         }
     },
     {
@@ -645,16 +621,16 @@
         "pk": 18,
         "fields": {
             "model_user": 18,
-            "date_of_birth": "2000-02-05",
+            "date_of_birth": "1995-09-14",
             "city": "Stockholm",
             "country": "Sweden",
             "height": 171,
-            "hair": "brown",
-            "eye_color": "blue",
+            "hair": "red",
+            "eye_color": "brown",
             "gender": "woman",
-            "bust": 89,
-            "waist": 64,
-            "hips": 115
+            "bust": 85,
+            "waist": 87,
+            "hips": 102
         }
     },
     {
@@ -662,16 +638,16 @@
         "pk": 19,
         "fields": {
             "model_user": 19,
-            "date_of_birth": "2002-11-19",
+            "date_of_birth": "1998-06-11",
             "city": "Oslo",
             "country": "Norway",
-            "height": 187,
-            "hair": "blonde",
-            "eye_color": "gray",
+            "height": 186,
+            "hair": "black",
+            "eye_color": "blue",
             "gender": "woman",
-            "bust": 118,
-            "waist": 88,
-            "hips": 96
+            "bust": 86,
+            "waist": 81,
+            "hips": 105
         }
     },
     {
@@ -679,16 +655,16 @@
         "pk": 20,
         "fields": {
             "model_user": 20,
-            "date_of_birth": "2004-03-24",
+            "date_of_birth": "2002-09-04",
             "city": "Helsinki",
             "country": "Finland",
-            "height": 171,
-            "hair": "other",
-            "eye_color": "gray",
+            "height": 190,
+            "hair": "red",
+            "eye_color": "brown",
             "gender": "woman",
-            "bust": 95,
-            "waist": 69,
-            "hips": 108
+            "bust": 92,
+            "waist": 85,
+            "hips": 88
         }
     },
     {
@@ -696,16 +672,16 @@
         "pk": 21,
         "fields": {
             "model_user": 21,
-            "date_of_birth": "2000-09-29",
+            "date_of_birth": "2004-08-02",
             "city": "Buenos Aires",
             "country": "Argentina",
-            "height": 175,
-            "hair": "other",
-            "eye_color": "blue",
+            "height": 178,
+            "hair": "blonde",
+            "eye_color": "gray",
             "gender": "woman",
-            "bust": 117,
-            "waist": 81,
-            "hips": 91
+            "bust": 80,
+            "waist": 62,
+            "hips": 88
         }
     },
     {
@@ -713,16 +689,16 @@
         "pk": 22,
         "fields": {
             "model_user": 22,
-            "date_of_birth": "2003-11-28",
+            "date_of_birth": "2000-07-18",
             "city": "Cairo",
             "country": "Egypt",
-            "height": 185,
-            "hair": "other",
-            "eye_color": "blue",
+            "height": 179,
+            "hair": "brown",
+            "eye_color": "green",
             "gender": "woman",
-            "bust": 119,
-            "waist": 100,
-            "hips": 112
+            "bust": 83,
+            "waist": 73,
+            "hips": 99
         }
     },
     {
@@ -730,16 +706,16 @@
         "pk": 23,
         "fields": {
             "model_user": 23,
-            "date_of_birth": "2005-09-04",
+            "date_of_birth": "2004-11-17",
             "city": "Athens",
             "country": "Greece",
-            "height": 173,
+            "height": 189,
             "hair": "grey",
-            "eye_color": "brown",
+            "eye_color": "gray",
             "gender": "woman",
-            "bust": 110,
-            "waist": 64,
-            "hips": 117
+            "bust": 89,
+            "waist": 73,
+            "hips": 89
         }
     },
     {
@@ -747,16 +723,16 @@
         "pk": 24,
         "fields": {
             "model_user": 24,
-            "date_of_birth": "2005-01-05",
+            "date_of_birth": "1997-04-01",
             "city": "Istanbul",
             "country": "Turkey",
-            "height": 181,
-            "hair": "blonde",
-            "eye_color": "gray",
+            "height": 175,
+            "hair": "brown",
+            "eye_color": "green",
             "gender": "woman",
-            "bust": 80,
-            "waist": 63,
-            "hips": 85
+            "bust": 90,
+            "waist": 82,
+            "hips": 113
         }
     },
     {
