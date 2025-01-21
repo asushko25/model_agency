@@ -47,7 +47,7 @@ class UtilSerializingModels:
         :rtype list[dict]
         """
         exp_data = Model.objects.filter(
-            model_user__first_name__icontains=search
+            model_user__full_name__icontains=search
         )
         return self.serializing_list_of_models(
             data=exp_data
@@ -65,8 +65,8 @@ class UtilSerializingModels:
         :rtype list[dict]
         """
         exp_data = (
-            data[self.limit: self.offset] if data
-            else Model.objects.all()[self.limit: self.offset]
+            data[self.offset: self.limit + self.offset] if data
+            else Model.objects.all()[self.offset: self.limit + self.offset]
         )
         serializer = ModelListSerializer(exp_data, many=True)
 
