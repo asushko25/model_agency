@@ -9,7 +9,7 @@ class ModelImagesSerializer(serializers.ModelSerializer):
         fields = ["image", "caption"]
 
 
-class ModelListSerializer(serializers.ModelSerializer):
+class ModelSerializer(serializers.ModelSerializer):
     photo = serializers.ImageField(source="images.first.image")
 
     class Meta:
@@ -22,11 +22,44 @@ class ModelDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Model
+        fields = ["id" "hair", "eye_color", "bust", "waist", "hips", "images"]
+
+
+class WomanModelListSerializer(ModelSerializer):
+    detail_url = serializers.HyperlinkedIdentityField(
+        view_name="model:woman-detail", lookup_field="id"
+    )
+
+    class Meta:
+        model = Model
+        fields = ["full_name", "city", "country", "photo", "detail_url"]
+
+
+class WomanModelDetailSerializer(ModelDetailSerializer):
+    class Meta:
+        model = Model
         fields = [
             "hair",
             "eye_color",
             "bust",
             "waist",
             "hips",
-            "images"
+            "images",
         ]
+
+
+class ManModelListSerializer(ModelSerializer):
+    detail_url = serializers.HyperlinkedIdentityField(
+        view_name="model:man-detail", lookup_field="id"
+    )
+
+    class Meta:
+        model = Model
+        fields = ["full_name", "city", "country", "photo", "detail_url"]
+
+
+class ManModelDetailSerializer(ModelDetailSerializer):
+
+    class Meta:
+        model = Model
+        fields = ["hair", "eye_color", "bust", "waist", "hips", "images"]
