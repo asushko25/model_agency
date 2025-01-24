@@ -134,16 +134,16 @@
         "pk": 1,
         "fields": {
             "model_user": 1,
-            "date_of_birth": "2004-05-26",
+            "date_of_birth": "1998-08-05",
             "city": "New York",
             "country": "USA",
-            "height": 184,
-            "hair": "other",
-            "eye_color": "gray",
-            "gender": "men",
-            "bust": 107,
-            "waist": 62,
-            "hips": 113
+            "height": 183,
+            "hair": "brown",
+            "eye_color": "brown",
+            "gender": "man",
+            "bust": 86,
+            "waist": 65,
+            "hips": 85
         }
     },
     {
@@ -151,16 +151,16 @@
         "pk": 2,
         "fields": {
             "model_user": 2,
-            "date_of_birth": "1999-11-21",
+            "date_of_birth": "2001-12-07",
             "city": "Toronto",
             "country": "Canada",
-            "height": 190,
-            "hair": "blonde",
+            "height": 172,
+            "hair": "other",
             "eye_color": "hazel",
-            "gender": "men",
-            "bust": 82,
-            "waist": 89,
-            "hips": 117
+            "gender": "man",
+            "bust": 84,
+            "waist": 74,
+            "hips": 88
         }
     },
     {
@@ -168,16 +168,16 @@
         "pk": 3,
         "fields": {
             "model_user": 3,
-            "date_of_birth": "2000-10-23",
+            "date_of_birth": "1996-03-03",
             "city": "London",
             "country": "UK",
-            "height": 188,
-            "hair": "brown",
+            "height": 190,
+            "hair": "red",
             "eye_color": "gray",
-            "gender": "men",
-            "bust": 115,
-            "waist": 97,
-            "hips": 108
+            "gender": "man",
+            "bust": 108,
+            "waist": 82,
+            "hips": 119
         }
     },
     {
@@ -185,16 +185,16 @@
         "pk": 4,
         "fields": {
             "model_user": 4,
-            "date_of_birth": "2002-07-15",
+            "date_of_birth": "1996-12-25",
             "city": "Sydney",
             "country": "Australia",
-            "height": 171,
-            "hair": "black",
-            "eye_color": "hazel",
-            "gender": "men",
-            "bust": 92,
-            "waist": 79,
-            "hips": 97
+            "height": 176,
+            "hair": "other",
+            "eye_color": "brown",
+            "gender": "man",
+            "bust": 107,
+            "waist": 92,
+            "hips": 119
         }
     },
     {
@@ -202,16 +202,16 @@
         "pk": 5,
         "fields": {
             "model_user": 5,
-            "date_of_birth": "2000-12-14",
+            "date_of_birth": "2001-12-03",
             "city": "Berlin",
             "country": "Germany",
-            "height": 188,
-            "hair": "brown",
-            "eye_color": "gray",
-            "gender": "men",
-            "bust": 87,
-            "waist": 71,
-            "hips": 111
+            "height": 189,
+            "hair": "red",
+            "eye_color": "blue",
+            "gender": "man",
+            "bust": 83,
+            "waist": 80,
+            "hips": 85
         }
     },
     {
@@ -219,16 +219,16 @@
         "pk": 6,
         "fields": {
             "model_user": 6,
-            "date_of_birth": "2001-01-26",
+            "date_of_birth": "2004-11-25",
             "city": "Paris",
             "country": "France",
-            "height": 180,
-            "hair": "brown",
-            "eye_color": "green",
+            "height": 185,
+            "hair": "black",
+            "eye_color": "gray",
             "gender": "woman",
-            "bust": 80,
-            "waist": 71,
-            "hips": 102
+            "bust": 118,
+            "waist": 83,
+            "hips": 89
         }
     },
     {
@@ -236,16 +236,16 @@
         "pk": 7,
         "fields": {
             "model_user": 7,
-            "date_of_birth": "1998-06-10",
+            "date_of_birth": "2004-08-03",
             "city": "Rome",
             "country": "Italy",
-            "height": 180,
+            "height": 190,
             "hair": "red",
-            "eye_color": "hazel",
+            "eye_color": "brown",
             "gender": "woman",
-            "bust": 101,
-            "waist": 97,
-            "hips": 90
+            "bust": 93,
+            "waist": 87,
+            "hips": 92
         }
     },
     {
@@ -253,16 +253,16 @@
         "pk": 8,
         "fields": {
             "model_user": 8,
-            "date_of_birth": "1998-10-10",
+            "date_of_birth": "2002-05-11",
             "city": "Madrid",
             "country": "Spain",
-            "height": 188,
-            "hair": "black",
-            "eye_color": "blue",
+            "height": 190,
+            "hair": "other",
+            "eye_color": "hazel",
             "gender": "woman",
-            "bust": 99,
-            "waist": 66,
-            "hips": 104
+            "bust": 107,
+            "waist": 61,
+            "hips": 111
         }
     },
     {
@@ -270,16 +270,16 @@
         "pk": 9,
         "fields": {
             "model_user": 9,
-            "date_of_birth": "1995-05-03",
+            "date_of_birth": "2005-03-09",
             "city": "Tokyo",
             "country": "Japan",
-            "height": 187,
-            "hair": "other",
-            "eye_color": "brown",
+            "height": 173,
+            "hair": "blonde",
+            "eye_color": "blue",
             "gender": "woman",
-            "bust": 86,
-            "waist": 96,
-            "hips": 98
+            "bust": 95,
+            "waist": 72,
+            "hips": 114
         }
     },
     {
@@ -287,16 +287,16 @@
         "pk": 10,
         "fields": {
             "model_user": 10,
-            "date_of_birth": "2001-10-16",
+            "date_of_birth": "1998-12-19",
             "city": "Beijing",
             "country": "China",
-            "height": 171,
-            "hair": "red",
+            "height": 181,
+            "hair": "grey",
             "eye_color": "brown",
             "gender": "woman",
-            "bust": 119,
-            "waist": 60,
-            "hips": 87
+            "bust": 107,
+            "waist": 74,
+            "hips": 116
         }
     },
     {

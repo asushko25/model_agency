@@ -1,3 +1,5 @@
+from unittest.mock import patch
+
 from django.test import TestCase
 from django.urls import reverse
 
@@ -8,14 +10,19 @@ from rest_framework import status
 from ..models import Model
 from .utils.model_test_util import (
     paginated_data_or_not,
-    model_detail_url,
     UtilFilterSearchSerialize
 )
 
 
 WOMAN_LIST_PAGE_URL = reverse("model:woman-list")
 
+# Pagination limits and offset for "More"
+# pagination button
+LIMIT = 2
+OFFSET = 0
 
+
+@patch("model.views.CustomPagination.default_limit", LIMIT)  # Mock the default_limit to 2
 class WomanPageApiTests(TestCase):
     """Test unauthenticated users can enter woman endpoint"""
     # Loads testing data, 10 users, 5 man, 5 woman models
@@ -27,12 +34,26 @@ class WomanPageApiTests(TestCase):
 
         # Class for handling common serializing of models
         self.woman_util = UtilFilterSearchSerialize(
-            limit=12, offset=0, gender="gender"
+            limit=LIMIT, offset=OFFSET, gender="woman"
         )
+
+    def test_pagination_exist(self):
+        res = self.client.get(WOMAN_LIST_PAGE_URL)
+
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
+
+        error_message = (
+            "Pagination should be on Woman page model list"
+        )
+        res_data = paginated_data_or_not(res.data)
+
+        self.assertEqual(len(res_data), LIMIT, error_message)
+
 
     def test_woman_model_list(self):
         """TEST Woman page. Should return female models"""
         res = self.client.get(WOMAN_LIST_PAGE_URL)
+
         self.assertEqual(res.status_code, status.HTTP_200_OK)
 
         res_data = paginated_data_or_not(res.data)
@@ -43,7 +64,7 @@ class WomanPageApiTests(TestCase):
         self.assertEqual(
             res_data,
             self.woman_util.serializing_list_of_models(
-                data=woman_models
+                data=woman_models, request=res.wsgi_request
             )
         )
 
@@ -58,11 +79,14 @@ class WomanPageApiTests(TestCase):
             WOMAN_LIST_PAGE_URL,
             {"limit": limit, "offset": offset}
         )
+
         self.assertEqual(res.status_code, status.HTTP_200_OK)
 
         res_data = paginated_data_or_not(res.data)
         self.assertEqual(
-            res_data, self.woman_util.serializing_list_of_models()
+            res_data, self.woman_util.serializing_list_of_models(
+                request=res.wsgi_request
+            )
         )
 
     def test_search_by_credentials_in_woman_list(self):
@@ -79,7 +103,7 @@ class WomanPageApiTests(TestCase):
 
         res_data = paginated_data_or_not(res.data)
         exp_data = self.woman_util.serializing_list_of_searched_models(
-            search=partially_fullname
+            search=partially_fullname, request=res.wsgi_request
         )
 
         self.assertEqual(res_data, exp_data)
@@ -125,9 +149,9 @@ class WomanPageApiTests(TestCase):
 
             self.assertEqual(res.status_code, status.HTTP_200_OK)
 
-            res_data = paginated_data_or_not(res)
+            res_data = paginated_data_or_not(res.data)
             exp_data = self.woman_util.filter_by_field_range(
-                from_=from_, to_=to_, field=field
+                from_=from_, to_=to_, field=field, request=res.wsgi_request
             )
 
             self.assertEqual(res_data, exp_data)
@@ -138,7 +162,7 @@ class WomanPageApiTests(TestCase):
         like "hair", "eye" which need from_{} and to_{}
         in query parameters
         """
-        choices_field = ["hair", "eye"]
+        choices_field = ["hair", "eye_color"]
         model = Model.objects.filter(gender="woman").last()
 
         for field in choices_field:
@@ -152,9 +176,9 @@ class WomanPageApiTests(TestCase):
 
             self.assertEqual(res.status_code, status.HTTP_200_OK)
 
-            res_data = paginated_data_or_not(res)
+            res_data = paginated_data_or_not(res.data)
             exp_data = self.woman_util.filter_by_choice_field(
-                field=field, value=model_param
+                field=field, value=model_param, request=res.wsgi_request
             )
 
             self.assertEqual(res_data, exp_data)
@@ -165,10 +189,13 @@ class WomanPageApiTests(TestCase):
         URL to their Model Detail page
         """
         res = self.client.get(WOMAN_LIST_PAGE_URL)
-        model = paginated_data_or_not(res)[0]
+        model = paginated_data_or_not(res.data)[0]
+        error_message = (
+            "Each JSON Model Body should have `detail_url` on Main page"
+        )
 
-        self.assertIn("detail_url", model)
+        self.assertIn("detail_url", model, error_message)
 
-        detail_res = self.client.get(model_detail_url(model["id"]))
+        detail_res = self.client.get(model["detail_url"])
 
         self.assertEqual(detail_res.status_code, status.HTTP_200_OK)
