@@ -1,4 +1,5 @@
 from rest_framework import mixins
+from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.viewsets import GenericViewSet
 
 from .models import Model
@@ -45,6 +46,11 @@ class FilterSearchMixin:
         return queryset
 
 
+class CustomPagination(LimitOffsetPagination):
+    default_limit = 6
+    max_limit = 100
+
+
 class MainViewSet(
     FilterSearchMixin,
     mixins.ListModelMixin,
@@ -52,6 +58,7 @@ class MainViewSet(
 ):
     queryset = Model.objects.all()
     serializer_class = ModelSerializer
+    pagination_class = CustomPagination
 
     def get_queryset(self):
         queryset = super().get_queryset()
