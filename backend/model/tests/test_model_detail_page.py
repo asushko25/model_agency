@@ -1,11 +1,13 @@
 from django.test import TestCase
-from django.conf import settings
-
+from django.contrib.auth import get_user_model
 from rest_framework.test import APIClient
 from rest_framework import status
 
 from ..models import Model
-from ..serializers import ModelDetailSerializer
+from ..serializers import (
+    WomanModelDetailSerializer,
+    ManModelDetailSerializer
+)
 from .utils.model_test_util import (
     model_detail_url,
 )
@@ -17,7 +19,7 @@ class DetailPageApiTests(TestCase):
     def setUp(self) -> None:
         self.client = APIClient()
 
-        self.user = settings.AUTH_USER_MODEL.objects.create(
+        self.user = get_user_model().objects.create(
             email="test1@gmail.com", full_name="Test Testing"
         )
         self.model = Model.objects.create(
@@ -26,7 +28,7 @@ class DetailPageApiTests(TestCase):
             city="City1",
             country="Country1",
             height=180,
-            hair="black",
+            hair="blonde",
             eye_color="blue",
             gender="woman",
             bust=110,
@@ -34,21 +36,44 @@ class DetailPageApiTests(TestCase):
             hips=105,
         )
 
-    def test_detail_page_model(self):
-        res = self.client.get(model_detail_url(self.model.id))
+    def test_man_detail_page_model(self):
+        res = self.client.get(
+            model_detail_url(self.model.id, self.model.gender)
+        )
 
         self.assertEqual(res.status_code, status.HTTP_200_OK)
-        serializer = ModelDetailSerializer(self.model)
+        serializer = ManModelDetailSerializer(self.model)
 
         self.assertEqual(res.data, serializer.data)
+        self.assertIn(
+            "contact_url",
+            res.data,
+
+
+        )
+        self.assertIn(
+            str(self.model.id),
+            res.data["contact_url"],
+            "Url to Contact page from Detail Model page should pass model id"
+        )
+
+    def test_woman_detail_page_model(self):
+        self.model.gender = "woman"
+        res = self.client.get(
+            model_detail_url(self.model.id, self.model.gender)
+        )
+
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
+        serializer = WomanModelDetailSerializer(self.model)
+
+        self.assertEqual(
+            res.data,
+            serializer.data,
+            "Detail Model JSON body response should have `contact_url` in body"
+        )
         self.assertIn("contact_url", res.data)
-
-    def test_detail_page_has_contact_url(self):
-        """
-        Test Model Detail page in response has field 'contact_url'
-        and also valid
-        """
-        res = self.client.get(model_detail_url(self.model.id))
-        contact_res = self.client.get(res.data["contact_url"])
-
-        self.assertEqual(contact_res.status_code, status.HTTP_200_OK)
+        self.assertIn(
+            str(self.model.id),
+            res.data["contact_url"],
+            "Url to Contact page from Detail Model page should pass model id"
+        )

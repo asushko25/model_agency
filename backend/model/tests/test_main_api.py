@@ -1,5 +1,6 @@
 from django.test import TestCase
 from django.urls import reverse
+from unittest.mock import patch
 
 
 from rest_framework.test import APIClient
@@ -9,13 +10,19 @@ from ..models import Model
 from .utils.model_test_util import (
     paginated_data_or_not,
     model_detail_url,
-    UtilSerializingModels,
+    UtilFilterSearchSerialize,
 )
 
 
 MAIN_LIST_URL = reverse("model:main-list")
 
+# Pagination limits and offset for "More"
+# pagination button
+LIMIT = 2
+OFFSET = 0
 
+
+@patch("model.views.CustomPagination.default_limit", LIMIT)  # Mock the default_limit to 2
 class MainPageApiTests(TestCase):
     """Test unauthenticated users can enter to Main page"""
     # Loads testing data, 10 users, 5 man, 5 woman models
@@ -26,9 +33,21 @@ class MainPageApiTests(TestCase):
         self.client = APIClient()
 
         # Class for handling common serializing of models
-        self.main_util = UtilSerializingModels(
-            limit=6, offset=0
+        self.main_util = UtilFilterSearchSerialize(
+            limit=LIMIT, offset=OFFSET
         )
+
+    def test_pagination_exist(self):
+        res = self.client.get(MAIN_LIST_URL)
+
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
+
+        error_message = (
+            "Pagination should be on Woman page model list"
+        )
+        self.assertIn("next", res.data, error_message)
+        self.assertIn("previous", res.data, error_message)
+        self.assertIn("results", res.data, error_message)
 
     def test_model_list(self):
         """TEST Main page. Should return man and woman models"""
@@ -36,8 +55,12 @@ class MainPageApiTests(TestCase):
         self.assertEqual(res.status_code, status.HTTP_200_OK)
 
         res_data = paginated_data_or_not(res.data)
+        exp_data = self.main_util.serializing_list_of_models(
+                request=res.wsgi_request
+        )
+
         self.assertEqual(
-            res_data, self.main_util.serializing_list_of_models()
+            res_data, exp_data
         )
 
     def test_models_list_with_pagination(self):
@@ -55,7 +78,9 @@ class MainPageApiTests(TestCase):
 
         res_data = paginated_data_or_not(res.data)
         self.assertEqual(
-            res_data, self.main_util.serializing_list_of_models()
+            res_data, self.main_util.serializing_list_of_models(
+                request=res.wsgi_request
+            )
         )
 
     def test_search_by_credentials_in_model_list(self):
@@ -72,7 +97,7 @@ class MainPageApiTests(TestCase):
 
         res_data = paginated_data_or_not(res.data)
         exp_data = self.main_util.serializing_list_of_searched_models(
-            search=partially_fullname
+            search=partially_fullname, request=res.wsgi_request
         )
 
         self.assertEqual(res_data, exp_data)
@@ -96,9 +121,12 @@ class MainPageApiTests(TestCase):
         URL to their Model Detail page
         """
         res = self.client.get(MAIN_LIST_URL)
-        model = paginated_data_or_not(res)[0]
+        model = paginated_data_or_not(res.data)[0]
+        error_message = (
+            "Each JSON Model Body should have `detail_url` on Main page"
+        )
 
-        self.assertIn("detail_url", model)
+        self.assertIn("detail_url", model, error_message)
 
         detail_res = self.client.get(model_detail_url(model["id"]))
 
