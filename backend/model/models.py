@@ -55,7 +55,7 @@ class User(AbstractUser):
 
 
 class Model(models.Model):
-    model_user = models.ForeignKey(
+    model_user = models.OneToOneField(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name="models",
