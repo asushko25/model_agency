@@ -5,7 +5,11 @@ from .base import *
 
 load_dotenv()
 
-if os.getenv("DJANGO_ENV") == "production":
+DJANGO_ENV = os.getenv("DJANGO_ENV")
+
+if DJANGO_ENV == "production":
     from .prod import *
+elif DJANGO_ENV == "staging":
+    from .staging import *
 else:
     from .dev import *
