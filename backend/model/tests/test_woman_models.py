@@ -1,3 +1,5 @@
+import logging
+
 from unittest.mock import patch
 
 from django.test import TestCase
@@ -21,10 +23,14 @@ WOMAN_LIST_PAGE_URL = reverse("model:woman-list")
 LIMIT = 2
 OFFSET = 0
 
+logger = logging.getLogger("model.tests")
+
 
 @patch("model.views.CustomPagination.default_limit", LIMIT)  # Mock the default_limit to 2
 class WomanPageApiTests(TestCase):
     """Test unauthenticated users can enter woman endpoint"""
+    logger.info("TESTING Woman page!!!!")
+
     # Loads testing data, 10 users, 5 man, 5 woman models
     # without images
     fixtures = ["seed_data/testing_data_fixture.json"]

@@ -1,3 +1,5 @@
+import logging
+
 from django.test import TestCase
 
 from django.urls import reverse
@@ -19,10 +21,14 @@ MAN_LIST_PAGE_URL = reverse("model:man-list")
 LIMIT = 2
 OFFSET = 0
 
+logger = logging.getLogger("model.tests")
+
 
 @patch("model.views.CustomPagination.default_limit", LIMIT)  # Mock the default_limit to 2
 class ManPageApiTests(TestCase):
     """Test unauthenticated users can enter man endpoint"""
+    logger.info("TESTING Man page!!!!")
+
     # Loads testing data, 10 users, 5 man, 5 woman models
     # without images
     fixtures = ["seed_data/testing_data_fixture.json"]

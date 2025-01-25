@@ -723,7 +723,7 @@
         "pk": 24,
         "fields": {
             "model_user": 24,
-            "date_of_birth": "2003-02-29",
+            "date_of_birth": "2003-02-28",
             "city": "Istanbul",
             "country": "Turkey",
             "height": 176,

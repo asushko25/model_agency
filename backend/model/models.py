@@ -1,5 +1,6 @@
 import os
 import uuid
+import logging
 
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser, BaseUserManager
@@ -8,6 +9,8 @@ from django.utils.text import slugify
 from django.utils.translation import gettext as _
 
 from phonenumber_field.modelfields import PhoneNumberField
+
+logger = logging.getLogger("model_app")
 
 
 class UserManager(BaseUserManager):
@@ -110,19 +113,23 @@ class Model(models.Model):
 
 def model_image_file_path(instance: "ModelImages", filename: str):
     _, extension = os.path.splitext(filename)
-    first_name, last_name = instance.model.full_name().split(" ")
+    first_name, last_name = instance.model.full_name.split(" ")
 
     filename = (
         f"{slugify(first_name)}"
         f"-{slugify(last_name)}"
         f"-{uuid.uuid4()}.{extension}"
     )
-    return os.path.join(
+    full_path = os.path.join(
         "uploads",
         "models",
         f"{instance.model.gender}",
         filename,
     )
+
+    logger.info(f"{first_name} {last_name} image path {full_path}")
+
+    return full_path
 
 
 class ModelImages(models.Model):
