@@ -1,3 +1,5 @@
+import logging
+
 from rest_framework import mixins
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.viewsets import GenericViewSet
@@ -10,6 +12,8 @@ from .serializers import (
     ManModelListSerializer,
     ModelSerializer,
 )
+
+logger = logging.getLogger("model_app")
 
 
 class FilterSearchMixin:
@@ -29,6 +33,8 @@ class FilterSearchMixin:
             "eye_color": params.get("eye_color"),
         }
 
+        logger.debug(f"Query Filters values {params}")
+
         for field, value in filter_field.items():
             if value:
                 queryset = queryset.filter(**{field: value})
@@ -42,6 +48,8 @@ class FilterSearchMixin:
             queryset = queryset.filter(
                 model_user__full_name__icontains=full_name
             )
+
+        logger.debug(f"Search query value {full_name}")
 
         return queryset
 

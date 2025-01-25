@@ -108,3 +108,81 @@ MEDIA_URL = "/media/"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": (
+                "{pathname}: [{asctime}] {levelname}."
+                " Logger '{name}' '{message}'"
+            ),
+            "style": "{",
+            "date_fmt": "%d/%b/%Y %H:%M:%S"
+        },
+        "simple": {
+            "format": "\n {pathname} {message} \n",
+            "style": "{"
+        }
+    },
+    "filters": {
+        "debug_true": {
+            "()": "django.utils.log.RequireDebugTrue"
+        },
+        "debug_false": {
+            "()": "django.utils.log.RequireDebugFalse"
+        },
+    },
+    "handlers": {
+        "console": {  # handler without any filters
+            "class": "logging.StreamHandler",
+            "level": "DEBUG",
+            "formatter": "simple",
+        },
+        "console_debug_true": {  # handler when DEBUG is True
+            "class": "logging.StreamHandler",
+            "level": "DEBUG",
+            "formatter": "simple",
+            "filters": ["debug_true"]
+        },
+        "console_debug_false": {  # handler when DEBUG is False
+            "class": "logging.StreamHandler",
+            "level": "INFO",
+            "formatter": "verbose",
+            "filters": ["debug_false"]
+        },
+        # Writing Model app logs to files, which
+        # are rotating every midnight, total number of
+        # files are `backupCount`
+        "file_model_debug_false": {
+            "class": "logging.handlers.TimedRotatingFileHandler",
+            "level": "INFO",
+            "filename": "logs/models_app/model.log",
+            "backupCount": 5,
+            "when": "midnight",
+            "formatter": "verbose",
+            "filters": ["debug_false"]
+        }
+    },
+    "loggers": {
+        "model.tests": {
+            "level": "INFO",
+            "handlers": ["console"]
+        },
+        "model_app": {
+            # Some logs message are DEBUG and some are INFO
+            # that why we are using 3 handlers during development
+            # and production, handlers will determine where to go
+            # base on level of severity
+            "handlers": [
+                "console_debug_true",
+                "console_debug_false",
+                "file_model_debug_false"
+            ],
+            "level": "DEBUG"
+        }
+
+    }
+}
