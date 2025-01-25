@@ -1,3 +1,5 @@
+import logging
+
 from django.test import TestCase
 from django.contrib.auth import get_user_model
 from rest_framework.test import APIClient
@@ -12,9 +14,12 @@ from .utils.model_test_util import (
     model_detail_url,
 )
 
+logger = logging.getLogger("model.tests")
+
 
 class DetailPageApiTests(TestCase):
     """Test Model detail page functionality"""
+    logger.info("TESTING Detail Model page!!!!")
 
     def setUp(self) -> None:
         self.client = APIClient()
