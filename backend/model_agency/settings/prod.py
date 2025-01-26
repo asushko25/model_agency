@@ -2,6 +2,17 @@
 
 import os
 
+import sentry_sdk
+# In Sentry, profiling refers to tracking and analyzing the performance
+# of your code. This involves collecting data on how long different parts
+# of your application take to execute, such as:
+
+# Functions
+# Database queries
+# Middleware processing
+# API calls
+from sentry_sdk.integrations.django import DjangoIntegration
+
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
@@ -35,3 +46,34 @@ EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 EMAIL_PORT = os.getenv("EMAIL_PORT")
 EMAIL_USE_SSL = False
 EMAIL_USE_TLS = True
+
+
+# Configure Sentry SDK performance monitoring server
+# with integration with Django
+# https://docs.sentry.io/platforms/python/integrations/django/
+
+sentry_sdk.init(
+    dsn=os.getenv("SENTRY_DSN"),
+    integrations=[
+        DjangoIntegration(
+            # How to name transactions that show up in Sentry tracing.
+            # "/myproject/myview/<foo>" if you set transaction_style="url".
+            # "myproject.myview" if you set transaction_style="function_name".
+            transaction_style="url",
+            # Create spans and track performance of all middleware in your Django project.
+            middleware_spans=True,
+            # Create spans and track performance of all synchronous Django
+            # signals receiver functions in your Django project
+            signals_spans=False,
+        )
+    ],
+    # Set traces_sample_rate to 1.0 to capture 100%
+    # of transactions for tracing.
+    traces_sample_rate=1.0,
+    _experiments={
+        # Set continuous_profiling_auto_start to True
+        # Sentry will automatically start collecting performance
+        # profiling data whenever possible
+        "continuous_profiling_auto_start": True,
+    }
+)
