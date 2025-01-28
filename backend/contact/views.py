@@ -21,20 +21,20 @@ logger = logging.getLogger(__name__)
 class ContactAPIView(APIView):
     serializer_class = ContactSerializer
 
-    def get(self, request, model_id=None):
-        if model_id:
-            model = get_object_or_404(Model, id=model_id)
+    def get(self, request, id=None):
+        if id:
+            model = get_object_or_404(Model, id=id)
             return Response(
                 {"message": f"Contact page for model {model.full_name}"}
             )
         return Response({"message": "Contact page"})
 
-    def post(self, request, model_id=None):
+    def post(self, request, id=None):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
             try:
-                self._save_contact_request(serializer.validated_data, model_id)
-                self._send_email(serializer.validated_data, model_id)
+                self._save_contact_request(serializer.validated_data, id)
+                self._send_email(serializer.validated_data, id)
 
                 return Response(
                     {"message": "Email sent successfully"},
@@ -50,7 +50,7 @@ class ContactAPIView(APIView):
                 )
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def _save_contact_request(self, data, model_id=None):
+    def _save_contact_request(self, data, id=None):
         name = data.get("name")
         last_name = data.get("last_name")
         phone_number = data.get("phone_number")
@@ -58,8 +58,8 @@ class ContactAPIView(APIView):
         message = data.get("message")
         model = None
 
-        if model_id:
-            model = get_object_or_404(Model, id=model_id)
+        if id:
+            model = get_object_or_404(Model, id=id)
 
         contact_request = Contact.objects.create(
             name=name,
@@ -71,7 +71,7 @@ class ContactAPIView(APIView):
         )
         return contact_request
 
-    def _send_email(self, data, model_id=None):
+    def _send_email(self, data, id=None):
         email = data.get("email")
         message = data.get("message")
 
@@ -81,8 +81,8 @@ class ContactAPIView(APIView):
         subject = "Contact Request"
         context = {"message": message}
 
-        if model_id:
-            model = get_object_or_404(Model, id=model_id)
+        if id:
+            model = get_object_or_404(Model, id=id)
             subject = f"Model Selection: {model.full_name}"
             context.update(
                 {
