@@ -9,10 +9,7 @@ from faker.exceptions import UniquenessException
 from ..utils.base_command import GenerateDataCommand
 from ..utils.table_util import TablesDataDictGenerator
 
-from model.models import (
-    Model,
-    ModelImages
-)
+from model.models import Model, ModelImages
 
 
 class Command(GenerateDataCommand, TablesDataDictGenerator):
@@ -20,6 +17,7 @@ class Command(GenerateDataCommand, TablesDataDictGenerator):
     Generates number `num_entries` entries and writes to DB.
     Creates `num_entries` instances of Model table together with User table.
     """
+
     def add_custom_arguments(self, parser: ArgumentParser):
         parser.add_argument(
             "--model_image",
@@ -27,7 +25,7 @@ class Command(GenerateDataCommand, TablesDataDictGenerator):
             help=(
                 "Flag indicates creating Model table entries, "
                 "together with User table, with model images"
-            )
+            ),
         )
 
     def set_model_image(self, model_id: Model):
@@ -71,7 +69,8 @@ class Command(GenerateDataCommand, TablesDataDictGenerator):
                     self.stdout.write(
                         self.style.ERROR(
                             "Some fields `Faker` could not make unique. "
-                            f"Moving to next entry!!!. Skipped: {error_counter}. \n"
+                            "Moving to next entry!!!."
+                            f" Skipped: {error_counter}. \n"
                             f"Error: {er}"
                         )
                     )
@@ -82,7 +81,9 @@ class Command(GenerateDataCommand, TablesDataDictGenerator):
                     # catch rest of errors without stoping creating
                     error_counter += 1
                     self.stdout.write(
-                        self.style.ERROR(f"Error: {str(e)}. Skipped: {error_counter}")
+                        self.style.ERROR(
+                            f"Error: {str(e)}. Skipped: {error_counter}"
+                        )
                     )
 
                     transaction.set_rollback(True)

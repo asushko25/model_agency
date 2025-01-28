@@ -11,7 +11,8 @@ from django.contrib.auth import get_user_model
 
 class GenerateDataCommand(BaseCommand, ABC):
     help = (
-        "Generates `-c` or `--count` number of entries of data, default = 100. "
+        "Generates `-c` or `--count` number of entries of data,"
+        " default = 100. "
         "Starting from tables User, Model, ModelImage. "
         "Fulfilling all fields data using `Faker` and model images"
     )
@@ -24,7 +25,8 @@ class GenerateDataCommand(BaseCommand, ABC):
     @abstractmethod
     def add_custom_arguments(self, parser: ArgumentParser):
         """
-        This method should be overridden in subclasses to add their own arguments.
+        This method should be overridden in subclasses to
+        add their own arguments.
         :param parser: ArgumentParse
         :return:
         """
@@ -65,18 +67,18 @@ class GenerateDataCommand(BaseCommand, ABC):
             if flush_users:
                 self.flush_db_users()
 
-            self.custom_handler(
-                num_entries=num_entries,
-                **options
-            )
+            self.custom_handler(num_entries=num_entries, **options)
         else:
             self.stdout.write(
-                self.style.WARNING("You can't use this flag in current environment")
+                self.style.WARNING(
+                    "You can't use this flag in current environment"
+                )
             )
 
     def add_arguments(self, parser: ArgumentParser):
         """
-        This method should be overridden in subclasses to add their own arguments.
+        This method should be overridden in subclasses to
+        add their own arguments.
         :param parser: ArgumentParse
         :return:
         """
@@ -85,13 +87,12 @@ class GenerateDataCommand(BaseCommand, ABC):
             "--num_entries",
             type=int,
             default=0,
-            help="Number of entries generated, default = 100"
+            help="Number of entries generated, default = 100",
         )
         parser.add_argument(
             "--flush_users",
             action="store_true",
             default=False,
-            help="Flushes all users from DB,"
-                 " except saves admin Users"
+            help="Flushes all users from DB," " except saves admin Users",
         )
         self.add_custom_arguments(parser=parser)

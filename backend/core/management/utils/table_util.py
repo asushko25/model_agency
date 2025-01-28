@@ -1,4 +1,3 @@
-from django.core.files import File
 import faker
 from pathlib import Path
 
@@ -10,16 +9,13 @@ class TablesDataDictGenerator:
     Class which generates models table data like dictionary
     Using `Faker` for generating fake data.
     """
+
     gender = "man"
     man_images_paths = None
     woman_images_paths = None
 
-    path_to_man_images = (
-        "core/management/utils/test_images/man"
-    )
-    path_to_woman_images = (
-        "core/management/utils/test_images/woman"
-    )
+    path_to_man_images = "core/management/utils/test_images/man"
+    path_to_woman_images = "core/management/utils/test_images/woman"
 
     def update_gender(self):
         """
@@ -73,8 +69,7 @@ class TablesDataDictGenerator:
             "gender": self.gender,
             "bust": bust,
             "waist": waist,
-            "hips": hips
-
+            "hips": hips,
         }
 
     def get_man_images_paths(self):
@@ -87,7 +82,7 @@ class TablesDataDictGenerator:
 
     def get_woman_images_paths(self):
         """Get Test Woman images paths"""
-        if not self.woman_images_paths :
+        if not self.woman_images_paths:
             images_path = Path(self.path_to_woman_images)
             self.woman_images_paths = [
                 str(file) for file in images_path.iterdir() if file.is_file()

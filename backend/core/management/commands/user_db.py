@@ -14,6 +14,7 @@ class Command(GenerateDataCommand, TablesDataDictGenerator):
     Generates number `count` entries and writes to DB.
     Creates `count` instances of User table.
     """
+
     def add_custom_arguments(self, parser: ArgumentParser):
         pass
 
@@ -28,9 +29,7 @@ class Command(GenerateDataCommand, TablesDataDictGenerator):
             with transaction.atomic():
                 try:
                     # create user
-                    get_user_model().objects.create(
-                        **self.create_user()
-                    )
+                    get_user_model().objects.create(**self.create_user())
 
                 except UniquenessException:
                     # Catch Faker error and log it
@@ -38,7 +37,8 @@ class Command(GenerateDataCommand, TablesDataDictGenerator):
                     self.stdout.write(
                         self.style.ERROR(
                             "Some fields `Faker` could not make unique. "
-                            f"Moving to next entry!!!. Skipped: {error_counter}"
+                            "Moving to next entry!!!."
+                            f" Skipped: {error_counter}"
                         )
                     )
 
@@ -48,7 +48,9 @@ class Command(GenerateDataCommand, TablesDataDictGenerator):
                     # catch rest of errors without stoping creating
                     error_counter += 1
                     self.stdout.write(
-                        self.style.ERROR(f"Error: {str(e)}. Skipped: {error_counter}")
+                        self.style.ERROR(
+                            f"Error: {str(e)}. Skipped: {error_counter}"
+                        )
                     )
 
                     transaction.set_rollback(True)
