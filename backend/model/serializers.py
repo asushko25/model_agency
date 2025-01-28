@@ -19,10 +19,13 @@ class ModelSerializer(serializers.ModelSerializer):
 
 class ModelDetailSerializer(serializers.ModelSerializer):
     images = ModelImagesSerializer(many=True, read_only=True)
+    contact_url = serializers.HyperlinkedIdentityField(
+        view_name="contact:contact-with-model", lookup_field="id"
+    )
 
     class Meta:
         model = Model
-        fields = ["id" "hair", "eye_color", "bust", "waist", "hips", "images"]
+        fields = ["id", "hair", "eye_color", "bust", "waist", "hips", "images", "contact_url"]
 
 
 class WomanModelListSerializer(ModelSerializer):
@@ -36,6 +39,7 @@ class WomanModelListSerializer(ModelSerializer):
 
 
 class WomanModelDetailSerializer(ModelDetailSerializer):
+
     class Meta:
         model = Model
         fields = [
@@ -45,6 +49,7 @@ class WomanModelDetailSerializer(ModelDetailSerializer):
             "waist",
             "hips",
             "images",
+            "contact_url"
         ]
 
 
@@ -60,6 +65,15 @@ class ManModelListSerializer(ModelSerializer):
 
 class ManModelDetailSerializer(ModelDetailSerializer):
 
+
     class Meta:
         model = Model
-        fields = ["hair", "eye_color", "bust", "waist", "hips", "images"]
+        fields = [
+            "hair",
+            "eye_color",
+            "bust",
+            "waist",
+            "hips",
+            "images",
+            "contact_url",
+        ]
