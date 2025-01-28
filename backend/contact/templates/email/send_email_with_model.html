@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Model Selection Email</title>
+  <style>
+
+
+    .content {
+      font-size: 16px;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .header {
+      text-align: center;
+      padding-bottom: 20px;
+    }
+    .header h1 {
+      color: #007bff;
+    }
+    .message {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    .footer {
+      text-align: center;
+      padding-top: 20px;
+      font-size: 14px;
+      color: #777;
+    }
+    .emoji {
+      font-size: 20px;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      margin-bottom: 8px;
+    }
+    .detail-list {
+      margin-top: 10px;
+      margin-left: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">Thank You for Selecting Our Model!</div>
+    <div class="content">
+ <p>Hi,</p>
+<p>Thank you for selecting <strong>{{ model.full_name }}</strong>! We’re excited to proceed with your project.</p>
+<ul>
+  <li><strong>Name:</strong> {{ model.full_name }}</li>
+  <li><strong>Age:</strong> {{ age }}</li>
+  <li><strong>Height:</strong> {{ height }}</li>
+  <li><strong>Measurements:</strong>
+    <ul class="detail-list">
+      <li><strong>Bust:</strong> {{ bust }}</li>
+      <li><strong>Waist:</strong> {{ waist }}</li>
+      <li><strong>Hips:</strong> {{ hips }}</li>
+    </ul>
+  </li>
+</ul>
+      <p>If you have any additional questions or need further details, feel free to contact us. We’re happy to assist!</p>
+      <p>Looking forward to collaborating with you!</p>
+      <p>Best regards,<br>[Axion]</p>
+    </div>
+    <div class="footer">
+      © {{ current_year }} Axion. All rights reserved.
+    </div>
+  </div>
+</body>
+</html>
