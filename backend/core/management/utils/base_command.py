@@ -37,8 +37,19 @@ class GenerateDataCommand(BaseCommand, ABC):
     def flush_db_users(self):
         """
         Deletes all users from DB and maybe records with on_delete=CASCADE.
-        Can be used only in development or staging environment.
         Saves admins, for safety reasons.
+        """
+        self.stdout.write(
+            self.style.WARNING("Removing Users, except admin Users")
+        )
+        get_user_model().objects.filter(is_superuser=False).delete()
+
+    def handle(self, *args, **options):
+        """
+        Can be used only in development or staging environment.
+        :param args:
+        :param options:
+        :return:
         """
         debug_var = os.getenv("DJANGO_ENV")
 
@@ -48,28 +59,20 @@ class GenerateDataCommand(BaseCommand, ABC):
         )
 
         if allowed:
-            self.stdout.write(
-                self.style.WARNING("Removing Users, except admin Users")
+            num_entries = options.pop("num_entries")
+            flush_users = options.pop("flush_users")
+
+            if flush_users:
+                self.flush_db_users()
+
+            self.custom_handler(
+                num_entries=num_entries,
+                **options
             )
-            get_user_model().objects.filter(is_superuser=False).delete()
-
-            return
-
-        self.stdout.write(
-            self.style.WARNING("You can't use this flag in current environment")
-        )
-
-    def handle(self, *args, **options):
-        num_entries = options.pop("num_entries")
-        flush_users = options.pop("flush_users")
-
-        if flush_users:
-            self.flush_db_users()
-
-        self.custom_handler(
-            num_entries=num_entries,
-            **options
-        )
+        else:
+            self.stdout.write(
+                self.style.WARNING("You can't use this flag in current environment")
+            )
 
     def add_arguments(self, parser: ArgumentParser):
         """
