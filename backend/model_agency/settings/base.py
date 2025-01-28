@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     "phonenumber_field",
     "model",
     "contact",
+    "core"
 ]
 
 MIDDLEWARE = [
@@ -124,7 +125,7 @@ LOGGING = {
             "date_fmt": "%d/%b/%Y %H:%M:%S"
         },
         "simple": {
-            "format": "\n {pathname} {message} \n",
+            "format": "{pathname} {message}",
             "style": "{"
         }
     },
@@ -160,7 +161,7 @@ LOGGING = {
         "file_model_debug_false": {
             "class": "logging.handlers.TimedRotatingFileHandler",
             "level": "INFO",
-            "filename": "logs/models_app/model.log",
+            "filename": "logs/model_app/model.log",
             "backupCount": 5,
             "when": "midnight",
             "formatter": "verbose",
