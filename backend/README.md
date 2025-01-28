@@ -5,5 +5,5 @@
 - first run the command `python manage.py migrate` and then
 - use `python manage.py loaddata seed_data\fixture_db_data.json` to load data to DB.
 - run command `python manage.py runserver`
-- 25 user is admin with password `rvt3456`, name `Main`, username `Admin`, email `testadmin@gmail.com`
-- Use above credentials in `http://127.0.0.1:8000/admin`
+- 25 user is admin with password `rvt3456`, fullname `Main Admin`, email `testadmin@gmail.com`
+- Use above credentials in `http://127.0.0.1:8000/admin` 
