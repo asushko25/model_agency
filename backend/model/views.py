@@ -62,6 +62,7 @@ class CustomPagination(LimitOffsetPagination):
 class MainViewSet(
     FilterSearchMixin,
     mixins.ListModelMixin,
+    mixins.RetrieveModelMixin,
     GenericViewSet,
 ):
     queryset = Model.objects.all()
@@ -83,6 +84,7 @@ class ManModelViewSet(
 ):
     queryset = Model.objects.filter(gender="man")
     serializer_class = ModelSerializer
+    pagination_class = CustomPagination
     lookup_field = "id"
 
     def get_queryset(self):
@@ -106,6 +108,7 @@ class WomanModelViewSet(
 ):
     queryset = Model.objects.filter(gender="woman").prefetch_related("images")
     serializer_class = ModelSerializer
+    pagination_class = CustomPagination
     lookup_field = "id"
 
     def get_queryset(self):
