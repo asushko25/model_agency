@@ -1,12 +1,13 @@
 from django.db import models
-from django.conf import settings
 
 from phonenumber_field.modelfields import PhoneNumberField
+
+from model.models import Model
 
 
 class Contact(models.Model):
     model = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
+        Model,
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
