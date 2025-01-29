@@ -11,6 +11,9 @@ class ModelImagesSerializer(serializers.ModelSerializer):
 
 class ModelSerializer(serializers.ModelSerializer):
     photo = serializers.ImageField(source="images.first.image")
+    detail_url = serializers.HyperlinkedIdentityField(
+        view_name="model:main-detail", lookup_field="id"
+    )
 
     class Meta:
         model = Model
