@@ -11,6 +11,7 @@ from .serializers import (
     ManModelDetailSerializer,
     ManModelListSerializer,
     ModelSerializer,
+    ModelDetailSerializer,
 )
 
 logger = logging.getLogger("model_app")
@@ -68,12 +69,18 @@ class MainViewSet(
     queryset = Model.objects.all()
     serializer_class = ModelSerializer
     pagination_class = CustomPagination
+    lookup_field = "id"
 
     def get_queryset(self):
         queryset = super().get_queryset()
         search_query = self.request.query_params.get("search", "").strip()
 
         return self.search_by_full_name(queryset, search_query)
+
+    def get_serializer_class(self):
+        if self.action == "retrieve":
+            return ModelDetailSerializer
+        return ModelSerializer
 
 
 class ManModelViewSet(
@@ -82,7 +89,7 @@ class ManModelViewSet(
     mixins.RetrieveModelMixin,
     GenericViewSet,
 ):
-    queryset = Model.objects.filter(gender="man")
+    queryset = Model.objects.filter(gender="man").prefetch_related("images")
     serializer_class = ModelSerializer
     pagination_class = CustomPagination
     lookup_field = "id"
