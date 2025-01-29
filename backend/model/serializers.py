@@ -10,11 +10,20 @@ class ModelImagesSerializer(serializers.ModelSerializer):
 
 
 class ModelSerializer(serializers.ModelSerializer):
-    photo = serializers.ImageField(source="images.first.image")
+    detail_url = serializers.HyperlinkedIdentityField(
+        view_name="model:main-detail", lookup_field="id"
+    )
+    photo = serializers.SerializerMethodField()
 
     class Meta:
         model = Model
-        fields = ["id", "full_name", "city", "country", "photo"]
+        fields = ["id", "full_name", "city", "country", "photo", "detail_url"]
+
+    def get_photo(self, obj):
+        first_image = obj.images.first()
+        if first_image and first_image.image:
+            return first_image.image.url
+        return None
 
 
 class ModelDetailSerializer(serializers.ModelSerializer):
@@ -25,7 +34,16 @@ class ModelDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Model
-        fields = ["id", "hair", "eye_color", "bust", "waist", "hips", "images", "contact_url"]
+        fields = [
+            "id",
+            "hair",
+            "eye_color",
+            "bust",
+            "waist",
+            "hips",
+            "images",
+            "contact_url",
+        ]
 
 
 class WomanModelListSerializer(ModelSerializer):
@@ -35,7 +53,7 @@ class WomanModelListSerializer(ModelSerializer):
 
     class Meta:
         model = Model
-        fields = ["full_name", "city", "country", "photo", "detail_url"]
+        fields = ["id", "full_name", "city", "country", "photo", "detail_url"]
 
 
 class WomanModelDetailSerializer(ModelDetailSerializer):
@@ -43,13 +61,14 @@ class WomanModelDetailSerializer(ModelDetailSerializer):
     class Meta:
         model = Model
         fields = [
+            "id",
             "hair",
             "eye_color",
             "bust",
             "waist",
             "hips",
             "images",
-            "contact_url"
+            "contact_url",
         ]
 
 
@@ -60,15 +79,15 @@ class ManModelListSerializer(ModelSerializer):
 
     class Meta:
         model = Model
-        fields = ["full_name", "city", "country", "photo", "detail_url"]
+        fields = ["id", "full_name", "city", "country", "photo", "detail_url"]
 
 
 class ManModelDetailSerializer(ModelDetailSerializer):
 
-
     class Meta:
         model = Model
         fields = [
+            "id",
             "hair",
             "eye_color",
             "bust",
