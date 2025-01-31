@@ -79,7 +79,11 @@ class ContactAPIView(APIView):
             raise ValueError("Email and message are required.")
 
         subject = "Contact Request"
-        context = {"message": message}
+        context = {
+            "message": message,
+            "first_name": data.get("name"),
+            "last_name": data.get("last_name"),
+        }
 
         if id:
             model = get_object_or_404(Model, id=id)
