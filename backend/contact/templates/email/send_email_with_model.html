@@ -63,17 +63,17 @@
   <div class="container">
     <div class="header">Thank You for Selecting Our Model!</div>
     <div class="content">
- <p>Hi,</p>
+ <p>Hi {{ first_name }} {{ last_name }}</p>
 <p>Thank you for selecting <strong>{{ model.full_name }}</strong>! We’re excited to proceed with your project.</p>
 <ul>
   <li><strong>Name:</strong> {{ model.full_name }}</li>
   <li><strong>Age:</strong> {{ age }}</li>
-  <li><strong>Height:</strong> {{ height }}</li>
+  <li><strong>Height:</strong> {{ model.height }}</li>
   <li><strong>Measurements:</strong>
     <ul class="detail-list">
-      <li><strong>Bust:</strong> {{ bust }}</li>
-      <li><strong>Waist:</strong> {{ waist }}</li>
-      <li><strong>Hips:</strong> {{ hips }}</li>
+      <li><strong>Bust:</strong> {{ model.bust }}</li>
+      <li><strong>Waist:</strong> {{ model.waist }}</li>
+      <li><strong>Hips:</strong> {{ model.hips }}</li>
     </ul>
   </li>
 </ul>
