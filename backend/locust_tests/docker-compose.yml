@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  master:
+    build: .
+    env_file:
+      - .env
+    ports:
+     - "8089:8089"
+    volumes:
+     - "${PWD}/locust_tests:/mnt/locust_tests"
+    stdin_open: true
+    tty: true
+    command: --config=/mnt/locust_tests/locust.conf --master
+
+  worker:
+    build: .
+    depends_on:
+      - master
+    env_file:
+      - .env
+    volumes:
+     - "${PWD}/locust_tests:/mnt/locust_tests"
+    stdin_open: true
+    tty: true
+    command: --config=/mnt/locust_tests/locust.conf --worker --master-host master
