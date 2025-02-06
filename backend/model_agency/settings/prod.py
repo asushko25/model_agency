@@ -17,7 +17,7 @@ from sentry_sdk.integrations.django import DjangoIntegration
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 
-ALLOWED_HOSTS = ["www.example.com"]
+ALLOWED_HOSTS = ["host.docker.internal", "0.0.0.0"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
