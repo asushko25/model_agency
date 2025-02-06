@@ -9,6 +9,7 @@ from locust import (
     events
 )
 from locust.env import Environment
+from locust.runners import WorkerRunner, MasterRunner
 
 from locust_tests.utils.query_params import (
     search,
@@ -98,7 +99,7 @@ def add_args_to_custom_load_shapes(environment: Environment, **kwargs):
         shape_class.time_limit = options.time_limit
 
 
-@events.test_start.add_listener
+@events.init.add_listener
 def pagination_util(environment: Environment, **kwargs):
     """
     Get total number of entries on MAIN_PAGE, WOMAN_PAGE, MAN_PAGE,
@@ -107,32 +108,34 @@ def pagination_util(environment: Environment, **kwargs):
     :param kwargs:
     :return:
     """
-    #
-    try:
-        main_page = requests.get(HOST + MAIN_PAGE)
-        setattr(TestModels, "total_main_models", main_page.json().get("count", 0))
 
-        man_page = requests.get(HOST + MAN_PAGE)
-        setattr(TestModels, "total_man_models", man_page.json().get("count", 0))
+    if isinstance(environment.runner, WorkerRunner):
+        try:
+            main_page = requests.get(HOST + MAIN_PAGE)
+            setattr(TestModels, "total_main_models", main_page.json().get("count", 0))
 
-        woman_page = requests.get(HOST + WOMAN_PAGE)
-        setattr(TestModels, "total_woman_models", woman_page.json().get("count", 0))
-    except requests.RequestException as e:
-        logging.info(
-            f"Could not get total number of entries at {pagination_util.__name__} locust event: {e}"
-        )
+            man_page = requests.get(HOST + MAN_PAGE)
+            setattr(TestModels, "total_man_models", man_page.json().get("count", 0))
+
+            woman_page = requests.get(HOST + WOMAN_PAGE)
+            setattr(TestModels, "total_woman_models", woman_page.json().get("count", 0))
+        except requests.RequestException as e:
+            logging.error(
+                f"Could not get total number of entries at {pagination_util.__name__} locust event: {e}"
+            )
 
 
 @events.init.add_listener
 def app_filter_tasks(environment: Environment, **kwargs):
-    for url, filter_query in FILTER_TASKS:
-        task_name_suffix = "_".join(filter_.field for filter_ in filter_query)
-        add_filter_locust_task(
-            user_class=TestModels,
-            url=url,
-            filters=filter_query,
-            task_name_suffix=task_name_suffix
-        )
+    if isinstance(environment.runner, WorkerRunner):
+        for url, filter_query in FILTER_TASKS:
+            task_name_suffix = "_".join(filter_.field for filter_ in filter_query)
+            add_filter_locust_task(
+                user_class=TestModels,
+                url=url,
+                filters=filter_query,
+                task_name_suffix=task_name_suffix
+            )
 
 
 class TestModels(FastHttpUser):
@@ -151,7 +154,7 @@ class TestModels(FastHttpUser):
     def main_page(self):
         self.client.get(
             MAIN_PAGE +
-            f"/?limit={LIMIT}&offset={fake.pyint(LIMIT, self.total_main_models)}",
+            f"?limit={LIMIT}&offset={fake.pyint(LIMIT, self.total_main_models)}",
             name=MAIN_PAGE
         )
 
@@ -168,7 +171,7 @@ class TestModels(FastHttpUser):
     def man_model_page(self):
         self.client.get(
             MAN_PAGE +
-            f"/?limit={LIMIT}&offset={fake.pyint(LIMIT, self.total_man_models)}",
+            f"?limit={LIMIT}&offset={fake.pyint(LIMIT, self.total_man_models)}",
             name=MAN_PAGE
         )
 
@@ -186,7 +189,7 @@ class TestModels(FastHttpUser):
     def woman_model_page(self):
         self.client.get(
             WOMAN_PAGE +
-            f"/?limit={LIMIT}&offset={fake.pyint(LIMIT, self.total_woman_models)}",
+            f"?limit={LIMIT}&offset={fake.pyint(LIMIT, self.total_woman_models)}",
             name=WOMAN_PAGE
         )
 
