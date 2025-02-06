@@ -1,6 +1,8 @@
 import faker
 from pathlib import Path
 
+from django.contrib.auth import get_user_model
+
 fake = faker.Faker()
 
 
@@ -38,10 +40,10 @@ class TablesDataDictGenerator:
                 if self.gender == "man"
                 else fake.name_female()
             ),
-            "email": fake.free_email(),
+            "email": fake.unique.free_email()
         }
 
-    def create_model(self, user_id: int):
+    def create_model(self, user: get_user_model):
         """
         Creates Model table dict data with a given user id
         """
@@ -56,7 +58,7 @@ class TablesDataDictGenerator:
             waist = fake.pyint(60, min(bust, hips))
 
         return {
-            "model_user_id": user_id,
+            "model_user": user,
             "date_of_birth": fake.date_of_birth(
                 minimum_age=18,
                 maximum_age=40

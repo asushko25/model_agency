@@ -1,6 +1,5 @@
 import os
 import uuid
-import logging
 
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser, BaseUserManager
@@ -9,8 +8,6 @@ from django.utils.text import slugify
 from django.utils.translation import gettext as _
 
 from phonenumber_field.modelfields import PhoneNumberField
-
-logger = logging.getLogger("model_app")
 
 
 class UserManager(BaseUserManager):
@@ -85,6 +82,7 @@ class Model(models.Model):
         ("brown", "Brown"),
         ("gray", "Gray"),
         ("hazel", "Hazel"),
+        ("other", "Other"),
     ]
     eye_color = models.CharField(max_length=10, choices=EYE_COLOR_CHOICES)
 
@@ -113,7 +111,7 @@ class Model(models.Model):
 
 def model_image_file_path(instance: "ModelImages", filename: str):
     _, extension = os.path.splitext(filename)
-    first_name, last_name = instance.model.full_name.split(" ")
+    first_name, last_name = instance.model.full_name.split(" ", 1)
 
     filename = (
         f"{slugify(first_name)}"
@@ -126,8 +124,6 @@ def model_image_file_path(instance: "ModelImages", filename: str):
         f"{instance.model.gender}",
         filename,
     )
-
-    logger.info(f"{first_name} {last_name} image path {full_path}")
 
     return full_path
 

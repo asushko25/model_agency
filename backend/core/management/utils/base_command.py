@@ -36,16 +36,6 @@ class GenerateDataCommand(BaseCommand, ABC):
     def custom_handler(self, num_entries: int, **options):
         pass
 
-    def flush_db_users(self):
-        """
-        Deletes all users from DB and maybe records with on_delete=CASCADE.
-        Saves admins, for safety reasons.
-        """
-        self.stdout.write(
-            self.style.WARNING("Removing Users, except admin Users")
-        )
-        get_user_model().objects.filter(is_superuser=False).delete()
-
     def handle(self, *args, **options):
         """
         Can be used only in development or staging environment.
@@ -62,18 +52,8 @@ class GenerateDataCommand(BaseCommand, ABC):
 
         if allowed:
             num_entries = options.pop("num_entries")
-            flush_users = options.pop("flush_users")
-
-            if flush_users:
-                self.flush_db_users()
 
             self.custom_handler(num_entries=num_entries, **options)
-        else:
-            self.stdout.write(
-                self.style.WARNING(
-                    "You can't use this flag in current environment"
-                )
-            )
 
     def add_arguments(self, parser: ArgumentParser):
         """
@@ -89,10 +69,5 @@ class GenerateDataCommand(BaseCommand, ABC):
             default=0,
             help="Number of entries generated, default = 100",
         )
-        parser.add_argument(
-            "--flush_users",
-            action="store_true",
-            default=False,
-            help="Flushes all users from DB," " except saves admin Users",
-        )
+
         self.add_custom_arguments(parser=parser)
