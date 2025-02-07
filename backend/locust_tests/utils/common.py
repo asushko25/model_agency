@@ -1,3 +1,4 @@
+import logging
 from locust import FastHttpUser
 
 from locust_tests import (
@@ -43,6 +44,10 @@ def get_detail_url_from_model(
             )
             return
 
+    logging.debug(
+        f"{get_detail_url_from_model.__name__}:"
+        f" returns detail page url: {detail_url}"
+    )
     return detail_url
 
 
@@ -82,5 +87,11 @@ def contact_agency_about_model(
         "message": fake.text()
     }
 
-    with user.rest("POST", contact_url, json=json_data, name=CONTACT_MODEL_GROUP):
+    logging.debug(
+        f"{contact_agency_about_model.__name__}:"
+        f" Contact about model url: {contact_url}"
+    )
+    with user.rest(
+            "POST", contact_url, json=json_data, name=CONTACT_MODEL_GROUP
+    ):
         pass

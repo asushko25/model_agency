@@ -9,7 +9,7 @@ from locust import (
     events
 )
 from locust.env import Environment
-from locust.runners import WorkerRunner, MasterRunner
+from locust.runners import WorkerRunner
 
 from locust_tests.utils.query_params import (
     search,
@@ -67,7 +67,10 @@ def _(parser: ArgumentParser):
     )
     parser.add_argument(
         "--spawn_rate", type=int, default=10,
-        help="Users to stop/start per second at every step for StepLoadShape shape class"
+        help=(
+            "Users to stop/start per second at every step"
+            " for StepLoadShape shape class"
+        )
     )
 
     # Common argument
@@ -112,24 +115,40 @@ def pagination_util(environment: Environment, **kwargs):
     if isinstance(environment.runner, WorkerRunner):
         try:
             main_page = requests.get(HOST + MAIN_PAGE)
-            setattr(TestModels, "total_main_models", main_page.json().get("count", 0))
+            setattr(
+                TestModels, "total_main_models",
+                main_page.json().get("count", 0)
+            )
 
             man_page = requests.get(HOST + MAN_PAGE)
-            setattr(TestModels, "total_man_models", man_page.json().get("count", 0))
+            setattr(
+                TestModels, "total_man_models",
+                man_page.json().get("count", 0)
+            )
 
             woman_page = requests.get(HOST + WOMAN_PAGE)
-            setattr(TestModels, "total_woman_models", woman_page.json().get("count", 0))
+            setattr(
+                TestModels, "total_woman_models",
+                woman_page.json().get("count", 0)
+            )
         except requests.RequestException as e:
             logging.error(
-                f"Could not get total number of entries at {pagination_util.__name__} locust event: {e}"
+                f"Could not get total number of entries at"
+                f" {pagination_util.__name__} locust event: {e}"
             )
 
 
 @events.init.add_listener
 def app_filter_tasks(environment: Environment, **kwargs):
     if isinstance(environment.runner, WorkerRunner):
+        logging.info(
+            f"{environment.runner}: Initiating filter tasks defined"
+            f" in `./utils/query_params.py`"
+        )
         for url, filter_query in FILTER_TASKS:
-            task_name_suffix = "_".join(filter_.field for filter_ in filter_query)
+            task_name_suffix = "_".join(
+                filter_.field for filter_ in filter_query
+            )
             add_filter_locust_task(
                 user_class=TestModels,
                 url=url,
@@ -152,10 +171,12 @@ class TestModels(FastHttpUser):
     @tag("model-list")
     @task
     def main_page(self):
+        query_param = (
+            f"?limit={LIMIT}"
+            f"&offset={fake.pyint(LIMIT, self.total_main_models)}"
+        )
         self.client.get(
-            MAIN_PAGE +
-            f"?limit={LIMIT}&offset={fake.pyint(LIMIT, self.total_main_models)}",
-            name=MAIN_PAGE
+            MAIN_PAGE + query_param, name=MAIN_PAGE
         )
 
     @tag("model-search")
@@ -169,10 +190,12 @@ class TestModels(FastHttpUser):
     @tag("model-list")
     @task
     def man_model_page(self):
+        query_param = (
+            f"?limit={LIMIT}"
+            f"&offset={fake.pyint(LIMIT, self.total_man_models)}"
+        )
         self.client.get(
-            MAN_PAGE +
-            f"?limit={LIMIT}&offset={fake.pyint(LIMIT, self.total_man_models)}",
-            name=MAN_PAGE
+            MAN_PAGE + query_param, name=MAN_PAGE
         )
 
     @tag("model-search")
@@ -187,10 +210,12 @@ class TestModels(FastHttpUser):
     @tag("model-list")
     @task
     def woman_model_page(self):
+        query_param = (
+            f"?limit={LIMIT}"
+            f"&offset={fake.pyint(LIMIT, self.total_woman_models)}"
+        )
         self.client.get(
-            WOMAN_PAGE +
-            f"?limit={LIMIT}&offset={fake.pyint(LIMIT, self.total_woman_models)}",
-            name=WOMAN_PAGE
+            WOMAN_PAGE + query_param, name=WOMAN_PAGE
         )
 
     @tag("model-search")
