@@ -9,8 +9,8 @@ class DoubleWave(LoadTestShape):
     second peak appears at 2*time_limit/3
 
     Also you can pass below arguments using CLI. Exp:
-    `locust --min-users 10 --peak-one-users 50 --peak-two-users 100 --time-limit 300 \
-    locustfile,locust_tests/shape_classes/double_wave.py`
+    `locust --min-users 10 --peak-one-users 50 --peak-two-users 100 \
+     --time-limit 300 locustfile,locust_tests/shape_classes/double_wave.py`
 
     Settings:
         min_users -- minimum users
@@ -30,9 +30,11 @@ class DoubleWave(LoadTestShape):
         if run_time < self.time_limit:
             user_count = (
                 (self.peak_one_users - self.min_users)
-                * math.e ** -(((run_time / (self.time_limit / 10 * 2 / 3)) - 5) ** 2)
+                * math.e ** -(
+                    ((run_time / (self.time_limit / 10 * 2 / 3)) - 5) ** 2)
                 + (self.peak_two_users - self.min_users)
-                * math.e ** -(((run_time / (self.time_limit / 10 * 2 / 3)) - 10) ** 2)
+                * math.e ** -(
+                    ((run_time / (self.time_limit / 10 * 2 / 3)) - 10) ** 2)
                 + self.min_users
             )
             return round(user_count), round(user_count)

@@ -204,8 +204,9 @@ eye_color_choices = ["blue", "green", "brown", "gray", "hazel"]
 # Man and Woman pages have same filters, and I did not want duplicate code.
 # That why I separated query filters on classes like `RangeFilterQuery` and
 # `ChoiceFilterQuery`. Allowing us to dictate the behaviour of filter logic.
-# Each value in  MAN_TASKS_FILTERS and WOMAN_TASKS_FILTERS is separate Locust task,
-# We can set more filter fields in one Locust task, by using one of FilterQuery subclasses
+# Each value in  MAN_TASKS_FILTERS and WOMAN_TASKS_FILTERS is separate Locust
+#  task. We can set more filter fields in one Locust task,
+# by using one of FilterQuery subclasses
 MAN_TASKS_FILTERS = [
     (MAN_PAGE, [RangeFilterQuery("height", 30, 140, 220)]),
     (MAN_PAGE, [RangeFilterQuery("bust", 5, 35, 50)]),
