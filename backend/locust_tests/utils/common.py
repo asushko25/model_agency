@@ -88,7 +88,8 @@ def contact_agency_about_model(
     }
 
     logging.debug(
-        f"{contact_agency_about_model.__name__}: Contact about model url: {contact_url}"
+        f"{contact_agency_about_model.__name__}:"
+        f" Contact about model url: {contact_url}"
     )
     with user.rest(
             "POST", contact_url, json=json_data, name=CONTACT_MODEL_GROUP
