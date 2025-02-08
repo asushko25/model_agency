@@ -1,0 +1,98 @@
+@import "../../utils/variables";
+
+.error-page {
+  background-image: url("../../../public/images/error/error-background.png");
+  padding: 0 40px;
+  background-position: top center;
+  background-size: cover;
+  position: relative;
+
+  @media (min-width: 576px) and (max-width: 1023px) {
+    padding: 0 24px;
+  }
+
+  @media (max-width: 576px) {
+    padding: 0 16px;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 0;
+  }
+
+  &__content {
+    position: relative;
+    z-index: 1;
+  }
+
+  &__title {
+    font-family: Oswald;
+    font-size: 256px;
+    font-weight: 300;
+    line-height: 256px;
+    text-align: center;
+    color: #ecdfcc;
+    padding-bottom: 48px;
+    padding-top: 180px;
+    z-index: 1;
+
+    @media (min-width: $tablet-min-width) and (max-width: 1023px) {
+      font-size: 154px;
+      line-height: 154px;
+    }
+
+    @media (max-width: 576px) {
+      font-size: 76px;
+      line-height: 76px;
+    }
+  }
+
+  &__description {
+    font-family: Ysabeau SC;
+    font-weight: 600;
+    padding-bottom: 80px;
+    font-size: 36px;
+    line-height: 36px;
+    text-align: center;
+    color: #ecdfcc;
+
+    @media (min-width: $tablet-min-width) and (max-width: 1023px) {
+      font-size: 26px;
+      line-height: 26px;
+    }
+
+    @media (max-width: 576px) {
+      font-size: 18px;
+      line-height: 18px;
+    }
+  }
+
+  &__btn {
+    display: flex;
+    justify-content: center;
+    padding: 15px 0;
+    cursor: pointer;
+    padding-bottom: 136px;
+  }
+
+  &__btn-show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 438px;
+    height: 54px;
+    background-color: #ecdfcc;
+    color: #1e201e;
+    text-decoration: none;
+    font-family: Ysabeau SC;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+  }
+}

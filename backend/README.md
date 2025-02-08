@@ -1,4 +1,6 @@
 
+
+
 ### Use `fixture_db_data.json` to load data to DB.
 - but all models are without images (later Oleh Oryshchuk will fix it)
 - there are 24 users (12 men and 12 woman) and 25 is admin user
@@ -26,3 +28,4 @@
   - After Docker Locust is running you can enter `http://localhost:8089/` if testing locally.
   - To stop Docker containers use `docker-compose -f locust_tests/docker-compose.yml down`
   
+

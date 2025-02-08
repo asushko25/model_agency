@@ -1,0 +1,97 @@
+@import "../../utils/variables";
+
+.footer {
+  &__container {
+    display: flex;
+    align-items: center;
+    padding: 0 40px;
+    justify-content: space-between;
+    padding-bottom: 20px;
+
+    @media (min-width: $tablet-min-width) and (max-width: 1023px) {
+      padding: 0 24px;
+      padding-bottom: 24px;
+    }
+
+    @media (max-width: 576px) {
+      flex-direction: column;
+      padding: 0 16px;
+      padding-bottom: 24px;
+    }
+  }
+
+  &__terms {
+    display: flex;
+    align-items: center;
+  }
+
+  &__socials {
+    display: flex;
+    gap: 16px;
+    width: 213px;
+    justify-content: end;
+
+    @media (min-width: $tablet-min-width) and (max-width: 1023px) {
+      width: 170px;
+    }
+
+    @media (max-width: 576px) {
+      width: 130px;
+      display: none;
+    }
+  }
+
+  &__terms-text {
+    font-family: Ysabeau SC;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19px;
+    text-align: left;
+    color: #ecdfcc;
+    text-decoration: none;
+  }
+
+  &__terms-element {
+    color: #ecdfcc;
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  &__logo-second {
+    padding-bottom: 20px;
+  }
+
+  &__logo-main {
+    font-family: Bodoni Moda SC;
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 57px;
+
+    @media (min-width: $tablet-min-width) and (max-width: 1023px) {
+      font-size: 32px;
+      line-height: 38px;
+    }
+
+    @media (max-width: 576px) {
+      font-size: 32px;
+      line-height: 38px;
+    }
+
+    &__logo-second {
+      font-family: Bodoni Moda SC;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 19px;
+
+      @media (min-width: $tablet-min-width) and (max-width: 1023px) {
+        font-size: 14px;
+        line-height: 16px;
+      }
+
+      @media (max-width: 576px) {
+        font-size: 14px;
+        line-height: 16px;
+      }
+    }
+  }
+}
