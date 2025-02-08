@@ -1,0 +1,135 @@
+@import "../../utils/variables";
+
+.our-models {
+  background-color: $main-text-color;
+  padding-top: 80px;
+  margin-bottom: 80px;
+
+  &__title {
+    margin-bottom: 40px;
+    justify-content: center;
+    display: flex;
+  }
+
+  &__title-text {
+    font-family: Oswald;
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 48px;
+    text-align: center;
+    color: #ecdfcc;
+  }
+
+  &__block {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 87px 24px;
+
+    @media (max-width: 1439px) {
+      justify-content: center;
+    }
+
+    @media (min-width: $tablet-min-width) and (max-width: 1023px) {
+    }
+
+    @media (max-width: 576px) {
+      gap: 40px 24px;
+    }
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: $tablet-min-width) and (max-width: 1023px) {
+    }
+
+    @media (max-width: 576px) {
+      .our-models__card {
+        padding: 0 25px;
+      }
+
+      .our-models__img img {
+        max-width: 100%;
+      }
+    }
+  }
+
+  &__name {
+    display: flex;
+    font-family: Oswald;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 38.4px;
+    color: #ecdfcc;
+    padding-top: 16px;
+    text-decoration: none;
+  }
+
+  &__location {
+    display: flex;
+    font-family: Ysabeau SC;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 21.6px;
+    text-align: center;
+    padding-top: 8px;
+    color: #ecdfcc;
+    text-decoration: none;
+  }
+
+  &__link {
+    text-decoration: none;
+  }
+
+  &__block-second {
+    margin-top: 84px;
+  }
+
+  &__btn-show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 438px;
+    height: 54px;
+    background-color: #ecdfcc;
+    color: #1e201e;
+    text-decoration: none;
+    font-family: Ysabeau SC;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+  }
+
+  &__btn {
+    display: flex;
+    justify-content: center;
+    padding: 15px 0;
+    margin-top: 80px;
+    cursor: pointer;
+
+    @media (min-width: $tablet-min-width) {
+      margin-top: 80px;
+    }
+
+    @media (max-width: 576px) {
+      margin-top: 40px;
+    }
+  }
+
+  &__block-third {
+    margin-top: 84px;
+
+    @media (min-width: $tablet-min-width) {
+    }
+
+    @media (max-width: 576px) {
+      margin-top: 40px;
+    }
+  }
+
+  &__block-fourth {
+    margin-top: 84px;
+  }
+}
