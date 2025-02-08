@@ -29,6 +29,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "rest_framework",
     "phonenumber_field",
+    "drf_spectacular",
+    "drf_spectacular.swagger_ui",
     "model",
     "contact",
     "core"
@@ -111,6 +113,9 @@ MEDIA_URL = "/media/"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
 
 LOGGING = {
     "version": 1,

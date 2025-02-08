@@ -1,5 +1,7 @@
 import logging
 
+from drf_spectacular.types import OpenApiTypes
+from drf_spectacular.utils import OpenApiParameter, extend_schema
 from rest_framework import mixins
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.viewsets import GenericViewSet
@@ -94,12 +96,79 @@ class ManModelViewSet(
     pagination_class = CustomPagination
     lookup_field = "id"
 
+    @extend_schema(
+        summary="List all male models",
+        description="Returns a paginated list of male models with optional filtering.",
+        parameters=[
+            OpenApiParameter(
+                "search",
+                type=OpenApiTypes.STR,
+                description="Search by full name (ex. ?search=John Doe)",
+            ),
+            OpenApiParameter(
+                "height_min",
+                type=OpenApiTypes.INT,
+                description="Minimum height (cm) (ex. ?height_min=170)",
+            ),
+            OpenApiParameter(
+                "height_max",
+                type=OpenApiTypes.INT,
+                description="Maximum height (cm) (ex. ?height_max=190)",
+            ),
+            OpenApiParameter(
+                "bust_min",
+                type=OpenApiTypes.INT,
+                description="Minimum bust size (cm) (ex. ?bust_min=80)",
+            ),
+            OpenApiParameter(
+                "bust_max",
+                type=OpenApiTypes.INT,
+                description="Maximum bust size (cm) (ex. ?bust_max=100)",
+            ),
+            OpenApiParameter(
+                "hips_min",
+                type=OpenApiTypes.INT,
+                description="Minimum hips size (cm) (ex. ?hips_min=85)",
+            ),
+            OpenApiParameter(
+                "hips_max",
+                type=OpenApiTypes.INT,
+                description="Maximum hips size (cm) (ex. ?hips_max=110)",
+            ),
+            OpenApiParameter(
+                "waist_min",
+                type=OpenApiTypes.INT,
+                description="Minimum waist size (cm) (ex. ?waist_min=60)",
+            ),
+            OpenApiParameter(
+                "waist_max",
+                type=OpenApiTypes.INT,
+                description="Maximum waist size (cm) (ex. ?waist_max=80)",
+            ),
+            OpenApiParameter(
+                "hair",
+                type=OpenApiTypes.STR,
+                description="Filter by hair color (ex. ?hair=blonde)",
+            ),
+            OpenApiParameter(
+                "eye_color",
+                type=OpenApiTypes.STR,
+                description="Filter by eye color (ex. ?eye_color=blue)",
+            ),
+        ],
+        responses={200: ManModelListSerializer}
+    )
+    def list(self, request, *args, **kwargs):
+        return super().list(request, *args, **kwargs)
+
     def get_queryset(self):
         queryset = super().get_queryset()
         queryset = self.apply_filters(queryset, self.request.query_params)
-        search_query = self.request.query_params.get("search", "").strip()
 
-        return self.search_by_full_name(queryset, search_query)
+        search_query = self.request.query_params.get("search", "").strip()
+        queryset = self.search_by_full_name(queryset, search_query)
+
+        return queryset
 
     def get_serializer_class(self):
         if self.action == "retrieve":
@@ -118,12 +187,79 @@ class WomanModelViewSet(
     pagination_class = CustomPagination
     lookup_field = "id"
 
+    @extend_schema(
+        summary="List all female models",
+        description="Returns a paginated list of female models with optional filtering.",
+        parameters=[
+            OpenApiParameter(
+                "search",
+                type=OpenApiTypes.STR,
+                description="Search by full name (ex. ?search=Jane Doe)",
+            ),
+            OpenApiParameter(
+                "height_min",
+                type=OpenApiTypes.INT,
+                description="Minimum height (cm) (ex. ?height_min=160)",
+            ),
+            OpenApiParameter(
+                "height_max",
+                type=OpenApiTypes.INT,
+                description="Maximum height (cm) (ex. ?height_max=185)",
+            ),
+            OpenApiParameter(
+                "bust_min",
+                type=OpenApiTypes.INT,
+                description="Minimum bust size (cm) (ex. ?bust_min=75)",
+            ),
+            OpenApiParameter(
+                "bust_max",
+                type=OpenApiTypes.INT,
+                description="Maximum bust size (cm) (ex. ?bust_max=100)",
+            ),
+            OpenApiParameter(
+                "hips_min",
+                type=OpenApiTypes.INT,
+                description="Minimum hips size (cm) (ex. ?hips_min=85)",
+            ),
+            OpenApiParameter(
+                "hips_max",
+                type=OpenApiTypes.INT,
+                description="Maximum hips size (cm) (ex. ?hips_max=115)",
+            ),
+            OpenApiParameter(
+                "waist_min",
+                type=OpenApiTypes.INT,
+                description="Minimum waist size (cm) (ex. ?waist_min=55)",
+            ),
+            OpenApiParameter(
+                "waist_max",
+                type=OpenApiTypes.INT,
+                description="Maximum waist size (cm) (ex. ?waist_max=75)",
+            ),
+            OpenApiParameter(
+                "hair",
+                type=OpenApiTypes.STR,
+                description="Filter by hair color (ex. ?hair=black)",
+            ),
+            OpenApiParameter(
+                "eye_color",
+                type=OpenApiTypes.STR,
+                description="Filter by eye color (ex. ?eye_color=brown)",
+            ),
+        ],
+        responses={200: WomanModelListSerializer}
+    )
+    def list(self, request, *args, **kwargs):
+        return super().list(request, *args, **kwargs)
+
     def get_queryset(self):
         queryset = super().get_queryset()
         queryset = self.apply_filters(queryset, self.request.query_params)
-        search_query = self.request.query_params.get("search", "").strip()
 
-        return self.search_by_full_name(queryset, search_query)
+        search_query = self.request.query_params.get("search", "").strip()
+        queryset = self.search_by_full_name(queryset, search_query)
+
+        return queryset
 
     def get_serializer_class(self):
         if self.action == "retrieve":
