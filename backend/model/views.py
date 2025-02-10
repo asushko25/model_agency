@@ -1,5 +1,8 @@
 import logging
 
+from django.core.cache import cache
+from django.db.models import QuerySet
+
 from rest_framework import mixins
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.viewsets import GenericViewSet
@@ -72,7 +75,11 @@ class MainViewSet(
     lookup_field = "id"
 
     def get_queryset(self):
-        queryset = super().get_queryset()
+        # get queryset for main page from DB cache, if we do not
+        # have it the set it
+        queryset = cache.get_or_set(
+            "main_model_queryset", super().get_queryset()
+        )
         search_query = self.request.query_params.get("search", "").strip()
 
         return self.search_by_full_name(queryset, search_query)
@@ -95,7 +102,12 @@ class ManModelViewSet(
     lookup_field = "id"
 
     def get_queryset(self):
-        queryset = super().get_queryset()
+        # get queryset for man page from DB cache, if we do not
+        # have it the set it
+        queryset = cache.get_or_set(
+            "man_model_queryset", super().get_queryset()
+        )
+
         queryset = self.apply_filters(queryset, self.request.query_params)
         search_query = self.request.query_params.get("search", "").strip()
 
@@ -119,7 +131,12 @@ class WomanModelViewSet(
     lookup_field = "id"
 
     def get_queryset(self):
-        queryset = super().get_queryset()
+        # get queryset for woman page from DB cache, if we do not
+        # have it the set it
+        queryset = cache.get_or_set(
+            "woman_model_queryset", super().get_queryset()
+        )
+
         queryset = self.apply_filters(queryset, self.request.query_params)
         search_query = self.request.query_params.get("search", "").strip()
 

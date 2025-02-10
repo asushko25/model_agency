@@ -52,6 +52,20 @@ EMAIL_USE_SSL = False
 EMAIL_USE_TLS = True
 
 
+# Cache configurations
+CACHE = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": os.getenv("DJANGO_REDIS_CACHE_URL"),
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.HerdClient",
+            "IGNORE_EXCEPTIONS": True,
+            "CONNECTION_POOL_KWARGS": {"max_connection": 100}
+        },
+        "TIMEOUT": 60 * 10  # cache timeout is 10 minutes
+    }
+}
+
 # Configure Sentry SDK performance monitoring server
 # with integration with Django
 # https://docs.sentry.io/platforms/python/integrations/django/

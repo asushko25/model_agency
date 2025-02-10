@@ -30,3 +30,11 @@ DATABASES = {
 # Email configurations
 # prints all emails to a terminal, not actually sending emails
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+
+# cache configurations
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.dummy.DummyCache",
+    }
+}
