@@ -11,6 +11,12 @@ ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS").split(" ")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# Ensures CSRF protection is only over HTTPS
+CSRF_COOKIE_SECURE = True
+
+# Forces secure connection, Users may connect insecurely
+# making them vulnerable to MITM attacks
+SECURE_SSL_REDIRECT = True
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
