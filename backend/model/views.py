@@ -1,7 +1,6 @@
 import logging
 
 from django.core.cache import cache
-from django.db.models import QuerySet
 
 from rest_framework import mixins
 from rest_framework.pagination import LimitOffsetPagination
@@ -69,7 +68,9 @@ class MainViewSet(
     mixins.RetrieveModelMixin,
     GenericViewSet,
 ):
-    queryset = Model.objects.all()
+    queryset = Model.objects.select_related(
+        "model_user"
+    ).prefetch_related("images")
     serializer_class = ModelSerializer
     pagination_class = CustomPagination
     lookup_field = "id"
@@ -96,7 +97,11 @@ class ManModelViewSet(
     mixins.RetrieveModelMixin,
     GenericViewSet,
 ):
-    queryset = Model.objects.filter(gender="man").prefetch_related("images")
+    queryset = Model.objects.filter(
+        gender="man"
+    ).select_related(
+        "model_user"
+    ).prefetch_related("images")
     serializer_class = ModelSerializer
     pagination_class = CustomPagination
     lookup_field = "id"
@@ -125,7 +130,11 @@ class WomanModelViewSet(
     mixins.RetrieveModelMixin,
     GenericViewSet,
 ):
-    queryset = Model.objects.filter(gender="woman").prefetch_related("images")
+    queryset = Model.objects.filter(
+        gender="woman"
+    ).select_related(
+        "model_user"
+    ).prefetch_related("images")
     serializer_class = ModelSerializer
     pagination_class = CustomPagination
     lookup_field = "id"
