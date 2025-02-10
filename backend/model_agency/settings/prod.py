@@ -1,7 +1,6 @@
 """Django configurations during Production"""
 
 import os
-from dotenv import load_dotenv
 
 import sentry_sdk
 # In Sentry, profiling refers to tracking and analyzing the performance
@@ -14,7 +13,6 @@ import sentry_sdk
 # API calls
 from sentry_sdk.integrations.django import DjangoIntegration
 
-load_dotenv()
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
