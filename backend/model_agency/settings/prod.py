@@ -1,6 +1,7 @@
 """Django configurations during Production"""
 
 import os
+from dotenv import load_dotenv
 
 import sentry_sdk
 # In Sentry, profiling refers to tracking and analyzing the performance
@@ -13,11 +14,12 @@ import sentry_sdk
 # API calls
 from sentry_sdk.integrations.django import DjangoIntegration
 
+load_dotenv()
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 
-ALLOWED_HOSTS = ["host.docker.internal", "0.0.0.0"]
+ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS").split(" ")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -34,6 +36,8 @@ DATABASES = {
         "USER": os.getenv("POSTGRES_USER"),
         "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
         "PORT": os.getenv("POSTGRES_PORT"),
+        # Persistent connections reduce the overhead of reopening connections.
+        "CONN_MAX_AGE": os.getenv("POSTGRES_CONN_MAX_AGE"),
     }
 }
 

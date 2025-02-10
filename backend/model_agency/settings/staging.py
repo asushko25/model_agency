@@ -6,7 +6,7 @@ import os
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 
-ALLOWED_HOSTS = ["www.example.com"]
+ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS").split(" ")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -23,6 +23,8 @@ DATABASES = {
         "USER": os.getenv("POSTGRES_USER"),
         "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
         "PORT": os.getenv("POSTGRES_PORT"),
+        # Persistent connections reduce the overhead of reopening connections.
+        "CONN_MAX_AGE": os.getenv("POSTGRES_CONN_MAX_AGE"),
     }
 }
 
