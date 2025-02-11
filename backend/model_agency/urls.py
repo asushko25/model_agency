@@ -22,6 +22,13 @@ from django.urls import path, include
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("model/", include("model.urls", namespace="model")),
-    path("contact/", include("contact.urls", namespace="contact")),
-    path("__debug__/", include("debug_toolbar.urls")),
+    path("contact/", include("contact.urls", namespace="contact"))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# debug toolbar we are not using during testing or production
+if (
+        not settings.TESTING
+        and settings.DJANGO_ENV != "production"
+):
+
+    urlpatterns.append(path("__debug__/", include("debug_toolbar.urls")))
