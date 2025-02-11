@@ -20,7 +20,9 @@ class ModelSerializer(serializers.ModelSerializer):
         fields = ["id", "full_name", "city", "country", "photo", "detail_url"]
 
     def get_photo(self, obj):
-        first_image = obj.images.first()
+        # query first() is not optimized for prefetch reverse relationships
+        # making N + 1 issues, that why we are not using it
+        first_image = next(iter(obj.images.all()), None)
         if first_image and first_image.image:
             return first_image.image.url
         return None
