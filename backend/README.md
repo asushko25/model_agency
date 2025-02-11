@@ -1,14 +1,55 @@
+## Model Agency web-application
 
+![Django](https://img.shields.io/badge/Django-5.1.4-brightgreen.svg)
+![Django Rest Framework](https://img.shields.io/badge/Django%20Rest%20Framework-3.15.2-blue.svg)
 
+Model Agency is a web application powered by Django REST Framework, designed to connect you with the perfect
+model for your creative projects. Whether you need assistance from a professional agency for in-depth research
+or prefer to explore independently, the platform provides advanced filtering and search tools to help you find
+the ideal match effortlessly.
 
-### Use `fixture_db_data.json` to load data to DB.
-- but all models are without images (later Oleh Oryshchuk will fix it)
-- there are 24 users (12 men and 12 woman) and 25 is admin user
-- first run the command `python manage.py migrate` and then
-- use `python manage.py loaddata seed_data\fixture_db_data.json` to load data to DB.
-- run command `python manage.py runserver`
-- 25 user is admin with password `rvt3456`, fullname `Main Admin`, email `testadmin@gmail.com`
-- Use above credentials in `http://127.0.0.1:8000/admin`
+## Features
+* Superuser (admin, staff) have admin site http://localhost:8000/admin/ with full control
+    and with full control on platform.
+* There is also different feature like searching/filtering lists of data
+    which you can see on api docs
+* Caching using Redis during production and staging, but for development we are using dummy.
+* Using most popular and well-supported DB PostgresSQL.
+* Project cover with tests using Djagno/DRF build-in support and Locust tests to discover bottlenecks of application
+* API documentation  http://127.0.0.1:8000/api/doc/swagger/
+
+## Installation
+1. Clone git repository to your local machine:
+```
+    https://github.com/OlehOryshchuk/model_agency.git
+```
+2. Create virtual environment `python manage.py venv venv`, then activate it:
+  - On Windows (CMD / PowerShell) `venv\Scripts\activate` or on Powershell `venv\Scripts\Activate.ps1`
+  - macOS / Linux (Bash / Zsh) `source venv/bin/activate`
+
+3. Install Dependencies `pip install -r requirements.txt`
+
+4. Copy the `.env.sample` file to `.env` and configure the environment variables. But for local development
+    you need to declare only `DJANGO_ENV=development`, `DJANGO_SECRET_KEY=...` and `DJANGO_SETTINGS_MODULE=model_agency.settings` 
+```
+    cp .env.sample .env
+```
+5. Apply Migrations:
+   - `python manage.py migrate` - run migrations
+   - `python manage.py createsuperuser`- Create a superuser (optional, for admin access):
+6. Optional, you can load small data - `python manage.py loaddata seed_data/fixture_db_data.json`
+   it also loads admin user specified below
+
+7. Access API as superuser you can use the following admin user account:
+   - **Email**`testadmin@gmail.com` : Email is not valid
+   - **Password** `rvt3456`
+   - **Username** `Main Admin`
+   - Or you can create your own using `python manage.py createsuperuser`
+
+8. Run Tests (Optional) - `python manage.py test`
+
+### Usage
+To access the API, navigate to http://localhost:8000/api/ in your web browser and enter one of endpoints.
 
 ### Custom commands during development and staging
 - Additionally, we can use custom commands, but only when `DJANGO_ENV` is `development` or `staging`:
@@ -27,5 +68,3 @@
       which can affect performance. Usually, 1-2 workers per CPU core is recommended, but it depends on the type of test.
   - After Docker Locust is running you can enter `http://localhost:8089/` if testing locally.
   - To stop Docker containers use `docker-compose -f locust_tests/docker-compose.yml down`
-  
-
