@@ -1,4 +1,6 @@
 """Django configurations during Development"""
+import os
+
 from .base import BASE_DIR
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -34,10 +36,9 @@ DATABASES = {
 # prints all emails to a terminal, not actually sending emails
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
-
-# cache configurations
-CACHES = {
-    "default": {
-        "BACKEND": "django.core.cache.backends.dummy.DummyCache",
-    }
-}
+EMAIL_HOST = os.getenv("EMAIL_HOST")
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+EMAIL_PORT = os.getenv("EMAIL_PORT")
+EMAIL_USE_SSL = False
+EMAIL_USE_TLS = True
