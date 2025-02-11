@@ -5,8 +5,8 @@ from django.contrib.auth import get_user_model
 from rest_framework.test import APIClient
 from rest_framework import status
 
-from ..models import Model
-from ..serializers import (
+from model.models import Model
+from model.serializers import (
     WomanModelDetailSerializer,
     ManModelDetailSerializer
 )
@@ -47,7 +47,9 @@ class DetailPageApiTests(TestCase):
         )
 
         self.assertEqual(res.status_code, status.HTTP_200_OK)
-        serializer = ManModelDetailSerializer(self.model)
+        serializer = ManModelDetailSerializer(
+            self.model, context={"request": res.wsgi_request}
+        )
 
         self.assertEqual(res.data, serializer.data)
         self.assertIn(
@@ -69,7 +71,9 @@ class DetailPageApiTests(TestCase):
         )
 
         self.assertEqual(res.status_code, status.HTTP_200_OK)
-        serializer = WomanModelDetailSerializer(self.model)
+        serializer = WomanModelDetailSerializer(
+            self.model, context={"request": res.wsgi_request}
+        )
 
         self.assertEqual(
             res.data,

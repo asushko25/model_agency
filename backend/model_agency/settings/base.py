@@ -9,14 +9,15 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
+import os
+import sys
 
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ["localhost", "3000"]
 
 # Application definition
 
@@ -45,6 +46,31 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+INTERNAL_IPS = []
+
+TESTING = "test" in sys.argv
+# determines in which environment we are
+# DJANGO_ENV could have values of development, production, staging
+DJANGO_ENV = os.getenv("DJANGO_ENV", "development")
+
+if not TESTING and DJANGO_ENV != "production":
+    # if we are not testing or we are in development or production mode
+    # we can use debug_toolbar
+    INSTALLED_APPS = [
+        *INSTALLED_APPS,
+        "debug_toolbar",
+    ]
+
+    MIDDLEWARE = [
+        "debug_toolbar.middleware.DebugToolbarMiddleware",
+        *MIDDLEWARE
+    ]
+
+    INTERNAL_IPS = [
+        "127.0.0.1",
+        *INTERNAL_IPS
+    ]
 
 ROOT_URLCONF = 'model_agency.urls'
 

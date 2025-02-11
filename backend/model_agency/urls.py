@@ -33,3 +33,11 @@ urlpatterns = [
         name="swagger-ui",
     )
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# debug toolbar we are not using during testing or production
+if (
+        not settings.TESTING
+        and settings.DJANGO_ENV != "production"
+):
+
+    urlpatterns.append(path("__debug__/", include("debug_toolbar.urls")))

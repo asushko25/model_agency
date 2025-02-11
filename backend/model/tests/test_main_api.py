@@ -8,7 +8,7 @@ from unittest.mock import patch
 from rest_framework.test import APIClient
 from rest_framework import status
 
-from ..models import Model
+from model.models import Model
 from .utils.model_test_util import (
     paginated_data_or_not,
     model_detail_url,
