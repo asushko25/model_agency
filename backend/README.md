@@ -23,18 +23,19 @@ the ideal match effortlessly.
 ```
     https://github.com/OlehOryshchuk/model_agency.git
 ```
-2. Create virtual environment `python manage.py venv venv`, then activate it:
+2. Create virtual environment `python -m venv venv`, then activate it:
   - On Windows (CMD / PowerShell) `venv\Scripts\activate` or on Powershell `venv\Scripts\Activate.ps1`
-  - macOS / Linux (Bash / Zsh) `source venv/bin/activate`
+  - macOS / Linux (Bash / Zsh) `source venv/bin/activate` or `source venv/Scripts/activate`
 
 3. Install Dependencies `pip install -r requirements.txt`
 
 4. Copy the `.env.sample` file to `.env` and configure the environment variables. But for local development
-    you need to declare only `DJANGO_ENV=development`, `DJANGO_SECRET_KEY=...` and `DJANGO_SETTINGS_MODULE=model_agency.settings` 
-```
-    cp .env.sample .env
-```
+    you need to declare only `DJANGO_ENV=development`, `DJANGO_SECRET_KEY=...` and `DJANGO_SETTINGS_MODULE=model_agency.settings`.
+   To copy on Windows CMD use `copy .env.sample .env`, Windows PowerShell `Copy-Item .env.sample -Destination .env`,
+   Windows (Git Bash, WSL)/Linux/macOS - `cp .env.sample .env`
+
 5. Apply Migrations:
+   - `python manage.py makemigrations` - create migrations
    - `python manage.py migrate` - run migrations
    - `python manage.py createsuperuser`- Create a superuser (optional, for admin access):
 6. Optional, you can load small data - `python manage.py loaddata seed_data/fixture_db_data.json`
@@ -47,6 +48,7 @@ the ideal match effortlessly.
    - Or you can create your own using `python manage.py createsuperuser`
 
 8. Run Tests (Optional) - `python manage.py test`
+9. Run web application locally `python manage.py runserver`
 
 ### Usage
 To access the API, navigate to http://localhost:8000/api/ in your web browser and enter one of endpoints.
