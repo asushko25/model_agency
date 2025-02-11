@@ -1,8 +1,8 @@
 """Utils for testing model app"""
 from django.urls import reverse
 
-from ...models import Model
-from ...serializers import (
+from model.models import Model
+from model.serializers import (
     ModelSerializer,
     WomanModelListSerializer,
     ManModelListSerializer

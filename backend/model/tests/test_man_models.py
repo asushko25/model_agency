@@ -8,7 +8,7 @@ from unittest.mock import patch
 from rest_framework.test import APIClient
 from rest_framework import status
 
-from ..models import Model
+from model.models import Model
 from .utils.model_test_util import (
     paginated_data_or_not,
     UtilFilterSearchSerialize
@@ -145,8 +145,8 @@ class ManPageApiTests(TestCase):
             res = self.client.get(
                 MAN_LIST_PAGE_URL,
                 {
-                    f"from_{field}": from_,
-                    f"to_{field}": to_
+                    f"{field}_min": from_,
+                    f"{field}_max": to_
                 }
             )
 
