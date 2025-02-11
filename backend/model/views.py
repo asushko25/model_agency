@@ -2,6 +2,8 @@ import logging
 
 from django.core.cache import cache
 
+from drf_spectacular.types import OpenApiTypes
+from drf_spectacular.utils import OpenApiParameter, extend_schema
 from rest_framework import mixins
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.viewsets import GenericViewSet
@@ -68,19 +70,13 @@ class MainViewSet(
     mixins.RetrieveModelMixin,
     GenericViewSet,
 ):
-    queryset = Model.objects.select_related(
-        "model_user"
-    ).prefetch_related("images")
+    queryset = Model.objects.all()
     serializer_class = ModelSerializer
     pagination_class = CustomPagination
     lookup_field = "id"
 
     def get_queryset(self):
-        # get queryset for main page from DB cache, if we do not
-        # have it the set it
-        queryset = cache.get_or_set(
-            "main_model_queryset", super().get_queryset()
-        )
+        queryset = super().get_queryset()
         search_query = self.request.query_params.get("search", "").strip()
 
         return self.search_by_full_name(queryset, search_query)
@@ -97,22 +93,13 @@ class ManModelViewSet(
     mixins.RetrieveModelMixin,
     GenericViewSet,
 ):
-    queryset = Model.objects.filter(
-        gender="man"
-    ).select_related(
-        "model_user"
-    ).prefetch_related("images")
+    queryset = Model.objects.filter(gender="man").prefetch_related("images")
     serializer_class = ModelSerializer
     pagination_class = CustomPagination
     lookup_field = "id"
 
     def get_queryset(self):
-        # get queryset for man page from DB cache, if we do not
-        # have it the set it
-        queryset = cache.get_or_set(
-            "man_model_queryset", super().get_queryset()
-        )
-
+        queryset = super().get_queryset()
         queryset = self.apply_filters(queryset, self.request.query_params)
         search_query = self.request.query_params.get("search", "").strip()
 
@@ -130,22 +117,13 @@ class WomanModelViewSet(
     mixins.RetrieveModelMixin,
     GenericViewSet,
 ):
-    queryset = Model.objects.filter(
-        gender="woman"
-    ).select_related(
-        "model_user"
-    ).prefetch_related("images")
+    queryset = Model.objects.filter(gender="woman").prefetch_related("images")
     serializer_class = ModelSerializer
     pagination_class = CustomPagination
     lookup_field = "id"
 
     def get_queryset(self):
-        # get queryset for woman page from DB cache, if we do not
-        # have it the set it
-        queryset = cache.get_or_set(
-            "woman_model_queryset", super().get_queryset()
-        )
-
+        queryset = super().get_queryset()
         queryset = self.apply_filters(queryset, self.request.query_params)
         search_query = self.request.query_params.get("search", "").strip()
 
