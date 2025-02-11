@@ -41,7 +41,7 @@ DATABASES = {
         "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
         "PORT": os.getenv("POSTGRES_PORT"),
         # Persistent connections reduce the overhead of reopening connections.
-        "CONN_MAX_AGE": os.getenv("POSTGRES_CONN_MAX_AGE"),
+        "CONN_MAX_AGE": os.getenv("POSTGRES_CONN_MAX_AGE", 300)  # keeping 5 minute connection
     }
 }
 
