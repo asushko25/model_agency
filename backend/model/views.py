@@ -70,13 +70,19 @@ class MainViewSet(
     mixins.RetrieveModelMixin,
     GenericViewSet,
 ):
-    queryset = Model.objects.all()
+    queryset = Model.objects.select_related(
+        "model_user"
+    ).prefetch_related("images")
     serializer_class = ModelSerializer
     pagination_class = CustomPagination
     lookup_field = "id"
 
     def get_queryset(self):
-        queryset = super().get_queryset()
+        # get queryset for main page from DB cache, if we do not
+        # have it the set it
+        queryset = cache.get_or_set(
+            "main_model_queryset", super().get_queryset()
+        )
         search_query = self.request.query_params.get("search", "").strip()
 
         return self.search_by_full_name(queryset, search_query)
@@ -93,22 +99,97 @@ class ManModelViewSet(
     mixins.RetrieveModelMixin,
     GenericViewSet,
 ):
-    queryset = Model.objects.filter(gender="man").prefetch_related("images")
+    queryset = Model.objects.filter(
+        gender="man"
+    ).select_related(
+        "model_user"
+    ).prefetch_related("images")
     serializer_class = ModelSerializer
     pagination_class = CustomPagination
     lookup_field = "id"
 
     def get_queryset(self):
-        queryset = super().get_queryset()
+        # get queryset for man page from DB cache, if we do not
+        # have it the set it
+        queryset = cache.get_or_set(
+            "man_model_queryset", super().get_queryset()
+        )
         queryset = self.apply_filters(queryset, self.request.query_params)
         search_query = self.request.query_params.get("search", "").strip()
 
-        return self.search_by_full_name(queryset, search_query)
+        queryset = self.search_by_full_name(queryset, search_query)
+
+        return queryset
 
     def get_serializer_class(self):
         if self.action == "retrieve":
             return ManModelDetailSerializer
         return ManModelListSerializer
+
+    @extend_schema(
+        summary="List all male models",
+        description="Returns a paginated list of male models with optional filtering.",
+        parameters=[
+            OpenApiParameter(
+                "search",
+                type=OpenApiTypes.STR,
+                description="Search by full name (ex. ?search=John Doe)",
+            ),
+            OpenApiParameter(
+                "height_min",
+                type=OpenApiTypes.INT,
+                description="Minimum height (cm) (ex. ?height_min=170)",
+            ),
+            OpenApiParameter(
+                "height_max",
+                type=OpenApiTypes.INT,
+                description="Maximum height (cm) (ex. ?height_max=190)",
+            ),
+            OpenApiParameter(
+                "bust_min",
+                type=OpenApiTypes.INT,
+                description="Minimum bust size (cm) (ex. ?bust_min=80)",
+            ),
+            OpenApiParameter(
+                "bust_max",
+                type=OpenApiTypes.INT,
+                description="Maximum bust size (cm) (ex. ?bust_max=100)",
+            ),
+            OpenApiParameter(
+                "hips_min",
+                type=OpenApiTypes.INT,
+                description="Minimum hips size (cm) (ex. ?hips_min=85)",
+            ),
+            OpenApiParameter(
+                "hips_max",
+                type=OpenApiTypes.INT,
+                description="Maximum hips size (cm) (ex. ?hips_max=110)",
+            ),
+            OpenApiParameter(
+                "waist_min",
+                type=OpenApiTypes.INT,
+                description="Minimum waist size (cm) (ex. ?waist_min=60)",
+            ),
+            OpenApiParameter(
+                "waist_max",
+                type=OpenApiTypes.INT,
+                description="Maximum waist size (cm) (ex. ?waist_max=80)",
+            ),
+            OpenApiParameter(
+                "hair",
+                type=OpenApiTypes.STR,
+                description="Filter by hair color (ex. ?hair=blonde)",
+            ),
+            OpenApiParameter(
+                "eye_color",
+                type=OpenApiTypes.STR,
+                description="Filter by eye color (ex. ?eye_color=blue)",
+            ),
+        ],
+        responses={200: ManModelListSerializer}
+    )
+    def list(self, request, *args, **kwargs):
+        return super().list(request, *args, **kwargs)
 
 
 class WomanModelViewSet(
@@ -117,19 +198,94 @@ class WomanModelViewSet(
     mixins.RetrieveModelMixin,
     GenericViewSet,
 ):
-    queryset = Model.objects.filter(gender="woman").prefetch_related("images")
+    queryset = Model.objects.filter(
+        gender="woman"
+    ).select_related(
+        "model_user"
+    ).prefetch_related("images")
     serializer_class = ModelSerializer
     pagination_class = CustomPagination
     lookup_field = "id"
 
     def get_queryset(self):
-        queryset = super().get_queryset()
+        # get queryset for woman page from DB cache, if we do not
+        # have it the set it
+        queryset = cache.get_or_set(
+            "woman_model_queryset", super().get_queryset()
+        )
         queryset = self.apply_filters(queryset, self.request.query_params)
         search_query = self.request.query_params.get("search", "").strip()
 
-        return self.search_by_full_name(queryset, search_query)
+        queryset = self.search_by_full_name(queryset, search_query)
+
+        return queryset
 
     def get_serializer_class(self):
         if self.action == "retrieve":
             return WomanModelDetailSerializer
         return WomanModelListSerializer
+
+    @extend_schema(
+        summary="List all female models",
+        description="Returns a paginated list of female models with optional filtering.",
+        parameters=[
+            OpenApiParameter(
+                "search",
+                type=OpenApiTypes.STR,
+                description="Search by full name (ex. ?search=Jane Doe)",
+            ),
+            OpenApiParameter(
+                "height_min",
+                type=OpenApiTypes.INT,
+                description="Minimum height (cm) (ex. ?height_min=160)",
+            ),
+            OpenApiParameter(
+                "height_max",
+                type=OpenApiTypes.INT,
+                description="Maximum height (cm) (ex. ?height_max=185)",
+            ),
+            OpenApiParameter(
+                "bust_min",
+                type=OpenApiTypes.INT,
+                description="Minimum bust size (cm) (ex. ?bust_min=75)",
+            ),
+            OpenApiParameter(
+                "bust_max",
+                type=OpenApiTypes.INT,
+                description="Maximum bust size (cm) (ex. ?bust_max=100)",
+            ),
+            OpenApiParameter(
+                "hips_min",
+                type=OpenApiTypes.INT,
+                description="Minimum hips size (cm) (ex. ?hips_min=85)",
+            ),
+            OpenApiParameter(
+                "hips_max",
+                type=OpenApiTypes.INT,
+                description="Maximum hips size (cm) (ex. ?hips_max=115)",
+            ),
+            OpenApiParameter(
+                "waist_min",
+                type=OpenApiTypes.INT,
+                description="Minimum waist size (cm) (ex. ?waist_min=55)",
+            ),
+            OpenApiParameter(
+                "waist_max",
+                type=OpenApiTypes.INT,
+                description="Maximum waist size (cm) (ex. ?waist_max=75)",
+            ),
+            OpenApiParameter(
+                "hair",
+                type=OpenApiTypes.STR,
+                description="Filter by hair color (ex. ?hair=black)",
+            ),
+            OpenApiParameter(
+                "eye_color",
+                type=OpenApiTypes.STR,
+                description="Filter by eye color (ex. ?eye_color=brown)",
+            ),
+        ],
+        responses={200: WomanModelListSerializer}
+    )
+    def list(self, request, *args, **kwargs):
+        return super().list(request, *args, **kwargs)
