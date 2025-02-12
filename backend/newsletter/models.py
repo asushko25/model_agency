@@ -7,7 +7,7 @@ from django.utils.translation import gettext as _
 
 class NewsLetterSubscriber(models.Model):
     email = models.EmailField(_("Email address"), unique=True)
-    subscribed_at = models.DateTimeField(auto_now_add=True)
+    subscribed_at = models.DateField(auto_now_add=True)
     is_active = models.BooleanField(default=True, db_index=True)
 
     class Meta:
@@ -35,6 +35,7 @@ class NewsLetter(models.Model):
     header = models.CharField(max_length=255)
     cover = models.ImageField(upload_to=news_letter_image_cover)
     caption = models.TextField(null=True, blank=True)
+    created_at = models.DateField(auto_now_add=True)
 
     class Meta:
         ordering = ["-id"]
