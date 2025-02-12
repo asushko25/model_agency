@@ -92,6 +92,20 @@ class MainViewSet(
             return ModelDetailSerializer
         return ModelSerializer
 
+    @extend_schema(
+        summary="List all models",
+        description="Returns a paginated list of models",
+        parameters=[
+            OpenApiParameter(
+                "search",
+                type=OpenApiTypes.STR,
+                description="Search by full name (ex. ?search=John Doe)",
+            )
+        ],
+        responses={200: ManModelListSerializer}
+    )
+    def list(self, request, *args, **kwargs):
+        return super().list(request, *args, **kwargs)
 
 class ManModelViewSet(
     FilterSearchMixin,
