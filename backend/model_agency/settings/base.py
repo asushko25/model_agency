@@ -31,9 +31,9 @@ INSTALLED_APPS = [
     "rest_framework",
     "phonenumber_field",
     "drf_spectacular",
-    "drf_spectacular.swagger_ui",
     "model",
     "contact",
+    "newsletter",
     "core"
 ]
 
