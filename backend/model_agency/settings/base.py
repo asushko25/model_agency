@@ -49,6 +49,12 @@ MIDDLEWARE = [
 
 INTERNAL_IPS = []
 
+# Cookie key name to store when user has subscribed to newsletter
+COOKIE_NEWS_SUBSCRIBED_DATA = "news_subscribed_date"
+
+# cookie user subscribed to newsletter expiry 1 year
+COOKIE_EXPIRE_SUBSCRIBED_DATA = 365 * 24 * 60 * 60
+
 TESTING = "test" in sys.argv
 # determines in which environment we are
 # DJANGO_ENV could have values of development, production, staging
@@ -141,6 +147,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+    "DEFAULT_PAGINATION_CLASS": "paginations.CustomPagination",
+    "DEFAULT_THROTTLE_CLASSES": [
+        "rest_framework.throttling.AnonRateThrottle",
+    ],
+    "DEFAULT_THROTTLE_RATES": {
+        "anon": "3000/day"
+    },
 }
 
 LOGGING = {

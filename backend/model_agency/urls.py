@@ -25,6 +25,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("model/", include("model.urls", namespace="model")),
     path("contact/", include("contact.urls", namespace="contact")),
+    path("newsletter/", include("newsletter.urls", namespace="newsletter")),
     path("__debug__/", include("debug_toolbar.urls")),
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     path(
