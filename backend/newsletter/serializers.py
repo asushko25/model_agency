@@ -1,4 +1,7 @@
-from datetime import datetime, timedelta
+from datetime import timedelta
+
+from django.utils import timezone
+from django.conf import settings
 
 from rest_framework import serializers
 from rest_framework.serializers import (
@@ -24,33 +27,41 @@ class NewsLetterListSerializer(ModelSerializer):
         model = NewsLetter
         fields = (
             "id", "header", "cover", "caption",
-            "created_at", ""
+            "created_at", "is_new"
         )
 
     def get_is_new(self, obj: NewsLetter) -> bool:
         """
-        Newsletters created in a current weekend will have field `is_new = True`
-        for users which has subscribed to receive newsletters emails.
-        `is_new=True` will be available only at the end of week relative to subscribed day.
+        Newsletters created in a current weekend will have
+        field `is_new = True` for users which has subscribed to
+        receive newsletters emails. `is_new=True` will be available only at the
+        end of week relative to subscribed day.
 
-        For example if user subs to newsletter at 2025.02.02 then `is_new` will be available at 2025.02.09,
-        and it will be set for newsletters that were created during week relative to day use subs.
+        For example if user subs to newsletter at 2025.02.02 then
+        `is_new` will be available at 2025.02.09,
+        and it will be set for newsletters that were created
+        during week relative to day use subs.
 
-        By doing that we are letting user know which newsletters are new this week.
+        By doing that we are letting user know which
+        newsletters are new this week.
         :param obj:
         :return:
         """
         # user newsletter subscribed date
-        subscribed_at = self.context.get("subscribed_to_newsletter", None)
+        subscribed_at = self.context.get(
+            settings.COOKIE_NEWS_SUBSCRIBED_DATA, None
+        )
 
         # if user is not subscribed we ignore it
         if not subscribed_at:
             return False
 
         if isinstance(subscribed_at, str):
-            subscribed_at = datetime.strptime(subscribed_at, "%Y-%m-%d")
+            subscribed_at = timezone.datetime.strptime(
+                subscribed_at, "%Y-%m-%d"
+            )
 
-        curr_date = datetime.today().date()
+        curr_date = timezone.now().date()
         day_since_subs = curr_date - subscribed_at.date()
 
         # we are marking as `new` if 7 days pass relative to
@@ -62,7 +73,4 @@ class NewsLetterListSerializer(ModelSerializer):
 
         #  if newsletter is in range of current start of week relative to
         # subscription date and end of this week relative to  subscription date
-        if start_curr_week <= obj.created_at.date() <= curr_date:
-            return True
-
-        return False
+        return start_curr_week <= obj.created_at <= curr_date
