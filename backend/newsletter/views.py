@@ -31,7 +31,6 @@ class NewsLetterViewSet(
 ):
     queryset = NewsLetter.objects.all()
     serializer_class = NewsLetterListSerializer
-    # TODO: add LimitOffsetPagination pagination
 
     def get_serializer_class(self):
         if self.action == "sign_to_newsletter":

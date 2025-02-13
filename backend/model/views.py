@@ -5,7 +5,6 @@ from django.core.cache import cache
 from drf_spectacular.types import OpenApiTypes
 from drf_spectacular.utils import OpenApiParameter, extend_schema
 from rest_framework import mixins
-from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.viewsets import GenericViewSet
 
 from .models import Model
@@ -59,11 +58,6 @@ class FilterSearchMixin:
         return queryset
 
 
-class CustomPagination(LimitOffsetPagination):
-    default_limit = 6
-    max_limit = 100
-
-
 class MainViewSet(
     FilterSearchMixin,
     mixins.ListModelMixin,
@@ -74,7 +68,6 @@ class MainViewSet(
         "model_user"
     ).prefetch_related("images")
     serializer_class = ModelSerializer
-    pagination_class = CustomPagination
     lookup_field = "id"
 
     def get_queryset(self):
@@ -120,7 +113,6 @@ class ManModelViewSet(
         "model_user"
     ).prefetch_related("images")
     serializer_class = ModelSerializer
-    pagination_class = CustomPagination
     lookup_field = "id"
 
     def get_queryset(self):
@@ -219,7 +211,6 @@ class WomanModelViewSet(
         "model_user"
     ).prefetch_related("images")
     serializer_class = ModelSerializer
-    pagination_class = CustomPagination
     lookup_field = "id"
 
     def get_queryset(self):
