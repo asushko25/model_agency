@@ -107,6 +107,7 @@ class MainViewSet(
     def list(self, request, *args, **kwargs):
         return super().list(request, *args, **kwargs)
 
+
 class ManModelViewSet(
     FilterSearchMixin,
     mixins.ListModelMixin,
