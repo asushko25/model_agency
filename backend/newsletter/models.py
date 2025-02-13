@@ -39,5 +39,3 @@ class NewsLetter(models.Model):
 
     class Meta:
         ordering = ["-id"]
-        verbose_name = "News Letter"
-        verbose_name_plural = "News Letters"
