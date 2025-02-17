@@ -41,10 +41,10 @@ class NewsLetterViewSet(
         context = super().get_serializer_context()
 
         # get from cookies date when user have subscribed to newsletter
-        news_subscribed_date = self.request.COOKIES.get(
-            settings.COOKIE_NEWS_SUBSCRIBED_DATA, None
+        news_subscribed_email = self.request.COOKIES.get(
+            settings.COOKIE_NEWS_SUBSCRIBED_EMAIL, None
         )
-        context[settings.COOKIE_NEWS_SUBSCRIBED_DATA] = news_subscribed_date
+        context[settings.COOKIE_NEWS_SUBSCRIBED_EMAIL] = news_subscribed_email
 
         return context
 
@@ -52,7 +52,7 @@ class NewsLetterViewSet(
     def list(self, request, *args, **kwargs):
         return super().list(request, *args, **kwargs)
 
-    @action(methods=["POST"], url_path="sign", detail=False)
+    @action(methods=["POST"], url_path="sign", detail=False, url_name="sign")
     def sign_to_newsletter(self, request: Request):
         """
         Sign users to newsletter email notification at the end of week
@@ -66,15 +66,12 @@ class NewsLetterViewSet(
         serializer.save()
 
         # since we are not using any authentication system
-        # we are going to use cookies to store when user has subscribed.
+        # we are going to use cookies to store when user subscribed email.
         response = Response(status=status.HTTP_201_CREATED)
 
-        from datetime import timedelta
-
         response.set_cookie(
-            settings.COOKIE_NEWS_SUBSCRIBED_DATA,  # cookie name
-            timezone.now().date() - timedelta(days=1),
-            max_age=settings.COOKIE_EXPIRE_SUBSCRIBED_DATA,
+            settings.COOKIE_NEWS_SUBSCRIBED_EMAIL,  # cookie name
+            serializer.validated_data["email"],
             httponly=True
         )
 
