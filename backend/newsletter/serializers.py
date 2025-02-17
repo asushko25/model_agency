@@ -21,56 +21,33 @@ class NewsLetterSubscriberSerializer(ModelSerializer):
 
 
 class NewsLetterListSerializer(ModelSerializer):
-    is_new = serializers.SerializerMethodField()
+    new_for_subscriber = serializers.SerializerMethodField()
 
     class Meta:
         model = NewsLetter
         fields = (
             "id", "header", "cover", "caption",
-            "created_at", "is_new"
+            "created_at", "new_for_subscriber"
         )
 
-    def get_is_new(self, obj: NewsLetter) -> bool:
+    def get_new_for_subscriber(self, obj: NewsLetter) -> bool:
         """
-        Newsletters created in a current weekend will have
-        field `is_new = True` for users which has subscribed to
-        receive newsletters emails. `is_new=True` will be available only at the
-        end of week relative to subscribed day.
-
-        For example if user subs to newsletter at 2025.02.02 then
-        `is_new` will be available at 2025.02.09,
-        and it will be set for newsletters that were created
-        during week relative to day use subs.
-
-        By doing that we are letting user know which
-        newsletters are new this week.
+        Returns True if subscriber has newsletters, which are going to send to him
+        (and field is called `new_for_subscriber` - meaning current newsletter is new
+        for current subscriber of newsletter)
+        otherwise returns False if user does not have any mails to send to him.
         :param obj:
         :return:
         """
         # user newsletter subscribed date
-        subscribed_at = self.context.get(
-            settings.COOKIE_NEWS_SUBSCRIBED_DATA, None
+        subscriber_email = self.context.get(
+            settings.COOKIE_NEWS_SUBSCRIBED_EMAIL, None
         )
 
         # if user is not subscribed we ignore it
-        if not subscribed_at:
+        if not subscriber_email:
             return False
 
-        if isinstance(subscribed_at, str):
-            subscribed_at = timezone.datetime.strptime(
-                subscribed_at, "%Y-%m-%d"
-            )
-
-        curr_date = timezone.now().date()
-        day_since_subs = curr_date - subscribed_at.date()
-
-        # we are marking as `new` if 7 days pass relative to
-        # subscribed date
-        if day_since_subs.days % 7 != 0:
-            return False
-
-        start_curr_week = curr_date - timedelta(days=7)
-
-        #  if newsletter is in range of current start of week relative to
-        # subscription date and end of this week relative to  subscription date
-        return start_curr_week <= obj.created_at <= curr_date
+        return NewsLetterSubscriber.objects.filter(
+            email=subscriber_email, newsletters_to_send=obj
+        ).exists()
