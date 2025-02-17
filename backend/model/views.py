@@ -135,7 +135,9 @@ class ManModelViewSet(
 
     @extend_schema(
         summary="List all male models",
-        description="Returns a paginated list of male models with optional filtering.",
+        description=(
+                "Returns a paginated list of male"
+                " models with optional filtering."),
         parameters=[
             OpenApiParameter(
                 "search",
@@ -233,7 +235,9 @@ class WomanModelViewSet(
 
     @extend_schema(
         summary="List all female models",
-        description="Returns a paginated list of female models with optional filtering.",
+        description=(
+                "Returns a paginated list of female"
+                " models with optional filtering."),
         parameters=[
             OpenApiParameter(
                 "search",

@@ -30,6 +30,12 @@ def send_emails_to_newsletter_subscribercs():
 
     for subscriber in subscribers:
 
+        # Mark expired subscriptions for batch update
+        if subscriber.expires_at <= timezone.now().date():
+            subscriber.is_active = False
+            expired_subscribers.append(subscriber)
+
+            continue
         # Check if subscription expires
         expire_mail = check_expire_date(subscriber)
         if expire_mail:
@@ -38,14 +44,7 @@ def send_emails_to_newsletter_subscribercs():
         # Check if it's time to send newsletters
         if time_to_send(subscriber):
             newsletters_to_send(subscriber)  # Update subscriber's newsletters
-
-            if subscriber.newsletters_to_send.exists():
-                mails_body.append(create_mail_body(subscriber))
-
-        # Mark expired subscriptions for batch update
-        if subscriber.expires_at <= timezone.now().date():
-            subscriber.is_active = False
-            expired_subscribers.append(subscriber)
+            mails_body.append(create_mail_body(subscriber))
 
     # Bulk update expired subscribers
     if expired_subscribers:
@@ -76,8 +75,15 @@ def create_mail_body(
     Creates the email content for newsletter notifications.
     """
     newsletters = subscriber.newsletters_to_send.all()
+
+    # Handle case when no newsletters are available
+    if not newsletters.exists():
+        template = "emails/no_newsletters.html"
+    else:
+        template = "emails/newsletters_email.html"
+
     context = {
-        "newsletter": newsletters[0] if newsletters else None,
+        "newsletter": newsletters.first() if newsletters else None,
         "num_of_newsletters": len(newsletters),
         "newsletters_url": reverse("newsletter:newsletter-list"),
         "main_page_url": reverse("model:main-list"),
@@ -85,7 +91,8 @@ def create_mail_body(
             settings.NEWSLETTER_EMAIL_EVERY_NUM_DAY
         )
     }
-    html_content = render_to_string("emails/newsletters_email.html", context)
+
+    html_content = render_to_string(template, context)
     return (
         "Model Agency Newsletters", html_content,
         settings.EMAIL_HOST_USER, [subscriber.email]

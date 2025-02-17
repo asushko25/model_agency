@@ -24,7 +24,7 @@ OFFSET = 0
 logger = logging.getLogger("model.tests")
 
 
-@patch("model.views.CustomPagination.default_limit", LIMIT)  # Mock the default_limit to 2
+@patch("paginations.CustomPagination.default_limit", LIMIT)  # Mock the default_limit to 2
 class ManPageApiTests(TestCase):
     """Test unauthenticated users can enter man endpoint"""
     logger.info("TESTING Man page!!!!")
