@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "django_celery_beat",
     "rest_framework",
     "phonenumber_field",
     "drf_spectacular",
@@ -50,10 +51,22 @@ MIDDLEWARE = [
 INTERNAL_IPS = []
 
 # Cookie key name to store when user has subscribed to newsletter
-COOKIE_NEWS_SUBSCRIBED_DATA = "news_subscribed_date"
+COOKIE_NEWS_SUBSCRIBED_EMAIL = "subscribed_email"
 
 # cookie user subscribed to newsletter expiry 1 year
 COOKIE_EXPIRE_SUBSCRIBED_DATA = 365 * 24 * 60 * 60
+
+# send newsletters update to subscribed users every specified time in days
+# send every num of days relative to when user subscribed
+NEWSLETTER_EMAIL_EVERY_NUM_DAY = 7
+
+# Celery beat schedule. In what intervals we should run
+# celery task to send users mails about new newsletters
+# created in range NEWSLETTER_EMAIL_EVERY_NUM_DAY
+CELERY_CHECK_NEWSLETTERS = 1  # run celery task every day
+
+# Celery will check schedule every 12 hour (43200 sec)
+CELERY_MAX_BEAT_INTERVAL_SECONDS=43200
 
 TESTING = "test" in sys.argv
 # determines in which environment we are
