@@ -30,6 +30,12 @@ def send_emails_to_newsletter_subscribercs():
 
     for subscriber in subscribers:
 
+        # Mark expired subscriptions for batch update
+        if subscriber.expires_at <= timezone.now().date():
+            subscriber.is_active = False
+            expired_subscribers.append(subscriber)
+
+            continue
         # Check if subscription expires
         expire_mail = check_expire_date(subscriber)
         if expire_mail:
@@ -39,11 +45,6 @@ def send_emails_to_newsletter_subscribercs():
         if time_to_send(subscriber):
             newsletters_to_send(subscriber)  # Update subscriber's newsletters
             mails_body.append(create_mail_body(subscriber))
-
-        # Mark expired subscriptions for batch update
-        if subscriber.expires_at <= timezone.now().date():
-            subscriber.is_active = False
-            expired_subscribers.append(subscriber)
 
     # Bulk update expired subscribers
     if expired_subscribers:
@@ -67,13 +68,16 @@ def send_emails_to_newsletter_subscribercs():
             )
 
 
-def create_mail_body(subscriber: NewsLetterSubscriber) -> tuple[str, str, str, list[str]]:
+def create_mail_body(
+        subscriber: NewsLetterSubscriber
+) -> tuple[str, str, str, list[str]]:
     """
     Creates the email content for newsletter notifications.
     """
     newsletters = subscriber.newsletters_to_send.all()
 
-    if not newsletters.exists():  # Handle case when no newsletters are available
+    # Handle case when no newsletters are available
+    if not newsletters.exists():
         template = "emails/no_newsletters.html"
     else:
         template = "emails/newsletters_email.html"
@@ -83,7 +87,9 @@ def create_mail_body(subscriber: NewsLetterSubscriber) -> tuple[str, str, str, l
         "num_of_newsletters": len(newsletters),
         "newsletters_url": reverse("newsletter:newsletter-list"),
         "main_page_url": reverse("model:main-list"),
-        "newsletter_creation_range_days": settings.NEWSLETTER_EMAIL_EVERY_NUM_DAY
+        "newsletter_creation_range_days": (
+            settings.NEWSLETTER_EMAIL_EVERY_NUM_DAY
+        )
     }
 
     html_content = render_to_string(template, context)
