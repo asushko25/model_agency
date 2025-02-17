@@ -66,7 +66,7 @@ NEWSLETTER_EMAIL_EVERY_NUM_DAY = 7
 CELERY_CHECK_NEWSLETTERS = 1  # run celery task every day
 
 # Celery will check schedule every 12 hour (43200 sec)
-CELERY_MAX_BEAT_INTERVAL_SECONDS=43200
+CELERY_MAX_BEAT_INTERVAL_SECONDS = 43200
 
 TESTING = "test" in sys.argv
 # determines in which environment we are
