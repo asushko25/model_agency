@@ -5,6 +5,7 @@ click==8.1.8
 colorama==0.4.6
 Django==5.1.4
 django-debug-toolbar==4.4.6
+django-celery-beat==2.7.0
 django-extensions==3.2.3
 django-filter==24.3
 django-phonenumber-field==8.0.0
@@ -29,3 +30,5 @@ sqlparse==0.5.3
 typing_extensions==4.12.2
 tzdata==2024.2
 uritemplate==4.1.1
+hiredis==3.1.0
+celery==5.4.0
