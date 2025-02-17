@@ -49,7 +49,9 @@ def send_emails_to_newsletter_subscribercs():
 
     # Bulk update expired subscribers
     if expired_subscribers:
-        NewsLetterSubscriber.objects.bulk_update(expired_subscribers, ["is_active"])
+        NewsLetterSubscriber.objects.bulk_update(
+            expired_subscribers, ["is_active"]
+        )
 
     # Send all emails at once
     if mails_body:
@@ -63,11 +65,13 @@ def send_emails_to_newsletter_subscribercs():
             )
         else:
             logger.info(
-                f"All mails sent successfully!!!"
+                "All mails sent successfully!!!"
             )
 
 
-def create_mail_body(subscriber: NewsLetterSubscriber) -> tuple[str, str, str, list[str]]:
+def create_mail_body(
+        subscriber: NewsLetterSubscriber
+) -> tuple[str, str, str, list[str]]:
     """
     Creates the email content for newsletter notifications.
     """
@@ -77,22 +81,32 @@ def create_mail_body(subscriber: NewsLetterSubscriber) -> tuple[str, str, str, l
         "num_of_newsletters": len(newsletters),
         "newsletters_url": reverse("newsletter:newsletter-list"),
         "main_page_url": reverse("model:main-list"),
-        "newsletter_creation_range_days": settings.NEWSLETTER_EMAIL_EVERY_NUM_DAY
+        "newsletter_creation_range_days": (
+            settings.NEWSLETTER_EMAIL_EVERY_NUM_DAY
+        )
     }
     html_content = render_to_string("emails/newsletters_email.html", context)
-    return "Model Agency Newsletters", html_content, settings.EMAIL_HOST_USER, [subscriber.email]
+    return (
+        "Model Agency Newsletters", html_content,
+        settings.EMAIL_HOST_USER, [subscriber.email]
+    )
 
 
-def check_expire_date(subscriber: NewsLetterSubscriber) -> tuple[str, str, str, list[str]] | None:
+def check_expire_date(
+        subscriber: NewsLetterSubscriber
+) -> tuple[str, str, str, list[str]] | None:
     """
     Checks if the subscription is about to expire and notifies the user.
     """
     if subscriber.expires_at - timedelta(days=1) == timezone.now().date():
         return (
-            f"Your Newsletter subscription at Model Agency will end on {subscriber.expires_at}",
+            "Your Newsletter subscription at Model Agency"
+            f" will end on {subscriber.expires_at}",
             render_to_string("emails/newsletter_expire.html", {
                 "main_page_url": reverse("model:main-list"),
-                "sign_to_newsletter_url": reverse("newsletter:newsletter-sign"),
+                "sign_to_newsletter_url": reverse(
+                    "newsletter:newsletter-sign"
+                ),
                 "expires_at": subscriber.expires_at
             }),
             settings.EMAIL_HOST_USER,
@@ -108,8 +122,9 @@ def time_to_send(subscriber: NewsLetterSubscriber) -> bool:
     # if it is not time to send and user is subscribed
     # return false else true
     return (
-            day_since_subs.days % settings.NEWSLETTER_EMAIL_EVERY_NUM_DAY == 0
-            and subscriber.is_active
+        day_since_subs.days
+        % settings.NEWSLETTER_EMAIL_EVERY_NUM_DAY == 0
+        and subscriber.is_active
     )
 
 

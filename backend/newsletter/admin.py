@@ -23,5 +23,7 @@ class NewsLetterAdmin(admin.ModelAdmin):
     search_fields = ["header"]
 
 
+# TODO: when creating newsletter subscriber using admin site
+# TODO: we then need to specify in session email
 admin.site.register(NewsLetter, NewsLetterAdmin)
 admin.site.register(NewsLetterSubscriber, NewsLetterSubscriberAdmin)

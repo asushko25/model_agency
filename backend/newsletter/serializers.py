@@ -32,8 +32,9 @@ class NewsLetterListSerializer(ModelSerializer):
 
     def get_new_for_subscriber(self, obj: NewsLetter) -> bool:
         """
-        Returns True if subscriber has newsletters, which are going to send to him
-        (and field is called `new_for_subscriber` - meaning current newsletter is new
+        Returns True if subscriber has newsletters, which are
+        going to send to him (and field is called
+        `new_for_subscriber` - meaning current newsletter is new
         for current subscriber of newsletter)
         otherwise returns False if user does not have any mails to send to him.
         :param obj:
