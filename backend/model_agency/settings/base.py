@@ -223,6 +223,16 @@ LOGGING = {
             "when": "midnight",
             "formatter": "verbose",
             "filters": ["debug_false"]
+        },
+        # Writing any mail activity for exp. in contact app
+        # or newsletter mails logs to this handler
+        "mail_debug_false": {
+            "class": "logging.handlers.RotatingFileHandler",
+            "level": "INFO",
+            "filename": "logs/mails_logs/mails.log",
+            "backupCount": 7,
+            "formatter": "simple",
+            "filters": ["debug_false"]
         }
     },
     "loggers": {
@@ -241,7 +251,14 @@ LOGGING = {
                 "file_model_debug_false"
             ],
             "level": "DEBUG"
+        },
+        "mail_logging": {
+            # this logger for all mails activity
+            "handlers": [
+                "console_debug_true",
+                "mail_debug_false"
+            ],
+            "level": "DEBUG"
         }
-
     }
 }
