@@ -52,7 +52,8 @@ def send_emails_to_newsletter_subscribers():
             expired_subscribers, ["is_active"]
         )
         logger.info(
-            f"Number of expired subscription to newsletter: {len(expired_subscribers)}"
+            "Number of expired subscription to"
+            f" newsletter: {len(expired_subscribers)}"
         )
 
     # Send all emails at once
