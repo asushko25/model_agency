@@ -22,6 +22,8 @@ ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS").split(" ")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
+CORS_ALLOWED_ORIGINS = os.getenv()
+
 # Ensures CSRF protection is only over HTTPS
 CSRF_COOKIE_SECURE = True
 

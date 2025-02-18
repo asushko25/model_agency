@@ -29,6 +29,10 @@ DATABASES = {
     }
 }
 
+CORS_ALLOWED_ORIGINS = [
+    "http://127.0.0.1:3000/",  # Replace with frontend URL
+]
+
 # Celery configurations during development and testing
 # using Docker memery as broker
 CELERY_BROKER_URL = "redis://127.0.0.1:6379/0"
