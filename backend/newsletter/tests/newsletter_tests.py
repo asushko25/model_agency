@@ -30,7 +30,7 @@ from newsletter.serializers import (
 )
 
 try:
-    from newsletter.tasks import send_emails_to_newsletter_subscribercs
+    from newsletter.tasks import send_emails_to_newsletter_subscribers
 except ImportError:
     raise ImportError(
         "send_emails_to_newsletter_subscribercs was used in testing."
@@ -181,7 +181,7 @@ class NewsLetterApiTests(TestCase):
     def test_subscriber_receives_mails_in_terms(
             self, newsletter: NewsLetter, subscriber: NewsLetterSubscriber
     ):
-        send_emails_to_newsletter_subscribercs.apply()
+        send_emails_to_newsletter_subscribers.apply()
 
         self.assertEqual(len(mail.outbox), 1)
 
@@ -198,7 +198,7 @@ class NewsLetterApiTests(TestCase):
             with freeze_time(
                     subscriber.subscribed_at + timedelta(days=day)
             ):
-                send_emails_to_newsletter_subscribercs.apply()
+                send_emails_to_newsletter_subscribers.apply()
                 self.assertEqual(len(mail.outbox), 0)
 
     @freeze_subscribed_date
@@ -214,7 +214,7 @@ class NewsLetterApiTests(TestCase):
         with freeze_time(
             subscriber.expires_at - timedelta(days=1)
         ):
-            send_emails_to_newsletter_subscribercs.apply()
+            send_emails_to_newsletter_subscribers.apply()
 
             self.assertTrue(len(mail.outbox) >= 1)
             self.assertIn(
@@ -235,7 +235,7 @@ class NewsLetterApiTests(TestCase):
         with freeze_time(
                 subscriber.expires_at + timedelta(days=1)
         ):
-            send_emails_to_newsletter_subscribercs.apply()
+            send_emails_to_newsletter_subscribers.apply()
 
             self.assertEqual(len(mail.outbox), 0)
 
@@ -267,7 +267,7 @@ class NewsLetterApiTests(TestCase):
         ))
 
         with freeze_time(next_scheduled_email_date):
-            send_emails_to_newsletter_subscribercs.apply()
+            send_emails_to_newsletter_subscribers.apply()
 
             self.assertEqual(len(mail.outbox), 0)
 

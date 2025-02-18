@@ -17,7 +17,7 @@ logger = logging.getLogger("mail_logging")
 
 
 @shared_task
-def send_emails_to_newsletter_subscribercs():
+def send_emails_to_newsletter_subscribers():
     """
     Send emails to users subscribed to newsletters.
     This runs every `settings.NEWSLETTER_EMAIL_EVERY_NUM_DAY` days.
@@ -50,6 +50,9 @@ def send_emails_to_newsletter_subscribercs():
     if expired_subscribers:
         NewsLetterSubscriber.objects.bulk_update(
             expired_subscribers, ["is_active"]
+        )
+        logger.info(
+            f"Number of expired subscription to newsletter: {len(expired_subscribers)}"
         )
 
     # Send all emails at once
