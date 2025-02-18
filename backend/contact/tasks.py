@@ -6,7 +6,6 @@ import smtplib
 
 from django.core.mail.message import EmailMessage
 
-# TODO: configure this logger
 logger = logging.getLogger("mail_logging")
 
 
