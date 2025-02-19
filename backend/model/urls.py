@@ -5,8 +5,8 @@ from .views import ManModelViewSet, WomanModelViewSet, MainViewSet
 
 router = DefaultRouter()
 router.register("main", MainViewSet, basename="main")
-router.register("man", ManModelViewSet, basename="man")
-router.register("woman", WomanModelViewSet, basename="woman")
+router.register("men", ManModelViewSet, basename="men")
+router.register("women", WomanModelViewSet, basename="women")
 
 urlpatterns = [
     path("", include(router.urls)),

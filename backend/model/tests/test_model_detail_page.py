@@ -42,8 +42,10 @@ class DetailPageApiTests(TestCase):
         )
 
     def test_man_detail_page_model(self):
+        self.model.gender = "man"
+        self.model.save()
         res = self.client.get(
-            model_detail_url(self.model.id, self.model.gender)
+            model_detail_url(self.model.id, "men")
         )
 
         self.assertEqual(res.status_code, status.HTTP_200_OK)
@@ -67,7 +69,7 @@ class DetailPageApiTests(TestCase):
     def test_woman_detail_page_model(self):
         self.model.gender = "woman"
         res = self.client.get(
-            model_detail_url(self.model.id, self.model.gender)
+            model_detail_url(self.model.id, "women")
         )
 
         self.assertEqual(res.status_code, status.HTTP_200_OK)

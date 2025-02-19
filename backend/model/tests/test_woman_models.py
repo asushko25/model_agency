@@ -16,7 +16,7 @@ from .utils.model_test_util import (
 )
 
 
-WOMAN_LIST_PAGE_URL = reverse("model:woman-list")
+WOMAN_LIST_PAGE_URL = reverse("model:women-list")
 
 # Pagination limits and offset for "More"
 # pagination button

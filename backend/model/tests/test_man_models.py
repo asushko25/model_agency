@@ -14,7 +14,7 @@ from .utils.model_test_util import (
     UtilFilterSearchSerialize
 )
 
-MAN_LIST_PAGE_URL = reverse("model:man-list")
+MAN_LIST_PAGE_URL = reverse("model:men-list")
 
 # Pagination limits and offset for "More"
 # pagination button
