@@ -2,6 +2,8 @@
 
 import os
 
+import dj_database_url
+
 import sentry_sdk
 # In Sentry, profiling refers to tracking and analyzing the performance
 # of your code. This involves collecting data on how long different parts
@@ -17,12 +19,12 @@ from sentry_sdk.integrations.django import DjangoIntegration
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 
-ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS").split(" ")
+ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS").split()
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-CORS_ALLOWED_ORIGINS = os.getenv()
+CORS_ALLOWED_ORIGINS = os.getenv("DJANGO_CORS_ALLOWED_ORIGINS").split()
 
 # Ensures CSRF protection is only over HTTPS
 CSRF_COOKIE_SECURE = True
@@ -35,20 +37,14 @@ SECURE_SSL_REDIRECT = True
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("POSTGRES_DB"),
-        "HOST": os.getenv("POSTGRES_HOST"),
-        "USER": os.getenv("POSTGRES_USER"),
-        "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
-        "PORT": os.getenv("POSTGRES_PORT"),
-        # Persistent connections reduce the overhead of reopening connections.
-        "CONN_MAX_AGE": os.getenv("POSTGRES_CONN_MAX_AGE", 300)  # keeping 5 minute connection
-    }
+    "default": dj_database_url.config(
+        default=os.getenv("DATABASE_URL"),
+        conn_max_age=300  # 5-minute persistent connection
+    )
 }
 
 # Celery configurations
-CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL")
+CELERY_BROKER_URL = os.getenv("REDIS_URL") + "/0"
 
 # Email configurations
 
@@ -65,7 +61,7 @@ EMAIL_USE_TLS = True
 CACHE = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": os.getenv("DJANGO_REDIS_CACHE_URL"),
+        "LOCATION": os.getenv("REDIS_URL") + "/1",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.HerdClient",
             "IGNORE_EXCEPTIONS": True,
