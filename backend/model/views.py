@@ -53,7 +53,7 @@ class FilterSearchMixin:
                 model_user__full_name__icontains=full_name
             )
 
-        logger.debug(f"Search query value {full_name}")
+            logger.debug(f"Search query value {full_name}")
 
         return queryset
 

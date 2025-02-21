@@ -1,6 +1,7 @@
 """Django configurations during Production"""
 
-import os
+from .base import config
+import dj_database_url
 
 import sentry_sdk
 # In Sentry, profiling refers to tracking and analyzing the performance
@@ -13,16 +14,17 @@ import sentry_sdk
 # API calls
 from sentry_sdk.integrations.django import DjangoIntegration
 
+import core.cloudflare.settings
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
+SECRET_KEY = config("DJANGO_SECRET_KEY")
 
-ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS").split(" ")
+ALLOWED_HOSTS = config("DJANGO_ALLOWED_HOSTS").split()
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-CORS_ALLOWED_ORIGINS = os.getenv()
+CORS_ALLOWED_ORIGINS = config("DJANGO_CORS_ALLOWED_ORIGINS").split()
 
 # Ensures CSRF protection is only over HTTPS
 CSRF_COOKIE_SECURE = True
@@ -35,28 +37,22 @@ SECURE_SSL_REDIRECT = True
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("POSTGRES_DB"),
-        "HOST": os.getenv("POSTGRES_HOST"),
-        "USER": os.getenv("POSTGRES_USER"),
-        "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
-        "PORT": os.getenv("POSTGRES_PORT"),
-        # Persistent connections reduce the overhead of reopening connections.
-        "CONN_MAX_AGE": os.getenv("POSTGRES_CONN_MAX_AGE", 300)  # keeping 5 minute connection
-    }
+    "default": dj_database_url.config(
+        default=config("DATABASE_URL"),
+        conn_max_age=300  # 5-minute persistent connection
+    )
 }
 
 # Celery configurations
-CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL")
+CELERY_BROKER_URL = config("REDIS_URL") + "/0"
 
 # Email configurations
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = os.getenv("EMAIL_HOST")
-EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
-EMAIL_PORT = os.getenv("EMAIL_PORT")
+EMAIL_HOST = config("EMAIL_HOST")
+EMAIL_HOST_USER = config("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
+EMAIL_PORT = config("EMAIL_PORT")
 EMAIL_USE_SSL = False
 EMAIL_USE_TLS = True
 
@@ -65,7 +61,7 @@ EMAIL_USE_TLS = True
 CACHE = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": os.getenv("DJANGO_REDIS_CACHE_URL"),
+        "LOCATION": config("REDIS_URL") + "/1",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.HerdClient",
             "IGNORE_EXCEPTIONS": True,
@@ -75,14 +71,52 @@ CACHE = {
     }
 }
 
+# configure Cloudflare R2 S3 storages for media and static files
+STORAGES = {
+    "default": {
+        "BACKEND": "core.cloudflare.storages.MediaFileStorage",
+        "OPTIONS": core.cloudflare.settings.CLOUDFLARE_R2_CONFIG_OPTIONS
+    },
+    "staticfiles": {
+        "BACKEND": "core.cloudflare.storages.StaticFileStorage",
+        "OPTIONS": core.cloudflare.settings.CLOUDFLARE_R2_CONFIG_OPTIONS
+    }
+}
+
+# configure Cloudflare R2 S3 storages for media and static files
+STORAGES = {
+    "default": {
+        "BACKEND": "core.cloudflare.storages.MediaFileStorage",
+        "OPTIONS": core.cloudflare.settings.CLOUDFLARE_R2_CONFIG_OPTIONS
+    },
+    "staticfiles": {
+        "BACKEND": "core.cloudflare.storages.StaticFileStorage",
+        "OPTIONS": core.cloudflare.settings.CLOUDFLARE_R2_CONFIG_OPTIONS,
+    }
+}
+
+
+# configurations for boto3 it seems like configurations for django-storages
+# and boto3 are separate
+AWS_STORAGE_BUCKET_NAME = config("CLOUDFLARE_R2_BUCKET")
+AWS_S3_SECRET_ACCESS_KEY = config("CLOUDFLARE_R2_SECRET_KEY")
+AWS_S3_ACCESS_KEY_ID = config("CLOUDFLARE_R2_ACCESS_KEY")
+AWS_S3_ENDPOINT_URL = config("CLOUDFLARE_R2_BUCKET_ENDPOINT")
+AWS_QUERYSTRING_AUTH = True
+AWS_QUERYSTRING_EXPIRE = 7200
+AWS_S3_SIGNATURE_VERSION = "s3v4"
+
+STATIC_URL = f"{AWS_S3_ENDPOINT_URL}/{AWS_STORAGE_BUCKET_NAME}/static/"
+MEDIA_URL = f"{AWS_S3_ENDPOINT_URL}/{AWS_STORAGE_BUCKET_NAME}/media/"
+
 # Configure Sentry SDK performance monitoring server
 # with integration with Django
 # https://docs.sentry.io/platforms/python/integrations/django/
-SENTRY_DSN = os.getenv("SENTRY_DSN")
+SENTRY_DSN = config("SENTRY_DSN")
 
 if SENTRY_DSN:
     sentry_sdk.init(
-        dsn=os.getenv("SENTRY_DSN"),
+        dsn=config("SENTRY_DSN"),
         integrations=[
             DjangoIntegration(
                 # How to name transactions that show up in Sentry tracing.

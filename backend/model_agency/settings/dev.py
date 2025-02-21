@@ -29,9 +29,12 @@ DATABASES = {
     }
 }
 
-CORS_ALLOWED_ORIGINS = [
-    "http://127.0.0.1:3000/",  # Replace with frontend URL
-]
+# CORS_ALLOWED_ORIGINS = [
+#     "http://127.0.0.1:3000"  # Replace with frontend URL
+# ]
+
+# OR: Allow all origins during development (not recommended for production)
+CORS_ALLOW_ALL_ORIGINS = True  # Change to False if you want to allow specific
 
 # Celery configurations during development and testing
 # using Docker memery as broker

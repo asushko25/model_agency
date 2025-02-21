@@ -2,6 +2,7 @@ import logging
 
 from unittest.mock import patch
 
+from django.core.management import call_command
 from django.test import TestCase
 from django.urls import reverse
 
@@ -16,7 +17,7 @@ from .utils.model_test_util import (
 )
 
 
-WOMAN_LIST_PAGE_URL = reverse("model:woman-list")
+WOMAN_LIST_PAGE_URL = reverse("model:women-list")
 
 # Pagination limits and offset for "More"
 # pagination button
@@ -33,7 +34,9 @@ class WomanPageApiTests(TestCase):
 
     # Loads testing data, 10 users, 5 man, 5 woman models
     # without images
-    fixtures = ["seed_data/testing_data_fixture.json"]
+    @classmethod
+    def setUpTestData(cls):
+        call_command("model_db", "--num_entries", "10", "--model_image")
 
     def setUp(self) -> None:
         self.client = APIClient()

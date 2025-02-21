@@ -1,8 +1,5 @@
 import logging
 
-
-from django.core.cache import cache
-from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
 from django.conf import settings

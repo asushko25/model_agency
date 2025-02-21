@@ -6,10 +6,10 @@ from django.db import transaction
 from faker.exceptions import UniquenessException
 
 from ..utils.base_command import GenerateDataCommand
-from ..utils.table_util import TablesDataDictGenerator
+from ..utils.table_util import ModelsTableDataDictGenerator
 
 
-class Command(GenerateDataCommand, TablesDataDictGenerator):
+class Command(GenerateDataCommand, ModelsTableDataDictGenerator):
     """
     Generates number `count` entries and writes to DB.
     Creates `count` instances of User table.

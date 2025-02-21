@@ -1,4 +1,5 @@
 from django.test import TestCase, override_settings
+from django.core.management import call_command
 from django.core import mail
 from django.urls import reverse
 
@@ -22,7 +23,10 @@ class ContactApiTests(TestCase):
     Test users can contact to model agency about something
     or about specific model
     """
-    fixtures = ["seed_data/testing_data_fixture.json"]
+
+    @classmethod
+    def setUpTestData(cls):
+        call_command("model_db", "--num_entries", "4", "--model_image")
 
     def setUp(self):
         self.client = APIClient()

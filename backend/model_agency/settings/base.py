@@ -9,15 +9,23 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-import os
+import logging
 import sys
 
 from pathlib import Path
 
+try:
+    from decouple import config
+except ImportError:
+    logging.info("python-decouple is not installed, using os.environ")
+    import os
+
+    config = os.environ.get
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-ALLOWED_HOSTS = ["localhost", "3000"]
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -42,12 +50,12 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "corsheaders.middleware.CorsMiddleware",
 ]
 
 INTERNAL_IPS = []
@@ -73,7 +81,7 @@ CELERY_MAX_BEAT_INTERVAL_SECONDS = 43200
 TESTING = "test" in sys.argv
 # determines in which environment we are
 # DJANGO_ENV could have values of development, production, staging
-DJANGO_ENV = os.getenv("DJANGO_ENV", "development")
+DJANGO_ENV = config("DJANGO_ENV")
 
 if not TESTING and DJANGO_ENV != "production":
     # if we are not testing or we are in development or production mode
@@ -153,7 +161,6 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 MEDIA_ROOT = BASE_DIR / "media"
-MEDIA_URL = "/media/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
