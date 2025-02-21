@@ -54,7 +54,9 @@ the ideal match effortlessly.
 To access the API, navigate to http://localhost:8000/api/ in your web browser and enter one of endpoints.
 
 ### Custom commands during development and staging
-- Additionally, we can use custom commands, but only when `DJANGO_ENV` is `development` or `staging`:
+- Additionally, we can use custom commands:
   - `python manage.py model_db --num_entries 100` - creates 100 models and writes to DB
   - `python manage.py model_db --num_entries 100 --model_image` - creates 100 models with images and writes to DB
   - `python manage.py user_db --num_entries 100` - creates 100 users writes to DB
+  - `python manage.py newsletter_db --num_entries 100` - creates 100 newsletters and writes to DB
+  - `python manage.py newsletter_db --num_entries 100 --newsletter_image` - creates 100 newsletters with images and writes to DB
