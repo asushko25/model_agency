@@ -1,0 +1,1161 @@
+[
+{
+  "model": "model.user",
+  "pk": 1,
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": false,
+    "date_joined": "2025-02-21T14:01:23.231Z",
+    "email": "juanhenderson@yahoo.com",
+    "phone_number": null,
+    "full_name": "Samantha Oliver",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "model.user",
+  "pk": 2,
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": false,
+    "date_joined": "2025-02-21T14:01:23.242Z",
+    "email": "qhorton@hotmail.com",
+    "phone_number": null,
+    "full_name": "Christopher Briggs",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "model.user",
+  "pk": 3,
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": false,
+    "date_joined": "2025-02-21T14:01:23.243Z",
+    "email": "dcollins@hotmail.com",
+    "phone_number": null,
+    "full_name": "Breanna Berger",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "model.user",
+  "pk": 4,
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": false,
+    "date_joined": "2025-02-21T14:01:23.245Z",
+    "email": "christinespencer@hotmail.com",
+    "phone_number": null,
+    "full_name": "Christopher Cannon",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "model.user",
+  "pk": 5,
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": false,
+    "date_joined": "2025-02-21T14:01:23.246Z",
+    "email": "jnewman@yahoo.com",
+    "phone_number": null,
+    "full_name": "Virginia Roberts",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "model.user",
+  "pk": 6,
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": false,
+    "date_joined": "2025-02-21T14:01:23.248Z",
+    "email": "mariabecker@gmail.com",
+    "phone_number": null,
+    "full_name": "Charles Montgomery",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "model.user",
+  "pk": 7,
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": false,
+    "date_joined": "2025-02-21T14:01:23.249Z",
+    "email": "juliasmith@hotmail.com",
+    "phone_number": null,
+    "full_name": "Jordan Shaffer",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "model.user",
+  "pk": 8,
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": false,
+    "date_joined": "2025-02-21T14:01:23.250Z",
+    "email": "kevin36@gmail.com",
+    "phone_number": null,
+    "full_name": "Ryan Morrison",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "model.user",
+  "pk": 9,
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": false,
+    "date_joined": "2025-02-21T14:01:23.251Z",
+    "email": "hcohen@gmail.com",
+    "phone_number": null,
+    "full_name": "Gabrielle Sanchez",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "model.user",
+  "pk": 10,
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": false,
+    "date_joined": "2025-02-21T14:01:23.252Z",
+    "email": "agardner@gmail.com",
+    "phone_number": null,
+    "full_name": "Ross Johnson",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "model.user",
+  "pk": 11,
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": false,
+    "date_joined": "2025-02-21T14:01:23.253Z",
+    "email": "hross@hotmail.com",
+    "phone_number": null,
+    "full_name": "Kari Harvey",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "model.user",
+  "pk": 12,
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": false,
+    "date_joined": "2025-02-21T14:01:23.253Z",
+    "email": "marysmith@yahoo.com",
+    "phone_number": null,
+    "full_name": "Steven Williams",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "model.user",
+  "pk": 13,
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": false,
+    "date_joined": "2025-02-21T14:01:23.254Z",
+    "email": "robertkramer@gmail.com",
+    "phone_number": null,
+    "full_name": "Cassandra Williams",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "model.user",
+  "pk": 14,
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": false,
+    "date_joined": "2025-02-21T14:01:23.256Z",
+    "email": "tsanchez@yahoo.com",
+    "phone_number": null,
+    "full_name": "Dakota Harris",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "model.user",
+  "pk": 15,
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": false,
+    "date_joined": "2025-02-21T14:01:23.257Z",
+    "email": "davisjeffery@gmail.com",
+    "phone_number": null,
+    "full_name": "Virginia Greer",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "model.user",
+  "pk": 16,
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": false,
+    "date_joined": "2025-02-21T14:01:23.258Z",
+    "email": "cynthia08@hotmail.com",
+    "phone_number": null,
+    "full_name": "Larry Scott",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "model.user",
+  "pk": 17,
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": false,
+    "date_joined": "2025-02-21T14:01:23.259Z",
+    "email": "andersonjoseph@hotmail.com",
+    "phone_number": null,
+    "full_name": "Rachael Holt",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "model.user",
+  "pk": 18,
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": false,
+    "date_joined": "2025-02-21T14:01:23.260Z",
+    "email": "matthewlyons@yahoo.com",
+    "phone_number": null,
+    "full_name": "Patrick Miller",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "model.user",
+  "pk": 19,
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": false,
+    "date_joined": "2025-02-21T14:01:23.260Z",
+    "email": "miguel65@yahoo.com",
+    "phone_number": null,
+    "full_name": "Olivia Galvan",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "model.user",
+  "pk": 20,
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": false,
+    "date_joined": "2025-02-21T14:01:23.261Z",
+    "email": "danderson@gmail.com",
+    "phone_number": null,
+    "full_name": "Mark Baker",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "model.user",
+  "pk": 21,
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": false,
+    "date_joined": "2025-02-21T14:01:23.261Z",
+    "email": "ryantaylor@hotmail.com",
+    "phone_number": null,
+    "full_name": "Rebecca Lamb",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "model.user",
+  "pk": 22,
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": false,
+    "date_joined": "2025-02-21T14:01:23.263Z",
+    "email": "mullinsmichael@yahoo.com",
+    "phone_number": null,
+    "full_name": "Justin Stewart",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "model.user",
+  "pk": 23,
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": false,
+    "date_joined": "2025-02-21T14:01:23.264Z",
+    "email": "alawson@hotmail.com",
+    "phone_number": null,
+    "full_name": "Erika Johnson",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "model.user",
+  "pk": 24,
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": false,
+    "date_joined": "2025-02-21T14:01:23.265Z",
+    "email": "kimberlysmith@gmail.com",
+    "phone_number": null,
+    "full_name": "Stephen Lopez",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "model.user",
+  "pk": 25,
+  "fields": {
+    "password": "pbkdf2_sha256$870000$5ADGbBjF6optGD6lW7r1eZ$JPMI2gYvgGgRtI5/ki5whNTJHNGggVSvYwbtp+gayLs=",
+    "last_login": "2025-02-21T14:07:17.829Z",
+    "is_superuser": true,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-02-21T14:06:59.267Z",
+    "email": "testadmin@gmail.com",
+    "phone_number": null,
+    "full_name": "Main Admin",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "model.model",
+  "pk": 1,
+  "fields": {
+    "model_user": 1,
+    "date_of_birth": "1992-10-04",
+    "city": "Doyleside",
+    "country": "Eritrea",
+    "height": 176,
+    "hair": "blonde",
+    "eye_color": "blue",
+    "gender": "woman",
+    "bust": 90,
+    "waist": 88,
+    "hips": 95
+  }
+},
+{
+  "model": "model.model",
+  "pk": 2,
+  "fields": {
+    "model_user": 2,
+    "date_of_birth": "2002-11-03",
+    "city": "North Bailey",
+    "country": "Marshall Islands",
+    "height": 168,
+    "hair": "black",
+    "eye_color": "green",
+    "gender": "man",
+    "bust": 92,
+    "waist": 86,
+    "hips": 104
+  }
+},
+{
+  "model": "model.model",
+  "pk": 3,
+  "fields": {
+    "model_user": 3,
+    "date_of_birth": "1997-12-18",
+    "city": "Johnsonburgh",
+    "country": "Uganda",
+    "height": 166,
+    "hair": "other",
+    "eye_color": "brown",
+    "gender": "woman",
+    "bust": 98,
+    "waist": 60,
+    "hips": 92
+  }
+},
+{
+  "model": "model.model",
+  "pk": 4,
+  "fields": {
+    "model_user": 4,
+    "date_of_birth": "1988-02-10",
+    "city": "South Mollybury",
+    "country": "Mauritania",
+    "height": 169,
+    "hair": "red",
+    "eye_color": "gray",
+    "gender": "man",
+    "bust": 81,
+    "waist": 90,
+    "hips": 102
+  }
+},
+{
+  "model": "model.model",
+  "pk": 5,
+  "fields": {
+    "model_user": 5,
+    "date_of_birth": "1999-01-28",
+    "city": "Lopezmouth",
+    "country": "New Caledonia",
+    "height": 166,
+    "hair": "grey",
+    "eye_color": "brown",
+    "gender": "woman",
+    "bust": 87,
+    "waist": 78,
+    "hips": 98
+  }
+},
+{
+  "model": "model.model",
+  "pk": 6,
+  "fields": {
+    "model_user": 6,
+    "date_of_birth": "1999-07-28",
+    "city": "Angelaside",
+    "country": "Tuvalu",
+    "height": 160,
+    "hair": "blonde",
+    "eye_color": "gray",
+    "gender": "man",
+    "bust": 114,
+    "waist": 77,
+    "hips": 111
+  }
+},
+{
+  "model": "model.model",
+  "pk": 7,
+  "fields": {
+    "model_user": 7,
+    "date_of_birth": "2006-12-09",
+    "city": "Jonesmouth",
+    "country": "Bolivia",
+    "height": 181,
+    "hair": "black",
+    "eye_color": "brown",
+    "gender": "woman",
+    "bust": 90,
+    "waist": 74,
+    "hips": 81
+  }
+},
+{
+  "model": "model.model",
+  "pk": 8,
+  "fields": {
+    "model_user": 8,
+    "date_of_birth": "1999-01-10",
+    "city": "Port Brittany",
+    "country": "Moldova",
+    "height": 172,
+    "hair": "red",
+    "eye_color": "brown",
+    "gender": "man",
+    "bust": 113,
+    "waist": 100,
+    "hips": 107
+  }
+},
+{
+  "model": "model.model",
+  "pk": 9,
+  "fields": {
+    "model_user": 9,
+    "date_of_birth": "2006-07-31",
+    "city": "Montoyafort",
+    "country": "Isle of Man",
+    "height": 176,
+    "hair": "red",
+    "eye_color": "gray",
+    "gender": "woman",
+    "bust": 98,
+    "waist": 66,
+    "hips": 116
+  }
+},
+{
+  "model": "model.model",
+  "pk": 10,
+  "fields": {
+    "model_user": 10,
+    "date_of_birth": "2006-11-26",
+    "city": "Port Alexandrafurt",
+    "country": "Sweden",
+    "height": 174,
+    "hair": "other",
+    "eye_color": "hazel",
+    "gender": "man",
+    "bust": 91,
+    "waist": 82,
+    "hips": 105
+  }
+},
+{
+  "model": "model.model",
+  "pk": 11,
+  "fields": {
+    "model_user": 11,
+    "date_of_birth": "1984-06-01",
+    "city": "Wilsonmouth",
+    "country": "Ukraine",
+    "height": 171,
+    "hair": "grey",
+    "eye_color": "gray",
+    "gender": "woman",
+    "bust": 80,
+    "waist": 61,
+    "hips": 89
+  }
+},
+{
+  "model": "model.model",
+  "pk": 12,
+  "fields": {
+    "model_user": 12,
+    "date_of_birth": "1988-08-02",
+    "city": "Simmonsport",
+    "country": "Kiribati",
+    "height": 176,
+    "hair": "other",
+    "eye_color": "hazel",
+    "gender": "man",
+    "bust": 83,
+    "waist": 61,
+    "hips": 96
+  }
+},
+{
+  "model": "model.model",
+  "pk": 13,
+  "fields": {
+    "model_user": 13,
+    "date_of_birth": "1999-04-13",
+    "city": "Vanessaton",
+    "country": "Kenya",
+    "height": 173,
+    "hair": "blonde",
+    "eye_color": "blue",
+    "gender": "woman",
+    "bust": 89,
+    "waist": 68,
+    "hips": 81
+  }
+},
+{
+  "model": "model.model",
+  "pk": 14,
+  "fields": {
+    "model_user": 14,
+    "date_of_birth": "1990-03-14",
+    "city": "Port Lisa",
+    "country": "Puerto Rico",
+    "height": 169,
+    "hair": "brown",
+    "eye_color": "green",
+    "gender": "man",
+    "bust": 90,
+    "waist": 90,
+    "hips": 114
+  }
+},
+{
+  "model": "model.model",
+  "pk": 15,
+  "fields": {
+    "model_user": 15,
+    "date_of_birth": "1990-08-20",
+    "city": "Glenchester",
+    "country": "Tuvalu",
+    "height": 161,
+    "hair": "other",
+    "eye_color": "hazel",
+    "gender": "woman",
+    "bust": 83,
+    "waist": 78,
+    "hips": 86
+  }
+},
+{
+  "model": "model.model",
+  "pk": 16,
+  "fields": {
+    "model_user": 16,
+    "date_of_birth": "1986-07-27",
+    "city": "South Michele",
+    "country": "Zambia",
+    "height": 176,
+    "hair": "blonde",
+    "eye_color": "green",
+    "gender": "man",
+    "bust": 90,
+    "waist": 63,
+    "hips": 86
+  }
+},
+{
+  "model": "model.model",
+  "pk": 17,
+  "fields": {
+    "model_user": 17,
+    "date_of_birth": "1988-02-29",
+    "city": "Ericview",
+    "country": "Jersey",
+    "height": 186,
+    "hair": "other",
+    "eye_color": "gray",
+    "gender": "woman",
+    "bust": 85,
+    "waist": 83,
+    "hips": 110
+  }
+},
+{
+  "model": "model.model",
+  "pk": 18,
+  "fields": {
+    "model_user": 18,
+    "date_of_birth": "2005-11-07",
+    "city": "Georgestad",
+    "country": "Niue",
+    "height": 174,
+    "hair": "grey",
+    "eye_color": "blue",
+    "gender": "man",
+    "bust": 109,
+    "waist": 76,
+    "hips": 99
+  }
+},
+{
+  "model": "model.model",
+  "pk": 19,
+  "fields": {
+    "model_user": 19,
+    "date_of_birth": "2005-11-27",
+    "city": "Port Justin",
+    "country": "Trinidad and Tobago",
+    "height": 163,
+    "hair": "other",
+    "eye_color": "blue",
+    "gender": "woman",
+    "bust": 95,
+    "waist": 95,
+    "hips": 94
+  }
+},
+{
+  "model": "model.model",
+  "pk": 20,
+  "fields": {
+    "model_user": 20,
+    "date_of_birth": "1997-03-18",
+    "city": "East Donald",
+    "country": "Oman",
+    "height": 161,
+    "hair": "black",
+    "eye_color": "gray",
+    "gender": "man",
+    "bust": 111,
+    "waist": 77,
+    "hips": 120
+  }
+},
+{
+  "model": "model.model",
+  "pk": 21,
+  "fields": {
+    "model_user": 21,
+    "date_of_birth": "1997-09-03",
+    "city": "Johnsonport",
+    "country": "Guam",
+    "height": 166,
+    "hair": "grey",
+    "eye_color": "hazel",
+    "gender": "woman",
+    "bust": 107,
+    "waist": 88,
+    "hips": 118
+  }
+},
+{
+  "model": "model.model",
+  "pk": 22,
+  "fields": {
+    "model_user": 22,
+    "date_of_birth": "1999-01-08",
+    "city": "South Coreyborough",
+    "country": "Isle of Man",
+    "height": 180,
+    "hair": "grey",
+    "eye_color": "gray",
+    "gender": "man",
+    "bust": 111,
+    "waist": 77,
+    "hips": 96
+  }
+},
+{
+  "model": "model.model",
+  "pk": 23,
+  "fields": {
+    "model_user": 23,
+    "date_of_birth": "1997-09-17",
+    "city": "Melissaport",
+    "country": "American Samoa",
+    "height": 181,
+    "hair": "brown",
+    "eye_color": "hazel",
+    "gender": "woman",
+    "bust": 96,
+    "waist": 80,
+    "hips": 94
+  }
+},
+{
+  "model": "model.model",
+  "pk": 24,
+  "fields": {
+    "model_user": 24,
+    "date_of_birth": "2001-02-17",
+    "city": "Jonathanville",
+    "country": "Syrian Arab Republic",
+    "height": 171,
+    "hair": "other",
+    "eye_color": "gray",
+    "gender": "man",
+    "bust": 99,
+    "waist": 60,
+    "hips": 94
+  }
+},
+{
+  "model": "model.modelimages",
+  "pk": 1,
+  "fields": {
+    "model": 1,
+    "image": "uploads/models/woman/samantha-oliver-1fac8e20-ab19-4ddc-b697-28e39c122482.jpg",
+    "caption": ""
+  }
+},
+{
+  "model": "model.modelimages",
+  "pk": 2,
+  "fields": {
+    "model": 2,
+    "image": "uploads/models/man/christopher-briggs-502489db-708b-41b7-a771-2ed3cecd27c3.jpg",
+    "caption": ""
+  }
+},
+{
+  "model": "model.modelimages",
+  "pk": 3,
+  "fields": {
+    "model": 3,
+    "image": "uploads/models/woman/breanna-berger-d797c069-0f19-48cb-ba84-1e0abd18b393.jpg",
+    "caption": ""
+  }
+},
+{
+  "model": "model.modelimages",
+  "pk": 4,
+  "fields": {
+    "model": 4,
+    "image": "uploads/models/man/christopher-cannon-88c234b9-5d9e-4348-8202-bff1b79886c3.jpg",
+    "caption": ""
+  }
+},
+{
+  "model": "model.modelimages",
+  "pk": 5,
+  "fields": {
+    "model": 5,
+    "image": "uploads/models/woman/virginia-roberts-e1aad803-3d77-452c-b563-8c1e7dc0da46.jpg",
+    "caption": ""
+  }
+},
+{
+  "model": "model.modelimages",
+  "pk": 6,
+  "fields": {
+    "model": 6,
+    "image": "uploads/models/man/charles-montgomery-58774f47-425f-45e0-9108-a1963e09aeb6.jpg",
+    "caption": ""
+  }
+},
+{
+  "model": "model.modelimages",
+  "pk": 7,
+  "fields": {
+    "model": 7,
+    "image": "uploads/models/woman/jordan-shaffer-bf5113e9-b07b-47e4-ab4f-27e5f75be4c8.jpg",
+    "caption": ""
+  }
+},
+{
+  "model": "model.modelimages",
+  "pk": 8,
+  "fields": {
+    "model": 8,
+    "image": "uploads/models/man/ryan-morrison-ee020645-1845-47bf-ada9-c9765acf28a4.jpg",
+    "caption": ""
+  }
+},
+{
+  "model": "model.modelimages",
+  "pk": 9,
+  "fields": {
+    "model": 9,
+    "image": "uploads/models/woman/gabrielle-sanchez-f47e5c01-52e3-4dde-9ed9-b720dec3c6da.jpg",
+    "caption": ""
+  }
+},
+{
+  "model": "model.modelimages",
+  "pk": 10,
+  "fields": {
+    "model": 10,
+    "image": "uploads/models/man/ross-johnson-8b68614d-db51-49d3-a5c0-1b0ede81e669.jpg",
+    "caption": ""
+  }
+},
+{
+  "model": "model.modelimages",
+  "pk": 11,
+  "fields": {
+    "model": 11,
+    "image": "uploads/models/woman/kari-harvey-75f88db2-b18a-4994-b07e-9ce17b3dc5f5.jpg",
+    "caption": ""
+  }
+},
+{
+  "model": "model.modelimages",
+  "pk": 12,
+  "fields": {
+    "model": 12,
+    "image": "uploads/models/man/steven-williams-e4953428-dbb3-458d-8652-8ec0eabbeebc.jpg",
+    "caption": ""
+  }
+},
+{
+  "model": "model.modelimages",
+  "pk": 13,
+  "fields": {
+    "model": 13,
+    "image": "uploads/models/woman/cassandra-williams-b5127e75-90a7-416f-ab3e-2ef6ff6e3f58.jpg",
+    "caption": ""
+  }
+},
+{
+  "model": "model.modelimages",
+  "pk": 14,
+  "fields": {
+    "model": 14,
+    "image": "uploads/models/man/dakota-harris-2c7a450c-466d-4541-a722-c03ceacbbb33.jpg",
+    "caption": ""
+  }
+},
+{
+  "model": "model.modelimages",
+  "pk": 15,
+  "fields": {
+    "model": 15,
+    "image": "uploads/models/woman/virginia-greer-4bd235e9-42bf-4b6b-8d3a-b96b04babba2.jpg",
+    "caption": ""
+  }
+},
+{
+  "model": "model.modelimages",
+  "pk": 16,
+  "fields": {
+    "model": 16,
+    "image": "uploads/models/man/larry-scott-cf392787-3645-45b9-a3af-c95f69385dd9.jpg",
+    "caption": ""
+  }
+},
+{
+  "model": "model.modelimages",
+  "pk": 17,
+  "fields": {
+    "model": 17,
+    "image": "uploads/models/woman/rachael-holt-a2651817-ece7-4b88-9196-14e1d6174a00.jpg",
+    "caption": ""
+  }
+},
+{
+  "model": "model.modelimages",
+  "pk": 18,
+  "fields": {
+    "model": 18,
+    "image": "uploads/models/man/patrick-miller-999b2945-95ed-4786-9f05-1d3296540873.jpg",
+    "caption": ""
+  }
+},
+{
+  "model": "model.modelimages",
+  "pk": 19,
+  "fields": {
+    "model": 19,
+    "image": "uploads/models/woman/olivia-galvan-2d9cd54b-579c-4625-9ab0-b7fa2775eeb8.jpg",
+    "caption": ""
+  }
+},
+{
+  "model": "model.modelimages",
+  "pk": 20,
+  "fields": {
+    "model": 20,
+    "image": "uploads/models/man/mark-baker-3ff29d76-19bf-4322-a551-4dbd45edc34f.jpg",
+    "caption": ""
+  }
+},
+{
+  "model": "model.modelimages",
+  "pk": 21,
+  "fields": {
+    "model": 21,
+    "image": "uploads/models/woman/rebecca-lamb-79ef8a47-e53a-4297-9a99-f615784fa1ce.jpg",
+    "caption": ""
+  }
+},
+{
+  "model": "model.modelimages",
+  "pk": 22,
+  "fields": {
+    "model": 22,
+    "image": "uploads/models/man/justin-stewart-4ba09d28-638b-4c7f-b72d-667fa47734a3.jpg",
+    "caption": ""
+  }
+},
+{
+  "model": "model.modelimages",
+  "pk": 23,
+  "fields": {
+    "model": 23,
+    "image": "uploads/models/woman/erika-johnson-c80a982c-d09d-4066-a194-f640acc9cfdc.jpg",
+    "caption": ""
+  }
+},
+{
+  "model": "model.modelimages",
+  "pk": 24,
+  "fields": {
+    "model": 24,
+    "image": "uploads/models/man/stephen-lopez-7a3e12dc-0276-4194-b215-cbc873af0936.jpg",
+    "caption": ""
+  }
+},
+{
+  "model": "newsletter.newsletter",
+  "pk": 2,
+  "fields": {
+    "header": "Model Salaries on the Rise in 2024",
+    "cover": "uploads/newsletter/-661f4d7b-6bdf-499f-84d9-a5221033f6c5None.png",
+    "caption": "The modeling industry is experiencing a pay increase for top\r\nmodels in 2024, thanks to a surge in demand for digital\r\ninfluencers and fashion collaborations. Find out how much top\r\nmodels are making in the current market!",
+    "created_at": "2025-02-21"
+  }
+},
+{
+  "model": "newsletter.newsletter",
+  "pk": 3,
+  "fields": {
+    "header": "International Expansion: Models Wanted for Global Campaigns",
+    "cover": "uploads/newsletter/-854bef56-130a-4afb-9786-9fdac91d24cbNone.png",
+    "caption": "Global brands like Chanel and Nike are expanding their search\r\nfor models from emerging markets such as India, Africa, and\r\nLatin America. This opens up exciting new opportunities for\r\nmodels to break into international campaigns.",
+    "created_at": "2025-02-21"
+  }
+},
+{
+  "model": "newsletter.newsletter",
+  "pk": 4,
+  "fields": {
+    "header": "Fashion Week 2024: New Faces on the Runway",
+    "cover": "uploads/newsletter/-158325a8-0d7a-4057-b48f-23885946c6c0None.png",
+    "caption": "Fashion Week 2024 is set to introduce a record number of\r\nfirst-time models on the runway. Designers are breaking away\r\nfrom traditional beauty standards, and we're seeing more\r\ndiversity and fresh talent than ever before.",
+    "created_at": "2025-02-21"
+  }
+},
+{
+  "model": "newsletter.newsletter",
+  "pk": 5,
+  "fields": {
+    "header": "Sustainability in Modeling: The New Trend",
+    "cover": "uploads/newsletter/-61e7e1bb-a61d-4b74-870a-e0dd1dc79cddNone.png",
+    "caption": "Eco-conscious fashion is not just for designers — the modeling\r\nindustry is jumping on the sustainability bandwagon. Agencies\r\nare now partnering with eco-friendly brands and offering\r\nmodels opportunities to work on environmentally conscious\r\ncampaigns.",
+    "created_at": "2025-02-21"
+  }
+},
+{
+  "model": "newsletter.newsletter",
+  "pk": 6,
+  "fields": {
+    "header": "Top Model’s Career Shift: From Runway to Creative Director",
+    "cover": "uploads/newsletter/-66b41dd2-a973-4f03-b73f-d22ea7b49e52None.png",
+    "caption": "Gigi Hadid has recently made the switch from model to creative\r\ndirector for a leading brand, proving that the modeling\r\nindustry offers many career paths beyond the runway. Is this\r\nhe future for other top models?",
+    "created_at": "2025-02-21"
+  }
+},
+{
+  "model": "newsletter.newsletter",
+  "pk": 7,
+  "fields": {
+    "header": "The Rise of Digital Models",
+    "cover": "uploads/newsletter/-d3f25278-7c2f-4e2f-8793-d5c083dd3ec4None.png",
+    "caption": "In the world of virtual fashion, digital models like Lil\r\nMiquela are becoming just as influential as their real-life\r\ncounterparts. Discover how digital models are being used in\r\nadvertising and campaigns, and what this means for the future\r\nof modeling.",
+    "created_at": "2025-02-21"
+  }
+}
+]
