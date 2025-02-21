@@ -1,7 +1,7 @@
 import logging
 
 from django.test import TestCase
-
+from django.core.management import call_command
 from django.urls import reverse
 from unittest.mock import patch
 
@@ -31,7 +31,9 @@ class ManPageApiTests(TestCase):
 
     # Loads testing data, 10 users, 5 man, 5 woman models
     # without images
-    fixtures = ["seed_data/testing_data_fixture.json"]
+    @classmethod
+    def setUpTestData(cls):
+        call_command("model_db", "--num_entries", "10", "--model_image")
 
     def setUp(self) -> None:
         self.client = APIClient()
