@@ -4,6 +4,10 @@ from .base import BASE_DIR
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+BASE_URL = "http://127.0.0.0:8000"
+
+MEDIA_URL = f"{BASE_URL}/media/"
+
 ALLOWED_HOSTS = [
     "localhost", "127.0.0.1",
     "host.docker.internal", "0.0.0.0",
