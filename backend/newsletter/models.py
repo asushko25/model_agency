@@ -39,7 +39,7 @@ def news_letter_image_cover(instance: "NewsLetter", filename: str):
     _, extension = os.path.splitext(filename)
 
     filename = (
-        f"-{uuid.uuid4()}{instance.id}.{extension}"
+        f"-{uuid.uuid4()}{instance.id}{extension}"
     )
     full_path = os.path.join(
         "uploads",

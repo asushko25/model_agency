@@ -22,7 +22,6 @@ class NewsLetterSubscriberSerializer(ModelSerializer):
 
 class NewsLetterListSerializer(ModelSerializer):
     new_for_subscriber = serializers.SerializerMethodField()
-    cover = serializers.SerializerMethodField()
 
     class Meta:
         model = NewsLetter
@@ -30,12 +29,6 @@ class NewsLetterListSerializer(ModelSerializer):
             "id", "header", "cover", "caption",
             "created_at", "new_for_subscriber"
         )
-    
-    def get_cover(self, obj):
-        request = self.context.get("request")
-        if request:
-            return request.build_absolute_uri(obj.cover.url)
-        return None
 
     def get_new_for_subscriber(self, obj: NewsLetter) -> bool:
         """

@@ -13,20 +13,17 @@ class ModelSerializer(serializers.ModelSerializer):
     detail_url = serializers.HyperlinkedIdentityField(
         view_name="model:main-detail", lookup_field="id"
     )
-    image = serializers.SerializerMethodField()
+    image_url = serializers.SerializerMethodField()
 
     class Meta:
         model = Model
-        fields = ["id", "full_name", "city", "country", "image", "detail_url"]
+        fields = ["id", "full_name", "city", "country", "image_url", "detail_url"]
 
-    def get_image(self, obj):
+    def get_image_url(self, obj):
         # query first() is not optimized for prefetch reverse relationships
         # making N + 1 issues, that why we are not using it
         first_image = next(iter(obj.images.all()), None)
-        request = self.context.get("request")
-        if first_image and first_image.image:
-            return request.build_absolute_uri(first_image.image.url)
-        return None
+        return first_image.image.url if first_image and first_image.image else None
 
 
 class ModelDetailSerializer(serializers.ModelSerializer):
@@ -57,7 +54,7 @@ class WomanModelListSerializer(ModelSerializer):
 
     class Meta:
         model = Model
-        fields = ["id", "full_name", "city", "country", "image", "detail_url"]
+        fields = ["id", "full_name", "city", "country", "image_url", "detail_url"]
 
 
 class WomanModelDetailSerializer(ModelDetailSerializer):
@@ -83,7 +80,7 @@ class ManModelListSerializer(ModelSerializer):
 
     class Meta:
         model = Model
-        fields = ["id", "full_name", "city", "country", "image", "detail_url"]
+        fields = ["id", "full_name", "city", "country", "image_url", "detail_url"]
 
 
 class ManModelDetailSerializer(ModelDetailSerializer):

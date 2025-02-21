@@ -1,6 +1,5 @@
 from argparse import ArgumentParser
 
-from django.core.files import File
 from django.contrib.auth import get_user_model
 from django.db import transaction
 from django.core.files.base import ContentFile
@@ -8,12 +7,12 @@ from django.core.files.base import ContentFile
 from faker.exceptions import UniquenessException
 
 from ..utils.base_command import GenerateDataCommand
-from ..utils.table_util import TablesDataDictGenerator
+from ..utils.table_util import ModelsTableDataDictGenerator
 
 from model.models import Model, ModelImages
 
 
-class Command(GenerateDataCommand, TablesDataDictGenerator):
+class Command(GenerateDataCommand, ModelsTableDataDictGenerator):
     """
     Generates number `num_entries` entries and writes to DB.
     Creates `num_entries` instances of Model table together with User table.
@@ -60,8 +59,6 @@ class Command(GenerateDataCommand, TablesDataDictGenerator):
         for i in range(1, num_entries + 1):
             self.update_gender()
 
-            # ensures that we make rollback
-            # when any error during generating data
             try:
                 # create user
                 user = get_user_model()(**self.create_user())
