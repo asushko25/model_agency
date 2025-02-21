@@ -1,12 +1,9 @@
-import os
-
 from argparse import ArgumentParser
 from abc import ABC, abstractmethod
 
 from django.core.management.base import (
     BaseCommand,
 )
-from django.contrib.auth import get_user_model
 
 
 class GenerateDataCommand(BaseCommand, ABC):
@@ -43,17 +40,9 @@ class GenerateDataCommand(BaseCommand, ABC):
         :param options:
         :return:
         """
-        debug_var = os.getenv("DJANGO_ENV")
+        num_entries = options.pop("num_entries")
 
-        #  check if we on developing or staging environment
-        allowed = any(
-            [debug_var.startswith("prod"), debug_var.startswith("devel")]
-        )
-
-        if allowed:
-            num_entries = options.pop("num_entries")
-
-            self.custom_handler(num_entries=num_entries, **options)
+        self.custom_handler(num_entries=num_entries, **options)
 
     def add_arguments(self, parser: ArgumentParser):
         """
