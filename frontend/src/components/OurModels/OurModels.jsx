@@ -15,6 +15,21 @@ const OurModels = () => {
   return (
     <>
       <Header />
+
+      <section className="about">
+        <div className="about__image--left">
+          <img src="/images/our-models/left.png" alt="left" />
+        </div>
+
+        <div className="about__image--center">
+          <img src="/images/our-models/center.png" alt="left" />
+        </div>
+
+        <div className="about__image--right">
+          <img src="/images/our-models/right.png" alt="right" />
+        </div>
+      </section>
+
       <main className="main">
         <section className="our-models">
           <div className="our-models__title">

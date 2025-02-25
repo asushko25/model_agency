@@ -133,3 +133,51 @@
     margin-top: 84px;
   }
 }
+
+.about {
+  padding: 0 40px;
+}
+
+.about__image--left {
+  width: 322px;
+  height: 483px;
+}
+
+.about__image--left img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; // Заполняет контейнер без искажений
+}
+
+.about__image--center {
+  width: 300px;
+  height: 375px;
+  position: relative; // Обязательно для transform
+  transform: translateY(60%); // Опускает вниз на 50% от своего размера
+}
+
+.about__image--center img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; // Обрезка изображения без искажений
+}
+
+.about__image--right {
+  width: 322px;
+  height: 422px;
+  bottom: 0;
+}
+
+.about__image--right img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; // Обрезает изображение без искажений
+}
+
+.about {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 80px;
+  margin-bottom: 120px;
+  
+}
