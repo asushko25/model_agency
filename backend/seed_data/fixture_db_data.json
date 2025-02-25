@@ -1134,7 +1134,7 @@
   "fields": {
     "header": "Sustainability in Modeling: The New Trend",
     "cover": "uploads/newsletter/-61e7e1bb-a61d-4b74-870a-e0dd1dc79cddNone.png",
-    "caption": "Eco-conscious fashion is not just for designers — the modeling\r\nindustry is jumping on the sustainability bandwagon. Agencies\r\nare now partnering with eco-friendly brands and offering\r\nmodels opportunities to work on environmentally conscious\r\ncampaigns.",
+    "caption": "Eco-conscious fashion is not just for designers â€” the modeling\r\nindustry is jumping on the sustainability bandwagon. Agencies\r\nare now partnering with eco-friendly brands and offering\r\nmodels opportunities to work on environmentally conscious\r\ncampaigns.",
     "created_at": "2025-02-21"
   }
 },
@@ -1142,7 +1142,7 @@
   "model": "newsletter.newsletter",
   "pk": 6,
   "fields": {
-    "header": "Top Model’s Career Shift: From Runway to Creative Director",
+    "header": "Top Modelâ€™s Career Shift: From Runway to Creative Director",
     "cover": "uploads/newsletter/-66b41dd2-a973-4f03-b73f-d22ea7b49e52None.png",
     "caption": "Gigi Hadid has recently made the switch from model to creative\r\ndirector for a leading brand, proving that the modeling\r\nindustry offers many career paths beyond the runway. Is this\r\nhe future for other top models?",
     "created_at": "2025-02-21"
