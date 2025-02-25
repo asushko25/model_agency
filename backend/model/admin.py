@@ -20,6 +20,7 @@ class ModelAdmin(admin.ModelAdmin):
         "country",
         "hair",
         "eye_color",
+        "gender"
     )
     search_fields = ["model_user__full_name"]
 

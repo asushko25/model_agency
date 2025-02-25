@@ -9,14 +9,23 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
+import logging
+import sys
 
 from pathlib import Path
+
+try:
+    from decouple import config
+except ImportError:
+    logging.info("python-decouple is not installed, using os.environ")
+    import os
+
+    config = os.environ.get
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -27,22 +36,70 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "django_celery_beat",
+    "corsheaders",
     "rest_framework",
     "phonenumber_field",
+    "drf_spectacular",
     "model",
     "contact",
+    "newsletter",
     "core"
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+INTERNAL_IPS = []
+
+# Cookie key name to store when user has subscribed to newsletter
+COOKIE_NEWS_SUBSCRIBED_EMAIL = "subscribed_email"
+
+# cookie user subscribed to newsletter expiry 1 year
+COOKIE_EXPIRE_SUBSCRIBED_DATA = 365 * 24 * 60 * 60
+
+# send newsletters update to subscribed users every specified time in days
+# send every num of days relative to when user subscribed
+NEWSLETTER_EMAIL_EVERY_NUM_DAY = 7
+
+# Celery beat schedule. In what intervals we should run
+# celery task to send users mails about new newsletters
+# created in range NEWSLETTER_EMAIL_EVERY_NUM_DAY
+CELERY_CHECK_NEWSLETTERS = 1  # run celery task every day
+
+# Celery will check schedule every 12 hour (43200 sec)
+CELERY_MAX_BEAT_INTERVAL_SECONDS = 43200
+
+TESTING = "test" in sys.argv
+# determines in which environment we are
+# DJANGO_ENV could have values of development, production, staging
+DJANGO_ENV = config("DJANGO_ENV")
+
+if not TESTING and DJANGO_ENV != "production":
+    # if we are not testing or we are in development or production mode
+    # we can use debug_toolbar
+    INSTALLED_APPS = [
+        *INSTALLED_APPS,
+        "debug_toolbar",
+    ]
+
+    MIDDLEWARE = [
+        "debug_toolbar.middleware.DebugToolbarMiddleware",
+        *MIDDLEWARE
+    ]
+
+    INTERNAL_IPS = [
+        "127.0.0.1",
+        *INTERNAL_IPS
+    ]
 
 ROOT_URLCONF = 'model_agency.urls'
 
@@ -104,13 +161,22 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 MEDIA_ROOT = BASE_DIR / "media"
-MEDIA_URL = "/media/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+    "DEFAULT_PAGINATION_CLASS": "paginations.CustomPagination",
+    "DEFAULT_THROTTLE_CLASSES": [
+        "rest_framework.throttling.AnonRateThrottle",
+    ],
+    "DEFAULT_THROTTLE_RATES": {
+        "anon": "3000/day"
+    },
+}
 
 LOGGING = {
     "version": 1,
@@ -166,6 +232,16 @@ LOGGING = {
             "when": "midnight",
             "formatter": "verbose",
             "filters": ["debug_false"]
+        },
+        # Writing any mail activity for exp. in contact app
+        # or newsletter mails logs to this handler
+        "mail_debug_false": {
+            "class": "logging.handlers.RotatingFileHandler",
+            "level": "INFO",
+            "filename": "logs/mails_logs/mails.log",
+            "backupCount": 7,
+            "formatter": "simple",
+            "filters": ["debug_false"]
         }
     },
     "loggers": {
@@ -184,7 +260,14 @@ LOGGING = {
                 "file_model_debug_false"
             ],
             "level": "DEBUG"
+        },
+        "mail_logging": {
+            # this logger for all mails activity
+            "handlers": [
+                "console_debug_true",
+                "mail_debug_false"
+            ],
+            "level": "DEBUG"
         }
-
     }
 }

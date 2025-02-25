@@ -1,12 +1,19 @@
 """Django configurations during Development"""
-import os
-
 from .base import BASE_DIR
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "host.docker.internal", "0.0.0.0"]
+BASE_URL = "http://127.0.0.0:8000"
+
+MEDIA_URL = f"{BASE_URL}/media/"
+
+ALLOWED_HOSTS = [
+    "localhost", "127.0.0.1",
+    "host.docker.internal", "0.0.0.0",
+    "localhost", "3000",
+    "testserver"
+]
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -26,14 +33,23 @@ DATABASES = {
     }
 }
 
+# CORS_ALLOWED_ORIGINS = [
+#     "http://127.0.0.1:3000"  # Replace with frontend URL
+# ]
+
+# OR: Allow all origins during development (not recommended for production)
+CORS_ALLOW_ALL_ORIGINS = True  # Change to False if you want to allow specific
+
+# Celery configurations during development and testing
+# using Docker memery as broker
+CELERY_BROKER_URL = "redis://127.0.0.1:6379/0"
+
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.dummy.DummyCache",
+    }
+}
 
 # Email configurations
 # prints all emails to a terminal, not actually sending emails
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-
-EMAIL_HOST = os.getenv("EMAIL_HOST")
-EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
-EMAIL_PORT = os.getenv("EMAIL_PORT")
-EMAIL_USE_SSL = False
-EMAIL_USE_TLS = True

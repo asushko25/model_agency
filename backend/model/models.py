@@ -116,7 +116,7 @@ def model_image_file_path(instance: "ModelImages", filename: str):
     filename = (
         f"{slugify(first_name)}"
         f"-{slugify(last_name)}"
-        f"-{uuid.uuid4()}.{extension}"
+        f"-{uuid.uuid4()}{extension}"
     )
     full_path = os.path.join(
         "uploads",

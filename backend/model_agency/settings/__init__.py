@@ -1,11 +1,6 @@
-import os
-from dotenv import load_dotenv
-
 from .base import *
 
-load_dotenv()
-
-DJANGO_ENV = os.getenv("DJANGO_ENV")
+DJANGO_ENV = config("DJANGO_ENV")
 
 if DJANGO_ENV == "production":
     from .prod import *

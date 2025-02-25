@@ -13,17 +13,27 @@ class ModelSerializer(serializers.ModelSerializer):
     detail_url = serializers.HyperlinkedIdentityField(
         view_name="model:main-detail", lookup_field="id"
     )
-    photo = serializers.SerializerMethodField()
+    image_url = serializers.SerializerMethodField()
 
     class Meta:
         model = Model
-        fields = ["id", "full_name", "city", "country", "photo", "detail_url"]
+        fields = [
+            "id",
+            "full_name",
+            "city",
+            "country",
+            "image_url",
+            "detail_url"
+        ]
 
-    def get_photo(self, obj):
-        first_image = obj.images.first()
-        if first_image and first_image.image:
-            return first_image.image.url
-        return None
+    def get_image_url(self, obj):
+        # query first() is not optimized for prefetch reverse relationships
+        # making N + 1 issues, that why we are not using it
+        first_image = next(iter(obj.images.all()), None)
+        return (
+            first_image.image.url if first_image and first_image.image
+            else None
+        )
 
 
 class ModelDetailSerializer(serializers.ModelSerializer):
@@ -41,6 +51,7 @@ class ModelDetailSerializer(serializers.ModelSerializer):
             "bust",
             "waist",
             "hips",
+            "height",
             "images",
             "contact_url",
         ]
@@ -48,12 +59,19 @@ class ModelDetailSerializer(serializers.ModelSerializer):
 
 class WomanModelListSerializer(ModelSerializer):
     detail_url = serializers.HyperlinkedIdentityField(
-        view_name="model:woman-detail", lookup_field="id"
+        view_name="model:women-detail", lookup_field="id"
     )
 
     class Meta:
         model = Model
-        fields = ["id", "full_name", "city", "country", "photo", "detail_url"]
+        fields = [
+            "id",
+            "full_name",
+            "city",
+            "country",
+            "image_url",
+            "detail_url"
+        ]
 
 
 class WomanModelDetailSerializer(ModelDetailSerializer):
@@ -74,12 +92,19 @@ class WomanModelDetailSerializer(ModelDetailSerializer):
 
 class ManModelListSerializer(ModelSerializer):
     detail_url = serializers.HyperlinkedIdentityField(
-        view_name="model:man-detail", lookup_field="id"
+        view_name="model:men-detail", lookup_field="id"
     )
 
     class Meta:
         model = Model
-        fields = ["id", "full_name", "city", "country", "photo", "detail_url"]
+        fields = [
+            "id",
+            "full_name",
+            "city",
+            "country",
+            "image_url",
+            "detail_url"
+        ]
 
 
 class ManModelDetailSerializer(ModelDetailSerializer):

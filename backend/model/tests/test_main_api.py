@@ -2,13 +2,14 @@ import logging
 
 from django.test import TestCase
 from django.urls import reverse
+from django.core.management import call_command
 from unittest.mock import patch
 
 
 from rest_framework.test import APIClient
 from rest_framework import status
 
-from ..models import Model
+from model.models import Model
 from .utils.model_test_util import (
     paginated_data_or_not,
     model_detail_url,
@@ -26,14 +27,16 @@ OFFSET = 0
 logger = logging.getLogger("model.tests")
 
 
-@patch("model.views.CustomPagination.default_limit", LIMIT)  # Mock the default_limit to 2
+@patch("paginations.CustomPagination.default_limit", LIMIT)  # Mock the default_limit to 2
 class MainPageApiTests(TestCase):
     """Test unauthenticated users can enter to Main page"""
     logger.info("TESTING Main page!!!!")
 
     # Loads testing data, 10 users, 5 man, 5 woman models
     # without images
-    fixtures = ["seed_data/testing_data_fixture.json"]
+    @classmethod
+    def setUpTestData(cls):
+        call_command("model_db", "--num_entries", "10", "--model_image")
 
     def setUp(self) -> None:
         self.client = APIClient()

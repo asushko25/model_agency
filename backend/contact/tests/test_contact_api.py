@@ -1,27 +1,32 @@
-import logging
-
-from django.test import TestCase
+from django.test import TestCase, override_settings
+from django.core.management import call_command
 from django.core import mail
 from django.urls import reverse
 
 from rest_framework.test import APIClient
 from rest_framework import status
 
-from contact.models import Contact
 from model.models import Model
 
 
 CONTACT_URL = reverse("contact:contact")
 
-# logger = logging.getLogger()
 
-
+@override_settings(
+    # makes running Celery tasks synchronously
+    # not send to broker
+    CELERY_TASK_ALWAYS_EAGER=True,
+    CELERY_TASK_EAGER_PROPAGATES=True,
+)
 class ContactApiTests(TestCase):
     """
     Test users can contact to model agency about something
     or about specific model
     """
-    fixtures = ["seed_data/testing_data_fixture.json"]
+
+    @classmethod
+    def setUpTestData(cls):
+        call_command("model_db", "--num_entries", "4", "--model_image")
 
     def setUp(self):
         self.client = APIClient()

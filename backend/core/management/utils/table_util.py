@@ -6,7 +6,7 @@ from django.contrib.auth import get_user_model
 fake = faker.Faker()
 
 
-class TablesDataDictGenerator:
+class ModelsTableDataDictGenerator:
     """
     Class which generates models table data like dictionary
     Using `Faker` for generating fake data.
@@ -74,7 +74,7 @@ class TablesDataDictGenerator:
             "hips": hips,
         }
 
-    def get_man_images_paths(self):
+    def create_man_images_paths(self):
         """Get Test Man images paths"""
         if not self.man_images_paths:
             images_path = Path(self.path_to_man_images)
@@ -82,7 +82,7 @@ class TablesDataDictGenerator:
                 str(file) for file in images_path.iterdir() if file.is_file()
             ]
 
-    def get_woman_images_paths(self):
+    def create_woman_images_paths(self):
         """Get Test Woman images paths"""
         if not self.woman_images_paths:
             images_path = Path(self.path_to_woman_images)
@@ -97,13 +97,45 @@ class TablesDataDictGenerator:
         take
         """
         if not self.man_images_paths:
-            self.get_man_images_paths()
+            self.create_man_images_paths()
 
         if not self.woman_images_paths:
-            self.get_woman_images_paths()
+            self.create_woman_images_paths()
 
         return (
             fake.random_element(self.man_images_paths)
             if self.gender == "man"
             else fake.random_element(self.woman_images_paths)
         )
+
+
+class NewsletterTableDataGenerator:
+    newsletter_images_paths = None
+    path_to_newsletter_images = "core/management/utils/test_images/newsletters"
+
+    def create_newsletter(self) -> dict:
+        """Creates Newsletter table dict data"""
+        return {
+            "header": fake.sentence(nb_words=10),
+            "cover": "",
+            "caption": fake.sentence(nb_words=20)
+        }
+
+    def create_newsletter_images_paths(self):
+        """Get Test Man images paths"""
+        if not self.newsletter_images_paths:
+            images_path = Path(self.path_to_newsletter_images)
+            self.newsletter_images_paths = [
+                str(file) for file in images_path.iterdir() if file.is_file()
+            ]
+
+    def get_newsletter_image_path(self):
+        """
+        Returns random image paths from newsletter_images_paths
+        so we could create even more newsletter then number of
+        newsletter images in core.management.utils.test_images.newsletters
+        """
+        if not self.newsletter_images_paths:
+            self.create_newsletter_images_paths()
+
+        return fake.random_element(self.newsletter_images_paths)

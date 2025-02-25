@@ -1,20 +1,20 @@
 import logging
 
 from django.test import TestCase
-
+from django.core.management import call_command
 from django.urls import reverse
 from unittest.mock import patch
 
 from rest_framework.test import APIClient
 from rest_framework import status
 
-from ..models import Model
+from model.models import Model
 from .utils.model_test_util import (
     paginated_data_or_not,
     UtilFilterSearchSerialize
 )
 
-MAN_LIST_PAGE_URL = reverse("model:man-list")
+MAN_LIST_PAGE_URL = reverse("model:men-list")
 
 # Pagination limits and offset for "More"
 # pagination button
@@ -24,14 +24,16 @@ OFFSET = 0
 logger = logging.getLogger("model.tests")
 
 
-@patch("model.views.CustomPagination.default_limit", LIMIT)  # Mock the default_limit to 2
+@patch("paginations.CustomPagination.default_limit", LIMIT)  # Mock the default_limit to 2
 class ManPageApiTests(TestCase):
     """Test unauthenticated users can enter man endpoint"""
     logger.info("TESTING Man page!!!!")
 
     # Loads testing data, 10 users, 5 man, 5 woman models
     # without images
-    fixtures = ["seed_data/testing_data_fixture.json"]
+    @classmethod
+    def setUpTestData(cls):
+        call_command("model_db", "--num_entries", "10", "--model_image")
 
     def setUp(self) -> None:
         self.client = APIClient()
@@ -145,8 +147,8 @@ class ManPageApiTests(TestCase):
             res = self.client.get(
                 MAN_LIST_PAGE_URL,
                 {
-                    f"from_{field}": from_,
-                    f"to_{field}": to_
+                    f"{field}_min": from_,
+                    f"{field}_max": to_
                 }
             )
 

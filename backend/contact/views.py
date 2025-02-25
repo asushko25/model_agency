@@ -12,6 +12,7 @@ from rest_framework import status
 from model.models import Model
 from .models import Contact
 from .serializers import ContactSerializer
+from .tasks import send_contact_email
 
 import logging
 
@@ -99,8 +100,11 @@ class ContactAPIView(APIView):
             template = "email/send_email.html"
 
         html_content = render_to_string(template, context)
-        email_message = EmailMessage(
-            subject, html_content, settings.EMAIL_HOST_USER, [email]
+
+        # Using Celery to send mail to user
+        send_contact_email.delay(
+            subject,
+            html_content,
+            settings.EMAIL_HOST_USER,
+            [email]
         )
-        email_message.content_subtype = "html"
-        email_message.send()
