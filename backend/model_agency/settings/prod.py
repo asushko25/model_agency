@@ -79,18 +79,6 @@ STORAGES = {
     },
     "staticfiles": {
         "BACKEND": "core.cloudflare.storages.StaticFileStorage",
-        "OPTIONS": core.cloudflare.settings.CLOUDFLARE_R2_CONFIG_OPTIONS
-    }
-}
-
-# configure Cloudflare R2 S3 storages for media and static files
-STORAGES = {
-    "default": {
-        "BACKEND": "core.cloudflare.storages.MediaFileStorage",
-        "OPTIONS": core.cloudflare.settings.CLOUDFLARE_R2_CONFIG_OPTIONS
-    },
-    "staticfiles": {
-        "BACKEND": "core.cloudflare.storages.StaticFileStorage",
         "OPTIONS": core.cloudflare.settings.CLOUDFLARE_R2_CONFIG_OPTIONS,
     }
 }
