@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from django.conf import settings
 
 from .models import Model, ModelImages
 
@@ -30,10 +31,13 @@ class ModelSerializer(serializers.ModelSerializer):
         # query first() is not optimized for prefetch reverse relationships
         # making N + 1 issues, that why we are not using it
         first_image = next(iter(obj.images.all()), None)
-        return (
-            first_image.image.url if first_image and first_image.image
-            else None
-        )
+        if first_image and first_image.image:
+            if settings.DEBUG:  # Development: Use full URL
+                request = self.context["request"]
+                return request.build_absolute_uri(first_image.image.url)
+            else:  # Production: Serve directly from Cloudflare (MEDIA_URL)
+                return first_image.image.url
+        return None
 
 
 class ModelDetailSerializer(serializers.ModelSerializer):
