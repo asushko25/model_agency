@@ -42,7 +42,8 @@ CORS_ALLOW_ALL_ORIGINS = True  # Change to False if you want to allow specific
 
 # Celery configurations during development and testing
 # using Docker memery as broker
-CELERY_BROKER_URL = "redis://127.0.0.1:6379/0"
+CELERY_TASK_ALWAYS_EAGER = True
+CELERY_TASK_EAGER_PROPAGATES = True
 
 CACHES = {
     "default": {
