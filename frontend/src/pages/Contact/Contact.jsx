@@ -1,32 +1,94 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../App.scss";
 import TopBar from "../../components/TopBar/TopBar";
 import Footer from "../../components/Footer/Footer";
 import "./Contact.scss";
 
 const Contact = () => {
+  // Используем React-хук useState для хранения данных формы
+  const [formData, setFormData] = useState({
+    name: "", // Имя пользователя
+    last_name: "", // Фамилия пользователя
+    email: "", // Электронная почта
+    phone_number: "", // Номер телефона
+    message: "", // Сообщение от пользователя
+    agreement: false, // Флажок согласия на обработку данных
+  });
+
+  // Функция для проверки номера телефона
+  const isValidPhoneNumber = (phone) => {
+    const phoneRegex = /^\+\d{7,15}$/; // Номер должен начинаться с + и содержать от 7 до 15 цифр
+    return phoneRegex.test(phone);
+  };
+
+  // Функция для обновления данных формы при вводе
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+
+    // Проверяем, если вводится номер телефона, удаляем пробелы
+    if (name === "phone_number") {
+      setFormData({
+        ...formData,
+        [name]: value.replace(/\s/g, ""), // Удаляем пробелы
+      });
+    } else {
+      setFormData({
+        ...formData,
+        [name]: type === "checkbox" ? checked : value,
+      });
+    }
+  };
+
+  // Функция, которая срабатывает при отправке формы
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Предотвращаем перезагрузку страницы
+
+    // Валидация номера телефона перед отправкой
+    if (!isValidPhoneNumber(formData.phone_number)) {
+      alert(
+        "Please enter a valid phone number with country code (e.g., +48234567489)."
+      );
+      return;
+    }
+
+    try {
+      // Отправляем POST-запрос на сервер с данными формы
+      const response = await fetch("http://127.0.0.1:8000/contact/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json().catch(() => null);
+
+      if (response.ok) {
+        alert("Form submitted successfully!");
+        setFormData({
+          name: "",
+          last_name: "",
+          email: "",
+          phone_number: "",
+          message: "",
+          agreement: false,
+        }); // Очищаем форму после успешной отправки
+      } else {
+        console.error("Request error:", result);
+        alert(
+          `Error: ${response.status} ${result ? JSON.stringify(result) : ""}`
+        );
+      }
+    } catch (error) {
+      console.error("Network error:", error);
+      alert("Network error. Please check your server connection.");
+    }
+  };
+
   return (
     <>
       <div className="contact-page">
         <TopBar />
-
-        <a
-          href="#search"
-          className="top-bar__search-second contact__search-second "
-        >
-          <div className="top-bar__search-container-second contact__search-second">
-            <div className="top-bar__search-elements-second">
-              <div className="top-bar__search-icon-second">
-                <img
-                  src="/icons/header/search.svg"
-                  alt="search"
-                  className="top-bar__search-item"
-                />
-              </div>
-              <div className="top-bar__search-text">Search Model</div>
-            </div>
-          </div>
-        </a>
       </div>
 
       <main className="main main-contact">
@@ -38,108 +100,120 @@ const Contact = () => {
               <form
                 autoComplete="on"
                 id="form"
-                action="#"
                 method="post"
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  e.target.reset();
-                }}
+                onSubmit={handleSubmit}
                 className="contact__message-form"
               >
                 <div className="contact__names">
                   <div className="user-name">
-                    <label htmlFor="user-name" className="form__label">
+                    <label htmlFor="name" className="form__label">
                       Name*
                     </label>
                     <input
                       type="text"
-                      id="user-name"
+                      id="name"
                       className="form__input form__input--name form__input-item"
-                      name="user-name"
+                      name="name"
                       placeholder="Enter your name"
                       required
+                      value={formData.name}
+                      onChange={handleChange}
                     />
                   </div>
 
                   <div className="company-name">
-                    <label htmlFor="last-name" className="form__label">
+                    <label htmlFor="last_name" className="form__label">
                       Last name*
                     </label>
                     <input
                       type="text"
-                      id="last-name"
+                      id="last_name"
                       className="form__input form__input--companyName form__input-item"
-                      name="last-name"
+                      name="last_name"
                       placeholder="Enter your last name"
                       required
+                      value={formData.last_name}
+                      onChange={handleChange}
                     />
                   </div>
                 </div>
 
                 <div className="contact__info">
                   <div className="contact__email">
-                    <label htmlFor="user-email" className="form__label">
+                    <label htmlFor="email" className="form__label">
                       Email*
                     </label>
                     <input
-                      id="user-email"
+                      id="email"
                       className="form__input form__input--email"
                       type="email"
                       name="email"
                       placeholder="Enter your email"
                       required
+                      value={formData.email}
+                      onChange={handleChange}
                     />
                   </div>
 
                   <div className="contact__phone">
-                    <label htmlFor="user-phone" className="form__label">
+                    <label htmlFor="phone_number" className="form__label">
                       Phone number*
                     </label>
                     <input
-                      id="user-phone"
+                      id="phone_number"
                       className="form__input form__input--phone form__input-item"
                       type="tel"
-                      name="phone"
+                      name="phone_number"
                       placeholder="Enter your phone number"
                       required
+                      value={formData.phone_number}
+                      onChange={handleChange}
                     />
                   </div>
                 </div>
 
-                <div class="contact__message form__control">
-                  <label htmlFor="user-message" className="form__label">
-                    Massage*
+                <div className="contact__message form__control">
+                  <label htmlFor="message" className="form__label">
+                    Message*
                   </label>
                   <textarea
                     name="message"
-                    class="form__input input__textarea"
-                    placeholder="Enter your massage"
+                    className="form__input input__textarea"
+                    placeholder="Enter your message"
                     required
+                    value={formData.message}
+                    onChange={handleChange}
                   ></textarea>
                 </div>
 
-                <div class="contact__sent">
-                  <div class="contact__policy">
-                    <div class="contact-us__policy--text">
+                <div className="contact__sent">
+                  <div className="contact__policy">
+                    <div className="contact-us__policy--text">
                       I agree to receive information from you by email regarding
                       your products and services*
                     </div>
 
-                    <div class="contact__checkbox">
-                      <label for="checkbox" class="contact__checkbox-label">
+                    <div className="contact__checkbox">
+                      <label
+                        htmlFor="checkbox"
+                        className="contact__checkbox-label"
+                      >
                         <input
-                          class="check-box"
+                          className="check-box"
                           type="checkbox"
                           required
                           id="checkbox"
+                          name="agreement"
+                          checked={formData.agreement}
+                          onChange={handleChange}
                         />
-                        <span class="contact__checkbox-text">I agree</span>
+                        <span className="contact__checkbox-text">I agree</span>
                       </label>
                     </div>
                   </div>
 
-                  <div class="contact__button">
-                    <button class="contact__text" type="submit">
+                  <div className="contact__button">
+                    <button className="contact__text" type="submit">
                       SUBMIT
                     </button>
                   </div>
@@ -147,17 +221,17 @@ const Contact = () => {
               </form>
             </div>
 
-            <div class="contact-content__information">
-              <div class="contact-content__information-photo">
+            <div className="contact-content__information">
+              <div className="contact-content__information-photo">
                 <img
                   src="./images/contact/contact-photo.png"
                   alt="contact-photo"
                 />
               </div>
               <div className="contact-content__background"></div>
-              <div class="contact-content__information-wrapper">
-                <div class="contact-content__information-title">Axiom</div>
-                <div class="contact-content__information-discription">
+              <div className="contact-content__information-wrapper">
+                <div className="contact-content__information-title">Axiom</div>
+                <div className="contact-content__information-discription">
                   It is very important for us to keep in touch with you, so we
                   are always ready to answer any question that interests you.
                   Shoot!

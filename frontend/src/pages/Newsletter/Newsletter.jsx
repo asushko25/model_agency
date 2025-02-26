@@ -5,6 +5,34 @@ import "./Newsletter.scss";
 import { Link } from "react-router-dom";
 
 const Newsletter = () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Предотвращаем перезагрузку страницы
+
+    const emailInput = e.target.elements["user-email"].value.trim(); // Получаем email из формы
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
+    try {
+      const response = await fetch("http://127.0.0.1:8000/newsletters/sign/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: emailInput }),
+      });
+
+      if (response.ok) {
+        alert("Successfully subscribed to the newsletter!");
+        e.target.reset(); // Очищаем форму после успешной подписки
+      } else {
+        alert("Subscription failed. Please try again.");
+      }
+    } catch (error) {
+      alert("Network error. Please check your connection.");
+    }
+  };
+
   return (
     <>
       <div className="contact-page">
@@ -43,22 +71,20 @@ const Newsletter = () => {
           <form
             autoComplete="on"
             id="form"
-            action="#"
-            method="post"
-            onSubmit={(e) => {
-              e.preventDefault();
-              e.target.reset();
-            }}
+            onSubmit={handleSubmit}
             className="newsletter__message-form"
           >
             <div className="newsletter__main">
               <div className="newsletter__main-left">
                 <div className="newsletter__items">
                   <div className="newsletter__item">
-                    <div class="newsletter__checkbox">
-                      <label for="checkbox" class="newsletter__checkbox-label">
+                    <div className="newsletter__checkbox">
+                      <label
+                        htmlFor="checkbox"
+                        className="newsletter__checkbox-label"
+                      >
                         <input
-                          class="check-box check-box__newsletter"
+                          className="check-box check-box__newsletter"
                           type="checkbox"
                           id="checkbox"
                         />
@@ -77,10 +103,13 @@ const Newsletter = () => {
                   </div>
 
                   <div className="newsletter__item">
-                    <div class="newsletter__checkbox">
-                      <label for="checkbox" class="newsletter__checkbox-label">
+                    <div className="newsletter__checkbox">
+                      <label
+                        htmlFor="checkbox"
+                        className="newsletter__checkbox-label"
+                      >
                         <input
-                          class="check-box check-box__newsletter"
+                          className="check-box check-box__newsletter"
                           type="checkbox"
                           id="checkbox"
                         />
@@ -99,10 +128,13 @@ const Newsletter = () => {
                   </div>
 
                   <div className="newsletter__item">
-                    <div class="newsletter__checkbox">
-                      <label for="checkbox" class="newsletter__checkbox-label">
+                    <div className="newsletter__checkbox">
+                      <label
+                        htmlFor="checkbox"
+                        className="newsletter__checkbox-label"
+                      >
                         <input
-                          class="check-box check-box__newsletter"
+                          className="check-box check-box__newsletter"
                           type="checkbox"
                           id="checkbox"
                         />
@@ -121,10 +153,13 @@ const Newsletter = () => {
                   </div>
 
                   <div className="newsletter__item">
-                    <div class="newsletter__checkbox">
-                      <label for="checkbox" class="newsletter__checkbox-label">
+                    <div className="newsletter__checkbox">
+                      <label
+                        htmlFor="checkbox"
+                        className="newsletter__checkbox-label"
+                      >
                         <input
-                          class="check-box check-box__newsletter"
+                          className="check-box check-box__newsletter"
                           type="checkbox"
                           id="checkbox"
                         />
@@ -168,18 +203,21 @@ const Newsletter = () => {
                   By submitting your email address, you're agreeing to let us
                   send you customized marketing messages about us and our
                   advertising partners. You are also agreeing to our{" "}
-                  <Link href="/terms-of-service">
-                    <a className="newsletter__link">Terms of Service</a>
-                  </Link>{" "}
+                  <Link to="/terms-of-service" className="newsletter__link">
+                    Terms of Service
+                  </Link>
                   and{" "}
-                  <Link href="/privacy-policy">
-                    <a className="newsletter__link">Privacy Policy</a>
+                  <Link to="/privacy-policy" className="newsletter__link">
+                    Privacy Policy
                   </Link>
                   .
                 </div>
 
-                <div class="contact__button newsletter__button">
-                  <button class="contact__text newsletter__text" type="submit">
+                <div className="contact__button newsletter__button">
+                  <button
+                    className="contact__text newsletter__text"
+                    type="submit"
+                  >
                     SUBMIT
                   </button>
                 </div>

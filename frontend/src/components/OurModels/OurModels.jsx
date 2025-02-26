@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import "./OurModels.scss";
 import Header from "../Header/Header";
@@ -6,6 +6,25 @@ import Footer from "../Footer/Footer";
 import { Link } from "react-router-dom";
 
 const OurModels = () => {
+  const [models, setModels] = useState([]); // Список моделей
+
+  // Загружаем данные с сервера
+  useEffect(() => {
+    const fetchModels = async () => {
+      try {
+        const response = await fetch("http://127.0.0.1:8000/models/main/");
+        if (!response.ok) throw new Error("Failed to fetch models");
+
+        const data = await response.json();
+        setModels(data.results); // Устанавливаем модели из API
+      } catch (error) {
+        console.error("Error fetching models:", error);
+      }
+    };
+
+    fetchModels();
+  }, []);
+
   const [showMore, setShowMore] = useState(false);
 
   const handleShowMore = () => {
@@ -40,34 +59,48 @@ const OurModels = () => {
           </div>
 
           <div className="our-models__block">
-            <Link to="/person" className="our-models__link">
+            <Link
+              to={models[0]?.detail_url || "/"}
+              className="our-models__link"
+            >
               <div className="our-models__card">
                 <div className="our-models__img">
                   <img
-                    src="/images/our-models/model-jay.png"
-                    alt="Naomi Campbell"
+                    src={models[0]?.image_url}
+                    alt={models[0]?.full_name || "Model"}
                   />
                 </div>
                 <div className="our-models__info">
-                  <div className="our-models__name">Naomi Campbell</div>
+                  <div className="our-models__name">
+                    {models[0]?.full_name || "Loading..."}
+                  </div>
                   <div className="our-models__location">
-                    London, United Kingdom
+                    {models[0]?.city || "City"},{" "}
+                    {models[0]?.country || "Country"}
                   </div>
                 </div>
               </div>
             </Link>
 
-            <Link to="/person" className="our-models__link">
+            <Link
+              to={models[0]?.detail_url || "/"}
+              className="our-models__link"
+            >
               <div className="our-models__card">
                 <div className="our-models__img">
                   <img
-                    src="/images/our-models/model-shouta.png"
-                    alt="Kate Moss"
+                    src={models[1]?.image_url}
+                    alt={models[1]?.full_name || "Model"}
                   />
                 </div>
                 <div className="our-models__info">
-                  <div className="our-models__name">Kate Moss</div>
-                  <div className="our-models__location">Tokyo, Japan</div>
+                  <div className="our-models__name">
+                    {models[1]?.full_name || "Loading..."}
+                  </div>
+                  <div className="our-models__location">
+                    {models[1]?.city || "City"},{" "}
+                    {models[1]?.country || "Country"}
+                  </div>
                 </div>
               </div>
             </Link>
