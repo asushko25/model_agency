@@ -38,17 +38,11 @@ the ideal match effortlessly.
    - `python manage.py makemigrations` - create migrations
    - `python manage.py migrate` - run migrations
    - `python manage.py createsuperuser`- Create a superuser (optional, for admin access):
-6. Optional, you can load small data - `python manage.py loaddata seed_data/fixture_db_data.json`
-   it also loads admin user specified below
 
-7. Access API as superuser you can use the following admin user account:
-   - **Email**`testadmin@gmail.com` : Email is not valid
-   - **Password** `rvt3456`
-   - **Username** `Main Admin`
-   - Or you can create your own using `python manage.py createsuperuser`
+6. You can create your own using `python manage.py createsuperuser`
 
-8. Run Tests (Optional) - `python manage.py test`
-9. Run web application locally `python manage.py runserver`
+7. Run Tests (Optional) - `python manage.py test`
+8. Run web application locally `python manage.py runserver`
 
 ### Usage
 To access the API, navigate to http://localhost:8000/api/ in your web browser and enter one of endpoints.
