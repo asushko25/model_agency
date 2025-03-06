@@ -5,31 +5,27 @@ import Footer from "../../components/Footer/Footer";
 import "./Contact.scss";
 
 const Contact = () => {
-  // Используем React-хук useState для хранения данных формы
   const [formData, setFormData] = useState({
-    name: "", // Имя пользователя
-    last_name: "", // Фамилия пользователя
-    email: "", // Электронная почта
-    phone_number: "", // Номер телефона
-    message: "", // Сообщение от пользователя
-    agreement: false, // Флажок согласия на обработку данных
+    name: "",
+    last_name: "", 
+    email: "", 
+    phone_number: "", 
+    message: "", 
+    agreement: false, 
   });
 
-  // Функция для проверки номера телефона
   const isValidPhoneNumber = (phone) => {
-    const phoneRegex = /^\+\d{7,15}$/; // Номер должен начинаться с + и содержать от 7 до 15 цифр
+    const phoneRegex = /^\+\d{7,15}$/;
     return phoneRegex.test(phone);
   };
 
-  // Функция для обновления данных формы при вводе
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
 
-    // Проверяем, если вводится номер телефона, удаляем пробелы
     if (name === "phone_number") {
       setFormData({
         ...formData,
-        [name]: value.replace(/\s/g, ""), // Удаляем пробелы
+        [name]: value.replace(/\s/g, ""), 
       });
     } else {
       setFormData({
@@ -39,11 +35,9 @@ const Contact = () => {
     }
   };
 
-  // Функция, которая срабатывает при отправке формы
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Предотвращаем перезагрузку страницы
+    e.preventDefault(); 
 
-    // Валидация номера телефона перед отправкой
     if (!isValidPhoneNumber(formData.phone_number)) {
       alert(
         "Please enter a valid phone number with country code (e.g., +48234567489)."
@@ -52,7 +46,6 @@ const Contact = () => {
     }
 
     try {
-      // Отправляем POST-запрос на сервер с данными формы
       const response = await fetch("http://127.0.0.1:8000/contact/", {
         method: "POST",
         headers: {
@@ -72,7 +65,7 @@ const Contact = () => {
           phone_number: "",
           message: "",
           agreement: false,
-        }); // Очищаем форму после успешной отправки
+        }); 
       } else {
         console.error("Request error:", result);
         alert(

@@ -1,5 +1,6 @@
 import React from "react";
 import TopBar from "../TopBar/TopBar";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -8,7 +9,7 @@ const Header = () => {
         <TopBar />
       </div>
 
-      <a href="#search" className="top-bar__search-second">
+      <Link to="/search" className="top-bar__search-second">
         <div className="top-bar__search-container-second">
           <div className="top-bar__search-elements-second">
             <div className="top-bar__search-icon-second">
@@ -21,7 +22,7 @@ const Header = () => {
             <div className="top-bar__search-text">Search Model</div>
           </div>
         </div>
-      </a>
+      </Link>
 
       <div className="header__title">Axiom</div>
       <div className="header__discription">

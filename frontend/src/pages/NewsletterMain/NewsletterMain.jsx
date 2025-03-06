@@ -54,11 +54,6 @@ const NewsletterMain = () => {
                 </div>
               </div>
 
-              {/* <div className="newsletter__block-line">
-                MODEL AGENCY . NEW YOURK. LONDON. MODELS. CLAMNET. PARIS MODEL
-                AGENCY . NEW YOURK. LONDON. MODELS. CLAMNET. PARIS
-              </div> */}
-
               <div className="newsletter__block-right">
                 <div className="newsletter__block-title">
                   International Expansion: Models Wanted for Global Campaigns

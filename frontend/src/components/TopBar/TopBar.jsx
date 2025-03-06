@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -13,6 +12,7 @@ const TopBar = () => {
                 Women
               </Link>
             </li>
+
             <li className="top-bar__item">
               <Link to="/man" className="top-bar__link">
                 Man
@@ -37,7 +37,7 @@ const TopBar = () => {
         <div className="top-bar__logo-second">MODEL MANAGEMENTLLC</div>
       </div>
 
-      <a href="#search" className="top-bar__search">
+      <Link to="/search" className="top-bar__search">
         <div className="top-bar__search-container">
           <div className="top-bar__search-elements">
             <div className="top-bar__search-icon">
@@ -50,7 +50,7 @@ const TopBar = () => {
             <div className="top-bar__search-text">Search Model</div>
           </div>
         </div>
-      </a>
+      </Link>
 
       <button type="button" className="btn--mobile-nav">
         <a href="#menu">

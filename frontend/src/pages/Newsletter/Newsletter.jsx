@@ -6,9 +6,9 @@ import { Link } from "react-router-dom";
 
 const Newsletter = () => {
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Предотвращаем перезагрузку страницы
+    e.preventDefault();
 
-    const emailInput = e.target.elements["user-email"].value.trim(); // Получаем email из формы
+    const emailInput = e.target.elements["user-email"].value.trim(); 
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput)) {
       alert("Please enter a valid email address.");
@@ -24,7 +24,7 @@ const Newsletter = () => {
 
       if (response.ok) {
         alert("Successfully subscribed to the newsletter!");
-        e.target.reset(); // Очищаем форму после успешной подписки
+        e.target.reset(); 
       } else {
         alert("Subscription failed. Please try again.");
       }

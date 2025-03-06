@@ -69,13 +69,13 @@ const Menu = () => {
 
         <div className="menu__socials">
           <a href="https://web.telegram.org/k/">
-            <img src="./icons/footer/telegram.svg" alt="Telegram Logo" />
+            <img src="/icons/footer/telegram.svg" alt="Telegram Logo" />
           </a>
           <a href="https://www.instagram.com/">
-            <img src="./icons/footer/instagram.svg" alt="Instagram Logo" />
+            <img src="/icons/footer/instagram.svg" alt="Instagram Logo" />
           </a>
           <a href="https://www.facebook.com/">
-            <img src="./icons/footer/facebook.svg" alt="Facebook Logo" />
+            <img src="/icons/footer/facebook.svg" alt="Facebook Logo" />
           </a>
         </div>
       </div>

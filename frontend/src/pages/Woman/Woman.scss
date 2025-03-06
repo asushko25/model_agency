@@ -9,3 +9,21 @@
     padding: 0 16px;
   }
 }
+
+.our-models__title-men {
+  font-family: Oswald;
+  font-weight: 400;
+  font-size: 96px;
+  line-height: 120%;
+  letter-spacing: -2.2%;
+  text-align: center;
+  color: #ecdfcc;
+
+  @media (min-width: 576px) and (max-width: 1023px) {
+    font-size: 40px;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 40px;
+  }
+}
