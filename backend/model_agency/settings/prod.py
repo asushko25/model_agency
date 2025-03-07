@@ -44,7 +44,7 @@ DATABASES = {
 }
 
 # Celery configurations
-CELERY_BROKER_URL = config("REDIS_URL") + "/0"
+CELERY_BROKER_URL = config("CELERY_BROKER_URL") + "/0"
 
 # Email configurations
 
