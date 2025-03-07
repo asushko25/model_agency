@@ -38,3 +38,4 @@ gunicorn==23.0.0
 django-storages[s3]==1.14.5
 python-decouple==3.8
 boto3==1.36.25
+sentry-sdk[django]==2.20.0
