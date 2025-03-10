@@ -1,0 +1,450 @@
+@import "../../utils/variables";
+
+.form__input {
+  padding: 17px 8px;
+  outline: none;
+  transition: border-color 0.3s ease, outline 0.3s ease, color 0.3s ease;
+  box-sizing: border-box;
+  color: #ecdfcc;
+  background-color: #1e201e;
+  border: 1px solid #3c3d37;
+  width: 100%;
+  font-family: "Ysabeau SC";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19px;
+  text-align: left;
+
+  &::placeholder {
+    font-family: Ysabeau SC;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 16px;
+    text-align: left;
+    color: #3c3d37;
+  }
+
+  &:focus {
+    border: 1px solid #ecdfcc;
+  }
+}
+
+.form__label {
+  font-family: Ysabeau SC;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+  color: #ecdfcc;
+  display: flex;
+  padding-bottom: 8px;
+}
+
+.contact-page {
+  padding: 0 40px;
+
+  @media (min-width: $tablet-min-width) and (max-width: 1023px) {
+    padding: 0 24px;
+  }
+
+  @media (max-width: 576px) {
+    padding: 0 16px;
+  }
+}
+
+.contact {
+  &-title {
+    font-family: Oswald;
+    font-size: 96px;
+    font-weight: 400;
+    line-height: 115px;
+    color: #ecdfcc;
+    text-align: center;
+    padding-bottom: 80px;
+
+    @media (min-width: $tablet-min-width) and (max-width: 1023px) {
+      font-size: 40px;
+      line-height: 48px;
+      padding-bottom: 40px;
+      padding-top: 40px;
+    }
+
+    @media (max-width: 576px) {
+      font-size: 40px;
+      line-height: 48px;
+      padding-bottom: 40px;
+      padding-top: 40px;
+    }
+  }
+
+  &__message-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__names,
+  &__info {
+    display: flex;
+    gap: 24px;
+    width: 100%;
+
+    .user-name,
+    .company-name,
+    .contact__email,
+    .contact__phone {
+      flex: 1;
+    }
+  }
+}
+
+.contact-content__form {
+  max-width: 669px;
+  width: 100%;
+
+  @media (min-width: $tablet-min-width) and (max-width: 1023px) {
+    max-width: 100%;
+    margin-top: 18px;
+  }
+
+  @media (max-width: 576px) {
+    max-width: 100%;
+    margin-top: 18px;
+  }
+}
+
+.input__textarea {
+  width: 100%;
+  height: 115px;
+  box-sizing: border-box;
+  resize: none;
+  outline: none;
+  height: 180px;
+  color: #ecdfcc;
+
+  &::placeholder {
+    font-family: Ysabeau SC;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 16px;
+    text-align: left;
+    color: #3c3d37;
+  }
+
+  @media (min-width: $tablet-min-width) and (max-width: 1023px) {
+    height: 120px;
+  }
+
+  @media (max-width: 576px) {
+    height: 120px;
+  }
+}
+
+.contact-us__policy--text {
+  font-family: Ysabeau SC;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19px;
+  text-align: left;
+  color: #ecdfcc;
+
+  @media (min-width: $tablet-min-width) and (max-width: 1023px) {
+    max-width: 302px;
+    font-size: 14px;
+  }
+
+  @media (max-width: 576px) {
+  }
+}
+
+.contact__checkbox {
+  display: flex;
+  align-items: center;
+  padding-top: 16px;
+  padding-bottom: 24px;
+}
+
+.contact__checkbox {
+  display: flex;
+  align-items: center;
+
+  .contact__checkbox-text {
+    font-family: Ysabeau SC;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19px;
+    color: #ecdfcc;
+    padding-left: 8px;
+  }
+}
+
+.check-box {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border: 1px solid #ecdfcc;
+  background-color: #1e201e;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+
+  &:checked {
+    background-color: #ecdfcc;
+    border-color: #ecdfcc;
+  }
+
+  &:checked::after {
+    content: "";
+    position: absolute;
+    width: 5px;
+    height: 8px;
+    border: 2px solid #1e201e;
+    border-width: 0 2px 2px 0;
+    transform: translate(-50%, -50%) rotate(45deg);
+    top: 40%;
+    left: 50%;
+  }
+}
+
+.contact__button {
+  background-color: #666058;
+  width: 322px;
+  height: 54px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease;
+  margin-bottom: 40px;
+
+  &:hover {
+    background-color: #ecdfcc;
+
+    .contact__text {
+      background-color: #ecdfcc;
+      color: #1e201e;
+    }
+  }
+
+  @media (min-width: $tablet-min-width) and (max-width: 1023px) {
+    width: 286px;
+  }
+
+  @media (max-width: 576px) {
+    width: 100%;
+  }
+}
+
+.contact__text {
+  background-color: #666058;
+  font-family: Ysabeau SC;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: left;
+  border: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+}
+
+.contact-content__information {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-content {
+  display: flex;
+  gap: 24px;
+  justify-content: space-between;
+
+  @media (min-width: $tablet-min-width) and (max-width: 1023px) {
+    flex-direction: column-reverse;
+  }
+
+  @media (max-width: 576px) {
+    flex-direction: column-reverse;
+  }
+}
+
+.contact-content__information-photo {
+  position: relative;
+  width: 100%;
+  max-width: 552px;
+  margin: 0 auto;
+  z-index: 0;
+
+  img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  @media (max-width: 576px) {
+    img {
+      object-fit: contain;
+    }
+  }
+
+  @media (min-width: $tablet-min-width) and (max-width: 1023px) {
+  }
+
+  @media (max-width: 576px) {
+    max-width: 100%;
+  }
+}
+
+.contact-content__information-wrapper {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: #ecdfcc;
+  z-index: 2;
+
+  @media (min-width: $tablet-min-width) and (max-width: 1023px) {
+    bottom: 0;
+  }
+
+  @media (max-width: 576px) {
+    bottom: 0;
+    width: 100%;
+  }
+}
+
+.contact-content__information {
+  position: relative;
+}
+
+.contact-content__background {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 244px;
+  background: linear-gradient(
+    180.88deg,
+    rgba(30, 32, 30, 0.4) 39.35%,
+    #1e201e 66.8%
+  );
+
+  backdrop-filter: blur(2px);
+
+  @media (min-width: $tablet-min-width) and (max-width: 1023px) {
+    height: 144px;
+  }
+
+  @media (max-width: 576px) {
+    height: 144px;
+  }
+}
+
+.contact-content__information-title {
+  font-family: Bodoni Moda SC;
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 57px;
+  text-align: center;
+  color: #ecdfcc;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 16px;
+
+  @media (min-width: $tablet-min-width) and (max-width: 1023px) {
+    font-size: 32px;
+    line-height: 38px;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 32px;
+    line-height: 38px;
+  }
+}
+
+.contact-content__information-discription {
+  font-family: Ysabeau SC;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 21px;
+  text-align: center;
+  color: #a09d98;
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: $tablet-min-width) and (max-width: 1023px) {
+    font-size: 16px;
+    line-height: 19px;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 14px;
+    line-height: 16px;
+  }
+}
+
+.contact__sent {
+  @media (min-width: $tablet-min-width) and (max-width: 1023px) {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  @media (max-width: 576px) {
+  }
+}
+
+.contact__names {
+  @media (min-width: $tablet-min-width) and (max-width: 1023px) {
+  }
+
+  @media (max-width: 576px) {
+    flex-direction: column;
+  }
+}
+
+.contact__info {
+  @media (min-width: $tablet-min-width) and (max-width: 1023px) {
+  }
+
+  @media (max-width: 576px) {
+    flex-direction: column;
+  }
+}
+
+.main-contact {
+  padding: 0 40px;
+
+  @media (min-width: $tablet-min-width) and (max-width: 1023px) {
+    padding: 0 24px;
+  }
+
+  @media (max-width: 576px) {
+    padding: 0 16px;
+  }
+}
+
+.top-bar__search-container-second {
+  background-color: $third-text-color;
+  position: relative;
+  width: 360px;
+  height: 54px;
+  display: none;
+
+  @media (min-width: $tablet-min-width) and (max-width: 1023px) {
+    width: 100%;
+    display: block;
+    margin-top: 40px;
+  }
+
+  @media (max-width: 576px) {
+    width: 100%;
+    display: block;
+    margin-top: 24px;
+  }
+}
+
+.contact__search-second {
+  margin: 0 !important;
+}

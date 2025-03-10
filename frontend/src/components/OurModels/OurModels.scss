@@ -1,0 +1,349 @@
+@import "../../utils/variables";
+
+.our-models {
+  background-color: $main-text-color;
+  padding-top: 80px;
+  margin-bottom: 80px;
+
+  &__title {
+    margin-bottom: 40px;
+    justify-content: center;
+    display: flex;
+  }
+
+  &__title-text {
+    font-family: Oswald;
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 48px;
+    text-align: center;
+    color: #ecdfcc;
+    max-width: 898px;
+
+    @media (min-width: $tablet-min-width) and (max-width: 1023px) {
+      font-size: 24px;
+    }
+
+    @media (max-width: 576px) {
+      font-size: 24px;
+    }
+  }
+
+  &__block {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px; 
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    @media (max-width: 1024px) {
+      grid-template-columns: repeat(2, 1fr);
+      max-width: 800px; 
+      margin: 0 auto;
+    }
+
+    @media (max-width: 576px) {
+      grid-template-columns: repeat(1, 1fr);
+      max-width: 350px;
+      margin: 0 auto;
+    }
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: $tablet-min-width) and (max-width: 1023px) {
+    }
+
+    @media (max-width: 576px) {
+      .our-models__card {
+        padding: 0 25px;
+      }
+
+      .our-models__img img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+      }
+    }
+  }
+
+  &__name {
+    display: flex;
+    font-family: Oswald;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 38.4px;
+    color: #ecdfcc;
+    padding-top: 16px;
+    text-decoration: none;
+  }
+
+  &__location {
+    display: flex;
+    font-family: Ysabeau SC;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 21.6px;
+    text-align: center;
+    padding-top: 8px;
+    color: #ecdfcc;
+    text-decoration: none;
+  }
+
+  &__link {
+    text-decoration: none;
+    max-width: 377px;
+  }
+
+  &__block-second {
+    margin-top: 84px;
+  }
+
+  &__btn-show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 438px;
+    height: 54px;
+    background-color: #ecdfcc;
+    color: #1e201e;
+    text-decoration: none;
+    font-family: Ysabeau SC;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+  }
+
+  &__btn {
+    display: flex;
+    justify-content: center;
+    padding: 15px 0;
+    margin-top: 80px;
+    cursor: pointer;
+
+    @media (min-width: $tablet-min-width) {
+      margin-top: 80px;
+    }
+
+    @media (max-width: 576px) {
+      margin-top: 40px;
+    }
+  }
+
+  &__block-third {
+    margin-top: 84px;
+
+    @media (min-width: $tablet-min-width) {
+    }
+
+    @media (max-width: 576px) {
+      margin-top: 40px;
+    }
+  }
+
+  &__block-fourth {
+    margin-top: 84px;
+  }
+}
+
+.about {
+  padding: 0 40px;
+}
+
+.about__image--left {
+  width: 322px;
+  height: 483px;
+}
+
+.about__image--left img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about__image--center {
+  width: 300px;
+  height: 375px;
+  position: relative; 
+  transform: translateY(60%); 
+}
+
+.about__image--center img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about__image--right {
+  width: 322px;
+  height: 422px;
+  bottom: 0;
+}
+
+.about__image--right img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 80px;
+  margin-bottom: 120px;
+}
+
+.our-models__img img {
+  display: block;
+  width: 100%;
+}
+
+.our-models__introdusing {
+  padding-top: 110px;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  gap: 300px;
+
+  @media (min-width: $tablet-min-width) and (max-width: 1080px) {
+    gap: 40px;
+    padding-top: 80px;
+  }
+
+  @media (max-width: 576px) {
+    gap: 10px;
+    position: relative;
+    display: grid;
+  }
+}
+
+.our-models__introdusing-right {
+  z-index: 1;
+  position: relative;
+  transform: translateY(150px);
+  margin-bottom: 80px;
+
+  @media (max-width: 576px) {
+    transform: translateY(150px);
+  }
+}
+
+.our-models__introdusing-left {
+  z-index: 1;
+  position: relative;
+  transform: translateY(-70px);
+
+  @media (max-width: 576px) {
+    transform: translateY(0px);
+  }
+}
+
+.our-models__introdusing-right__text {
+  margin-bottom: 80px;
+  font-family: Ysabeau SC;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -2.2%;
+  color: #ecdfcc;
+  max-width: 554px;
+  text-indent: 70px;
+
+  @media (min-width: $tablet-min-width) and (max-width: 1023px) {
+    font-size: 16px;
+    line-height: 19px;
+  }
+
+  @media (max-width: 576px) {
+    margin-bottom: 40px;
+  }
+}
+
+.our-models__introdusing-left__text {
+  font-family: Ysabeau SC;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -2.2%;
+  color: #ecdfcc;
+  max-width: 554px;
+  text-indent: 70px;
+  margin-bottom: 16px;
+
+  @media (min-width: $tablet-min-width) and (max-width: 1023px) {
+    font-size: 16px;
+    line-height: 19px;
+  }
+
+  @media (max-width: 576px) {
+  }
+}
+
+.our-models__introdusing-right__img {
+  margin-bottom: 16px;
+  display: block;
+  width: 100%;
+}
+
+.our-models__introdusing-center {
+  position: absolute; 
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+
+  @media (max-width: 576px) {
+    position: relative;
+  }
+}
+
+.our-models__introdusing-center__img {
+  z-index: 2;
+  display: block;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  @media (max-width: 576px) {
+    position: absolute;
+    top: -100px;
+  }
+}
+
+.our-models__introdusing-center__img img {
+  @media (min-width: $tablet-min-width) and (max-width: 1080px) {
+    max-width: 145px;
+    max-height: 181px;
+  }
+
+  @media (max-width: 576px) {
+    max-width: 320px;
+    max-height: 350px;
+    width: auto;
+  }
+}
+
+.our-models__introdusing-left__img img,
+.our-models__introdusing-right__img img,
+.our-models__introdusing-center__img img {
+  object-fit: contain; 
+}
+
+.our-models__introdusing-left__img img {
+  width: 100%;
+  object-fit: contain;
+}
+
+.our-models__introdusing-right__img img {
+  width: 100%;
+  object-fit: cover; 
+}
+
+.our-models__block-results {
+  display: flex;
+  justify-content: center;
+}

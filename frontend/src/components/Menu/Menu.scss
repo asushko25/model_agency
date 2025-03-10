@@ -1,0 +1,223 @@
+@import "../../utils/variables";
+
+.page__menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 500px;
+  background-color: $third-text-color;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  overflow: hidden;
+  transform: translateY(-100%);
+  padding: 0 40px;
+
+  &:target {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateY(0);
+    z-index: 20;
+  }
+
+  @media (min-width: $tablet-min-width) and (max-width: 1023px) {
+    padding: 0 24px;
+  }
+
+  @media (max-width: 576px) {
+    padding: 0 16px;
+  }
+}
+.btn--mobile-nav {
+  visibility: hidden;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+
+  @media (max-width: #{$desktop-min-width - 1px}) {
+    visibility: visible;
+  }
+
+  @media (max-width: #{$desktop-min-width - 1px}) {
+    visibility: visible;
+  }
+}
+
+.header {
+  position: relative;
+
+  &:has(#menu:target) .top-bar__nav {
+    display: none;
+  }
+
+  &:has(#menu:target) .btn--mobile-nav {
+    display: none;
+  }
+}
+
+.top-bar__nav {
+  display: none;
+
+  @media (min-width: #{$desktop-min-width}) {
+    display: flex;
+  }
+}
+
+.top-bar__links {
+  display: flex;
+  gap: 16px;
+
+  @media (max-width: #{$desktop-min-width - 1px}) {
+    display: none;
+  }
+}
+
+.header__lang {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  @media (max-width: #{$desktop-min-width - 1px}) {
+    display: none;
+  }
+}
+
+.aside-top-bar {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 40px 0;
+  margin: 0;
+}
+
+.aside-top-bar__list {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+  flex-direction: column;
+  padding-top: 16px;
+}
+
+.aside-top-bar__link {
+  text-decoration: none;
+  font-family: $main-font;
+  color: $second-text-color;
+  font-size: 16px;
+  line-height: 18px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.aside-bar__right-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.aside-bar__lang {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+}
+
+.aside-try-button {
+  border-radius: 50px;
+  background-color: $fourth-text-color;
+  width: 121px;
+  height: 39px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid $main-text-color;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  color: $main-text-color;
+  text-decoration: none;
+
+  &:hover {
+    background-color: $main-text-color;
+    color: $fourth-text-color;
+    border: 2px solid $main-text-color;
+  }
+}
+
+.aside-login-button {
+  border-radius: 50px;
+  background-color: $main-text-color;
+  width: 121px;
+  height: 39px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease;
+  color: #fff;
+  text-decoration: none;
+
+  &:hover {
+    background-color: $fourth-text-color;
+    color: $main-text-color;
+    border: 2px solid $main-text-color;
+  }
+}
+
+.aside-div {
+  display: flex;
+  padding: 220px 0;
+}
+
+.aside-bar__lang-text {
+  font-family: $main-font;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19px;
+}
+
+body:has(.page__menu:target) {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+.menu__content {
+  text-align: center;
+}
+
+.menu__socials {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  padding-top: 56px;
+  align-items: center;
+}
+
+.aside-top-bar__logo {
+  display: flex !important;
+}
+
+.aside-top-bar__logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon--close {
+  position: relative;
+  z-index: 3;
+  margin-left: auto;
+  cursor: pointer;
+}
+

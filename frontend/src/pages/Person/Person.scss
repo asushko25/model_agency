@@ -1,0 +1,192 @@
+@import "../../utils/variables";
+
+.person-page {
+  padding: 0 40px;
+
+  @media (min-width: 576px) and (max-width: 1023px) {
+    padding: 0 24px;
+  }
+
+  @media (max-width: 576px) {
+    padding: 0 16px;
+  }
+}
+
+.person-info {
+  display: flex;
+  margin-bottom: 80px;
+  margin-top: 80px;
+
+  @media (min-width: 576px) and (max-width: 1023px) {
+    margin-top: 40px;
+  }
+
+  @media (max-width: 576px) {
+    margin-top: 40px;
+    flex-direction: column;
+  }
+
+  &__photo {
+    max-width: 552px;
+    img {
+      display: block;
+      width: 100%;
+    }
+  }
+}
+
+.person-info__left {
+  padding-right: 191px;
+
+  @media (min-width: $tablet-min-width) and (max-width: 1023px) {
+    padding-right: 0px;
+    display: none;
+  }
+
+  @media (max-width: 576px) {
+    display: none;
+  }
+}
+
+.top-bar__item__left {
+  display: none;
+
+  @media (min-width: $tablet-min-width) and (max-width: 1023px) {
+    display: block !important;
+  }
+
+  @media (max-width: 576px) {
+    display: block !important;
+  }
+}
+
+.top-bar__navigation-person {
+  max-width: 377px;
+  z-index: 1;
+
+  @media (min-width: $tablet-min-width) and (max-width: 1023px) {
+    visibility: visible !important;
+  }
+
+  @media (max-width: 576px) {
+    visibility: visible !important;
+  }
+}
+
+.top-bar__item-person {
+  visibility: visible;
+
+  @media (min-width: $tablet-min-width) and (max-width: 1023px) {
+    display: none;
+  }
+
+  @media (max-width: 576px) {
+    display: none;
+  }
+}
+
+.top-bar__nav-person {
+  display: block;
+}
+
+.person-info__right {
+  padding-left: 25px;
+  display: flex;
+
+  @media (min-width: $tablet-min-width) and (max-width: 1023px) {
+    padding-left: 20px;
+  }
+
+  @media (max-width: 576px) {
+    padding-left: 0px;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.person-info__item {
+  font-family: Ysabeau SC;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: left;
+  color: #ecdfcc;
+}
+
+.person-info__parameters {
+  display: flex;
+  gap: 24px;
+  flex-direction: column;
+  position: relative;
+  height: 100%;
+
+  @media (min-width: $tablet-min-width) and (max-width: 1023px) {
+  }
+
+  @media (max-width: 576px) {
+    display: grid;
+    padding-top: 20px;
+    gap: 24px;
+    position: relative;
+    height: 100%;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.person-info__pages {
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  display: flex;
+
+  @media (max-width: 576px) {
+    display: flex;
+    margin-top: 20px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    display: none;
+  }
+}
+
+.person-info__pages-mobile {
+  display: none;
+
+  @media (max-width: 576px) {
+    display: flex;
+    margin-top: 40px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.top-bar__link-contactPerson {
+  font-family: Ysabeau SC;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -2.2%;
+  text-align: right;
+  color: #ecdfcc;
+  position: relative;
+  text-decoration: none;
+  text-align: center;
+}
+
+.top-bar__link-contactPerson::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: #ecdfcc;
+  margin-top: 4px;
+  position: absolute;
+  left: 0;
+}
+
+.top-bar__search-input {
+  background-color: $third-text-color;
+}

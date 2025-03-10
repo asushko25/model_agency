@@ -1,0 +1,107 @@
+@import "../../utils/variables";
+
+.btn--mobile-nav__desctop {
+  display: block !important;
+}
+
+.top-bar__item__search {
+  display: block !important;
+
+  @media (min-width: $tablet-min-width) and (max-width: 1023px) {
+    display: none !important;
+  }
+
+  @media (max-width: 576px) {
+    display: none !important;
+  }
+}
+
+.top-bar__person-info__left-search {
+  margin-left: clamp(10px, 22vw, 320px);
+}
+
+.top-bar__search-container-second__search {
+  display: block !important;
+  width: 100% !important;
+
+  @media (min-width: $tablet-min-width) and (max-width: 1023px) {
+  }
+
+  @media (max-width: 576px) {
+  }
+}
+
+.top-bar__search-input {
+  border: none;
+  padding: 4px;
+  color: #ecdfcc;
+  width: 100%;
+  box-sizing: border-box;
+
+  &::placeholder {
+    font-family: Ysabeau SC;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 16px;
+    text-align: left;
+    color: #a09d98;
+  }
+
+  &:focus {
+    color: #ecdfcc;
+    border: none;
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+.top-bar__search-results {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 10;
+}
+
+.top-bar__search-result-item {
+  padding: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.top-bar__search-result-item:hover {
+  background-color: #f0f0f0;
+}
+
+.top-bar__search-result-image {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+.search-page {
+  padding: 0 40px;
+  min-height: 100vh;
+
+  @media (min-width: 576px) and (max-width: 1023px) {
+    padding: 0 24px;
+  }
+
+  @media (max-width: 576px) {
+    padding: 0 16px;
+  }
+}
+
+.no-results {
+  font-family: Ysabeau SC;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 19.2px;
+  letter-spacing: -2.2%;
+  color: #ecdfcc;
+}

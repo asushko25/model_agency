@@ -1,0 +1,332 @@
+@import "../../utils/variables";
+
+.header {
+  height: 100vh;
+  background-image: url("../../../public/images/header/background.png");
+  position: relative;
+  background-position: top center;
+  background-size: cover;
+  padding: 0 40px;
+
+  @media (min-width: 1024px) and (max-width: 1399px) {
+    height: 880px;
+    background-image: url("../../../public/images/header/background.png");
+    position: relative;
+    background-position: top center;
+    background-size: cover;
+    padding: 0 40px;
+  }
+
+  @media (min-width: $tablet-min-width) and (max-width: 1023px) {
+    height: 100vh;
+    background-image: url("../../../public/images/header/background-tablet.png");
+    position: relative;
+    background-position: top center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 0 24px;
+  }
+
+  @media (max-width: 576px) {
+    height: 100vh;
+    background-image: url("../../../public/images/header/background-mobile.png");
+    position: relative;
+    background-position: top center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 0 16px;
+  }
+
+  &__title {
+    font-family: Bodoni Moda SC;
+    font-size: 84px;
+    font-weight: 600;
+    line-height: 100px;
+    text-align: center;
+    color: #ecdfcc;
+    z-index: 2;
+    position: absolute;
+    font-size: 84px;
+    line-height: 100px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+
+    @media (min-width: $tablet-min-width) and (max-width: 1023px) {
+      font-size: 32px;
+      line-height: 38px;
+    }
+
+    @media (max-width: 576px) {
+      font-size: 48px;
+      line-height: 57px;
+      padding-top: 100px;
+    }
+  }
+
+  &__discription {
+    font-family: Ysabeau SC;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: center;
+    color: #ecdfcc;
+    z-index: 2;
+    position: absolute;
+    left: 50%;
+    bottom: 12px;
+    transform: translate(-50%, -50%);
+    width: 100%;
+
+    @media (min-width: $tablet-min-width) and (max-width: 1023px) {
+      font-size: 18px;
+      line-height: 21px;
+      font-weight: 500;
+    }
+
+    @media (max-width: 576px) {
+      font-size: 16px;
+      line-height: 19px;
+    }
+  }
+}
+
+.header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 0;
+}
+
+body:has(#menu:target) .header::before {
+  backdrop-filter: blur(4px);
+}
+
+.top-bar {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 40px 0;
+  margin: 0;
+
+  &__list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    list-style: none;
+    z-index: 1;
+    padding-left: 5px;
+  }
+
+  &__navigation {
+    max-width: 377px;
+    z-index: 1;
+
+    @media (min-width: $tablet-min-width) and (max-width: 1023px) {
+      visibility: hidden;
+    }
+
+    @media (max-width: 576px) {
+      visibility: hidden;
+    }
+  }
+
+  &__link {
+    font-family: $main-font;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19px;
+    color: $second-text-color;
+    text-decoration: none;
+  }
+
+  &__logo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    @media (min-width: $tablet-min-width) and (max-width: 1023px) {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+    }
+
+    @media (max-width: 576px) {
+      position: absolute; 
+      top: 16px;
+      left: 50%; 
+      transform: translateX(-50%); 
+      width: auto; 
+    }
+  }
+
+  &__logo-main {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-family: Bodoni Moda SC;
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 57px;
+    color: #ecdfcc;
+    z-index: 2;
+
+    @media (min-width: $tablet-min-width) and (max-width: 1023px) {
+      font-size: 32px;
+      line-height: 38px;
+    }
+
+    @media (max-width: 576px) {
+      font-size: 32px;
+      line-height: 57px;
+    }
+  }
+
+  &__logo-second {
+    display: flex;
+    justify-content: center;
+    font-family: Bodoni Moda SC;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19px;
+    text-align: center;
+    z-index: 2;
+    color: #ecdfcc;
+    text-align: center;
+
+    @media (min-width: $tablet-min-width) and (max-width: 1023px) {
+      font-size: 14px;
+      line-height: 16px;
+    }
+
+    @media (max-width: 576px) {
+      font-size: 14px;
+      line-height: 16px;
+    }
+  }
+
+  &__search-container {
+    background-color: $third-text-color;
+    position: relative;
+    width: 360px;
+    height: 54px;
+
+    @media (min-width: $tablet-min-width) and (max-width: 1023px) {
+      width: 190px;
+      display: none;
+    }
+
+    @media (max-width: 576px) {
+      width: 260px;
+      display: none;
+    }
+  }
+
+  &__search-elements {
+    position: absolute;
+    display: flex;
+    gap: 8px;
+    padding: 15px 16px;
+  }
+
+  &__search-text {
+    display: flex;
+    color: $fourth-text-color;
+    font-family: $main-font;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19px;
+  }
+
+  &__search-icon {
+    display: flex;
+  }
+
+  &__search-item {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.btn--mobile-nav {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  z-index: 2;
+  display: none !important;
+
+  @media (min-width: $tablet-min-width) and (max-width: 1023px) {
+    display: block !important;
+  }
+
+  @media (max-width: 576px) {
+    display: block !important;
+  }
+}
+
+.top-bar__search-container-second {
+  background-color: $third-text-color;
+  position: relative;
+  width: 360px;
+  height: 54px;
+  display: none;
+
+  @media (min-width: $tablet-min-width) and (max-width: 1023px) {
+    width: 100%;
+    display: block;
+    margin-top: 40px;
+  }
+
+  @media (max-width: 576px) {
+    width: 100%;
+    display: block;
+    margin-top: 24px;
+  }
+}
+
+.top-bar__search-elements-second {
+  position: absolute;
+  display: flex;
+  gap: 8px;
+  padding: 15px 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.top-bar__search-text-second {
+  display: flex;
+  color: $fourth-text-color;
+  font-family: $main-font;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19px;
+}
+
+.top-bar__search-icon-second {
+  display: flex;
+}
+
+.top-bar__search-item {
+  width: 24px;
+  height: 24px;
+}
+
+.header--no-bg {
+  background-image: none;
+  background-color: transparent;
+}
+
+.header--no-bg .header__title,
+.header--no-bg .header__discription {
+  display: none;
+}

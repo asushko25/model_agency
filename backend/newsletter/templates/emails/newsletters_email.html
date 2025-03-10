@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ subject }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            padding: 10px 0;
+        }
+        .header h1 {
+            font-size: 24px;
+            color: #333;
+        }
+        .newsletter-content {
+            margin-bottom: 20px;
+        }
+        .newsletter-cover {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+        }
+        .newsletter-header {
+            font-size: 20px;
+            margin: 10px 0;
+        }
+        .newsletter-caption {
+            font-size: 16px;
+            color: #777;
+            margin: 10px 0;
+        }
+        .footer {
+            font-size: 14px;
+            color: #777;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><a href="{{ main_page_url }}">{{ subject }}</a></h1>
+        </div>
+
+        <div class="newsletter-content">
+            <img src="{{ newsletter.cover.url }}" alt="Newsletter Cover" class="newsletter-cover">
+            <h2 class="newsletter-header">{{ newsletter.header }}</h2>
+            <p class="newsletter-caption">{{ newsletter.caption }}</p>
+        </div>
+
+        <div class="footer">
+            <p>In addition to the newsletter above, {{ num_of_newsletters|add:"-1" }} other newsletters were created over the past {{ newsletter_creation_range_days }} days.</p>
+            <p>To see more newsletters, visit our <a href="{{ newsletters_url }}">Newsletter List</a>.</p>
+        </div>
+    </div>
+</body>
+</html>
