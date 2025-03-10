@@ -48,7 +48,7 @@ const Search = () => {
         if (debouncedSearchTerm.trim() !== "") {
           setIsLoading(true);
           const response = await fetch(
-            `http://127.0.0.1:8000/models/main/?search=${debouncedSearchTerm}&limit=9&offset=${
+            `https://modelagency-backend.onrender.com/models/main/?search=${debouncedSearchTerm}&limit=9&offset=${
               (page - 1) * 9
             }`
           );

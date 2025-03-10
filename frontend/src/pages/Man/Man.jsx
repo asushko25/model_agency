@@ -12,7 +12,7 @@ const Man = () => {
     const fetchModels = async () => {
       try {
         const response = await fetch(
-          "http://127.0.0.1:8000/models/men/?limit=12"
+          "https://modelagency-backend.onrender.com/models/men/?limit=12"
         );
         if (!response.ok) throw new Error("Failed to fetch models");
 

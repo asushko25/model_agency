@@ -17,7 +17,7 @@ const Person = () => {
     const fetchModel = async () => {
       try {
         const response = await fetch(
-          `http://127.0.0.1:8000/models/${category}/${id}/`
+          `https://modelagency-backend.onrender.com/models/${category}/${id}/`
         );
         if (!response.ok) throw new Error("Failed to fetch model");
 
