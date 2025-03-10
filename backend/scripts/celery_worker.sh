@@ -1,5 +1,5 @@
 #!/bin/sh
 
-echo "Starting Celery Beat"
+echo "Starting Celery Worker"
 
-celery -A model_agency beat -l info
+celery -A model_agency worker -l info
