@@ -102,9 +102,15 @@ class ContactAPIView(APIView):
         html_content = render_to_string(template, context)
 
         # Using Celery to send mail to user
-        send_contact_email.delay(
-            subject,
-            html_content,
-            settings.EMAIL_HOST_USER,
-            [email]
+        #
+        # send_contact_email.delay(
+        #     subject,
+        #     html_content,
+        #     settings.EMAIL_HOST_USER,
+        #     [email]
+        # )
+        email_message = EmailMessage(
+            subject, html_content, settings.EMAIL_HOST_USER, email
         )
+        email_message.content_subtype = "html"
+        email_message.send()
