@@ -8,4 +8,4 @@ echo "Installing static data of 24 models"
 python manage.py loaddata seed_data/fixture_db_data.json
 
 echo "Starting Gunicorn server..."
-ginicorn model_agency.wsgi:application --bind 0.0.0.0:$PORT
+gunicorn model_agency.wsgi:application --bind 0.0.0.0:$PORT
